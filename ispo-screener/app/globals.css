@@ -29,9 +29,18 @@
   }
 }
 
+body {
+  padding: 0 1rem;
+}
+
 a {
   color: inherit;
   text-decoration: none;
+}
+
+li {
+  color: inherit;
+  list-style: none;
 }
 
 @media (prefers-color-scheme: dark) {
