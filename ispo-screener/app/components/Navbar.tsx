@@ -9,7 +9,7 @@ export default function Navbar() {
       <li><Link href={"/ispo"}>ISPO'S</Link></li>
       <li><Link href={"/support"}>SUPPORT US</Link></li>
       <div>
-        TOGGLE PLACEHOLDER 
+        TOGGLETHEME 
       </div>
     </nav>
   )
