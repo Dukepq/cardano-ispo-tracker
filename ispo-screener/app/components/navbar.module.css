@@ -1,8 +1,14 @@
+.navbar-wrapper {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  padding: 0 1rem
+}
+
 .navbar {
   display: flex;
   gap: 2rem;
-  position: sticky;
-  top: 0;
   max-width: var(--max-width);
   margin: 0 auto;
   height: var(--nav-height);

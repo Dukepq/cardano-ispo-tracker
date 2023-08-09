@@ -6,6 +6,7 @@
 
 :root {
   --primary-color: #0B090A;
+  --primary-color-no-hex: 11, 9, 10;
   --secondary-color: #161A1D;
   --accent-1: #660708;
   --accent-2: #E5383B;
@@ -13,11 +14,14 @@
   --accent-4: #BA181B;
   --general-1: #FFFFFF;
   --general-2: #F5F3F4;
+  --nav-height: 5rem;
+  --max-width: 1350px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --primary-color: #0B090A;
+    --primary-color-no-hex: 11, 9, 10;
     --secondary-color: #161A1D;
     --accent-1: #660708;
     --accent-2: #E5383B;
@@ -30,7 +34,39 @@
 }
 
 body {
+  background-color: var(--primary-color);
+}
+.app-wrapper {
   padding: 0 1rem;
+  background-color: rgb(var(--primary-color-no-hex), 0.8);
+  backdrop-filter: blur(200px);
+}
+.blob-wrapper {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.blob {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  background-color: rgb(61, 61, 153);
+  border-radius: 100vw;
+  z-index: -100;
+  opacity: 0.9;
+}
+.blob-1 {
+  top: 300px;
+  left: 90%
+}
+.blob-2 {
+  top: 3%;
+  left: 6%
+}
+.blob-3 {
+  bottom: 10%;
+  left: 50%
 }
 
 a {
