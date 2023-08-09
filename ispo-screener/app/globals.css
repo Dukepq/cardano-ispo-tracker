@@ -16,6 +16,7 @@
   --general-2: #F5F3F4;
   --nav-height: 5rem;
   --max-width: 1350px;
+  --animation-duration: 600ms
 }
 
 @media (prefers-color-scheme: dark) {
@@ -34,12 +35,16 @@
 }
 
 body {
+  overflow-x: hidden;
   background-color: var(--primary-color);
+  background: linear-gradient(90deg, rgba(12,0,255,0.2) 0%, rgba(12,0,255,0) 50%, rgba(12,0,255,0.2) 100%);
+  /*  ^ unsure about this */
 }
 .app-wrapper {
   padding: 0 1rem;
   background-color: rgb(var(--primary-color-no-hex), 0.8);
-  backdrop-filter: blur(200px);
+  backdrop-filter: blur(180px);
+  -webkit-backdrop-filter: blur(180px);
 }
 .blob-wrapper {
   position: absolute;
@@ -54,7 +59,6 @@ body {
   background-color: rgb(61, 61, 153);
   border-radius: 100vw;
   z-index: -100;
-  opacity: 0.9;
 }
 .blob-1 {
   top: 300px;
@@ -83,4 +87,10 @@ li {
   html {
     color-scheme: dark;
   }
+}
+
+.footer {
+  height: 200px;
+  color: var(--general-1);
+  background-color: var(--secondary-color);
 }

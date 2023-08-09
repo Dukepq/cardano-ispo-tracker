@@ -2,6 +2,8 @@
   max-width: var(--max-width);
   margin: 0 auto;
   min-height: 100vh;
+  display: flow-root;
+  /* ^ handles collapsing margins */
 }
 
 .hero-section {
@@ -20,23 +22,43 @@
   font-size: clamp(2rem, 10vw, 4rem);
   font-weight: 600;
   line-height: clamp(3rem, 5vw, 4.5rem);
+  animation: var(--animation-duration) forwards slidein-left
+}
+
+@keyframes slidein-left {
+  from {transform: translateX(-300%)}
+  to {transform: translateX(0%)}
+}
+@keyframes slidein-right {
+  from {transform: translateX(300%)}
+  to {transform: translateX(0%)}
 }
 
 .left-hero > p {
   opacity: 0.8;
   font-weight: 300;
+  animation: var(--animation-duration) forwards slidein-left;
+  animation-delay: 50ms;
 }
 
 .right-hero {
   width: 50%;
-  height: 35%;
-  background-color: var(--secondary-color);
-  border-radius: 1rem;
+  height: 40%;
+  animation: var(--animation-duration) forwards slidein-right
+}
+.right-hero > img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
 }
 
-
 .ispo-section {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.ispo-grid-wrapper {
   display: grid;
+  gap: 1rem;
   grid-template-columns: repeat(3, 1fr);
-  gap: 3.5rem;
 }

@@ -1,6 +1,11 @@
+"use client"
+
 import Image from 'next/image'
 import styles from './landing.module.css'
 import DisplaySegment from './components/DisplayISPO'
+import About from './components/About'
+import React, {useRef} from 'react'
+
 
 const dummyData = [
   {
@@ -48,37 +53,51 @@ const dummyData = [
     ratio: "0.00932%",
     takesRewards: "optional",
   },
+  {
+    name: 'Cardano Casino',
+    logo: "cardano-logo.svg",
+    token: "CACA",
+    categories: ["gambling"],
+    allocation: "1%",
+    ratio: "0.00000000932%",
+    takesRewards: "no",
+  },
 ]
 
 export default function Home() {
+  const aboutRef = useRef<HTMLDivElement | null>(null)
   return (
     <main className={styles.main}>
       <section className={styles["hero-section"]}>
         <div className={styles["left-hero"]}>
-          <h1>YOUR CARDANO ISPO GUIDE</h1>
+          <h1>FIND YOUR CARDANO ISPO</h1>
           <p>We make it easy for you to determine which ISPO is worthy of your delegation.</p>
         </div>
         <div className={styles["right-hero"]}>
-          <p>hi</p>
+          <img src="/undraw-innovative-placeholder.svg" alt="hero-image" />
         </div>
       </section>
       <section className={styles["ispo-section"]}>
-        {dummyData.map((item, index) => {
-          return (
-            <DisplaySegment key={index}
-            name={item.name}
-            logo={"cardano-logo.svg"}
-            token={item.token}
-            categories={item.categories}
-            allocation={item.allocation}
-            ratio={item.ratio}
-            takesRewards={item.takesRewards}
-            />
-          )
-        })}
-          
-        
+        <div className={styles["ispo-grid-wrapper"]}>
+          {dummyData.map((item, index) => {
+            if (index < 6) {
+              return (
+                <DisplaySegment key={index}
+                name={item.name}
+                logo={"cardano-logo.svg"}
+                token={item.token}
+                categories={item.categories}
+                allocation={item.allocation}
+                ratio={item.ratio}
+                takesRewards={item.takesRewards}
+                />
+              )
+            }
+          })}
+        </div>
       </section>
+      <div ></div>
+      <About />
     </main>
   )
 }

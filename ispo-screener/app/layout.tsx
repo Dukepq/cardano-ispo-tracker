@@ -32,6 +32,9 @@ export default function RootLayout({
         <div className="app-wrapper">
           {children}
         </div>
+        <footer className='footer'>
+          this is the footer
+        </footer>
       </body>
     </html>
   )
