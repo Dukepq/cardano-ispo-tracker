@@ -11,12 +11,13 @@
 
 .navbar {
   display: flex;
-  gap: 2rem;
+  gap: 3rem;
   max-width: var(--max-width);
   margin: 0 auto;
   height: var(--nav-height);
   align-items: center;
   color: var(--general-1);
+  transition: height 300ms ease
 }
 
 .navbar > li {

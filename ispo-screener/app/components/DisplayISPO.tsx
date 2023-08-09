@@ -1,4 +1,5 @@
 import styles from "./segment.module.css"
+import Link from "next/link"
 
 type Props = {
   name: string
@@ -40,7 +41,11 @@ export default function DisplaySegment({
           <p>{allocation}</p>
         </div>
         <div className={styles.ratio}>
-          <h5>SP/100K</h5>
+          <div className={styles["question-container"]}>
+            <h5>SP/100K</h5>
+            <p className={styles.question}><Link href={"/"}>what is this?</Link></p>
+          </div>
+          
           <p>{ratio}</p>
         </div>
         <div className={styles.rewards}>

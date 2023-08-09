@@ -1,7 +1,7 @@
 "use client"
 import styles from "./about.module.css"
 import { useRef } from "react"
-import useOnScreen from "./hooks/useOnScreen"
+import useOnScreen from "../hooks/useOnScreen"
 
 
 export default function About() {
