@@ -1,5 +1,3 @@
-"use client"
-
 import Image from 'next/image'
 import styles from './landing.module.css'
 import DisplaySegment from './components/DisplayISPO'
@@ -65,7 +63,6 @@ const dummyData = [
 ]
 
 export default function Home() {
-  const aboutRef = useRef<HTMLDivElement | null>(null)
   return (
     <main className={styles.main}>
       <section className={styles["hero-section"]}>
@@ -96,7 +93,6 @@ export default function Home() {
           })}
         </div>
       </section>
-      <div ></div>
       <About />
     </main>
   )

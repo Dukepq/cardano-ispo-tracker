@@ -1,11 +1,10 @@
 "use client"
 import styles from "./about.module.css"
-import { useEffect, useRef, useState } from "react"
+import { useRef } from "react"
 import useOnScreen from "./hooks/useOnScreen"
 
 
 export default function About() {
-  const [inView, setInView] = useState(false)
   const sectionRef = useRef<null | HTMLElement>(null)
   const isOnScreen = useOnScreen(sectionRef)
 

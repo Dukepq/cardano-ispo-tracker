@@ -1,6 +1,6 @@
 const throttle = (callback: Function, delay: number) => {
   let wait = false;
-  let waitingArgs: Event[] | null | undefined;
+  let waitingArgs: any;
   const timeoutFunc = () => {
     if (!waitingArgs) {
       wait = false;
