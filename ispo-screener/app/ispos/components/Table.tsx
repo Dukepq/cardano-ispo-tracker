@@ -11,42 +11,54 @@ export default function Table({ data }: {data: ISPO[]}) {
           <th
           data-row="placeholder"
           onClick={() => null}
-          className={styles["row-1"]}
+          className={styles["row"]}
           >
-            <div><p>name</p></div>
+            <div>
+              <p>Name</p>
+              <div className={styles.arrow}>&#8597;</div>
+              </div>
           </th>
           <th
           data-row="placeholder"
           onClick={() => null}
-          className={styles["row-2"]}
+          className={styles["row"]}
           >
-            <div><p>token</p></div>
+            <div>
+              <p>Token</p>
+              <div className={styles.arrow}>&#8597;</div>
+            </div>
           </th>
           <th
           data-row="placeholder"
           onClick={() => null}
-          className={styles["row-3"]}
+          className={styles["row"]}
           >
-            <div><p>allocation</p></div>
+            <div>
+              <p>ISPO Allocation</p>
+              <div className={styles.arrow}>&#8597;</div>
+            </div>
           </th>
           <th
           data-row="placeholder"
           onClick={() => null}
-          className={styles["row-4"]}
+          className={styles["row"]}
           >
-            <div><p>test1</p></div>
+            <div>
+              <p>test1</p>
+              <div className={styles.arrow}>&#8597;</div>
+            </div>
           </th>
           <th
           data-row="placeholder"
           onClick={() => null}
-          className={styles["row-5"]}
+          className={styles["row"]}
           >
             <div><p>test2</p></div>
           </th>
           <th
           data-row="placeholder"
           onClick={() => null}
-          className={styles["row-6"]}
+          className={styles["row"]}
           >
             <div><p>test3</p></div>
           </th>
