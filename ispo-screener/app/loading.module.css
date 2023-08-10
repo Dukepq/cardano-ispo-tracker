@@ -1,0 +1,19 @@
+.spinner {
+  display: grid;
+  place-content: center;
+  width: 5vw;
+  height: 5vw;
+  border: 10px solid var(--secondary-color);
+  background-color: transparent;
+  border-top-color: darkslategrey;
+  border-radius: 50%;
+  animation: animate-spinner 1s linear infinite;
+}
+@keyframes animate-spinner {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}

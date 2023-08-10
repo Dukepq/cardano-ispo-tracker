@@ -15,6 +15,7 @@ export default function DisplaySegment({
 }: Props) {
   return (
     <div className={styles.wrapper}>
+      {!live && <div className={styles["live-icon"]}></div>}
       <div className={styles.top}>
         <img src={logo} alt="ISPO logo" />
         <div>

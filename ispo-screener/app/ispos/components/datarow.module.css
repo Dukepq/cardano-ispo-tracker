@@ -1,0 +1,34 @@
+.name, .name > a {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.name > a {
+  margin-left: 0.2rem;
+}
+
+.name > p {
+  font-weight: 300;
+  width: 1rem;
+  margin-left: 0.2rem;
+}
+
+.name h5 {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.categories-wrapper {
+  display: flex;
+  flex-shrink: 1;
+  gap: 0.5rem;
+  max-width: 100px;
+}
+
+.categories-wrapper > p {
+  font-size: 0.8rem;
+  padding: 0.2rem 0.5rem;
+  background-color: var(--accent-1);
+  border-radius: 0.2rem;
+}

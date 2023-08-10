@@ -4,14 +4,36 @@
   margin: 0 auto;
 }
 
-.wrapper {
+/* .wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
-}
+} */
 
 @media (max-width: 1200px) {
   .wrapper {
     grid-template-columns: repeat(1, 1fr);
   }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: rgb(10, 9, 16);
+  padding: 1rem;
+  border: 1px solid var(--secondary-color);
+}
+
+.table td,
+.table th {
+  padding: 0.5rem;
+}
+
+.table th {
+  text-align: left;
+}
+
+.table tr {
+  border-bottom: 1px solid var(--secondary-color);
+  height: 2.8rem;
 }

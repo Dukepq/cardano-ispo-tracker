@@ -22,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={poppins.className}>
+      <body className={inter.className}>
       <Navbar />
         <div className="blob-wrapper">
           <div className="blob blob-1"></div>

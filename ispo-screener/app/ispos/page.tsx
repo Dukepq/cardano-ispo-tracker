@@ -1,35 +1,57 @@
 import styles from "./ispos.module.css"
-import DisplaySegment from "../components/DisplayISPO"
-import { dummyData } from "../dummyData"
 import { Metadata } from "next"
+import Table from "./components/Table"
+import { dummyData } from "@/app/dummyData"
+import getDummyDataAsync from "@/app/dummyData"
 
 export const metadata: Metadata = {
   title: "Live ISPO's",
   description: "Overview of currently running ISPO's"
 }
 
-export default function ISPOS() {
+export default async function ISPOS() {
+  // const dummyData = await getDummyDataAsync()
   return (
     <main className={styles.main}>
-      <h1>ISPO'S:</h1>
+      <div className={styles["bar"]}>
+        <h1>ISPO'S:</h1>
+      </div>
       <div className={styles.wrapper}>
-        {dummyData.map((item, index) => {
-          return (
-            <DisplaySegment
-            key={index}
-            description={item.description}
-            name={item.name}
-            logo={"cardano-logo.svg"}
-            token={item.token}
-            categories={item.categories}
-            allocation={item.allocation}
-            ratio={item.ratio}
-            rewards={[item.takesRewards]}
-            live={item.live}
-            />
-          )
-        })}
+        <table className={styles.table}>
+          <Table
+          data={dummyData}
+          />
+        </table>
       </div>
     </main>
   )
 }
+
+// {/* <table className={styles.table}>
+//           <thead>
+//             <TableHead />
+//           </thead>
+//           <tbody>
+//             {/* can chain a sorting function that returns an array here:
+//                 sortArray(dummyData).map... */}
+//             {dummyData.map((item, index) => {
+//               return (
+//                 <DataRow
+//                 key={index}
+//                 description={item.description}
+//                 name={item.name}
+//                 website={item.website}
+//                 logo={"cardano-logo.svg"}
+//                 token={item.token}
+//                 categories={item.categories}
+//                 allocation={item.allocation}
+//                 ratio={item.ratio}
+//                 rewards={[item.takesRewards]}
+//                 live={item.live}
+//                 index={index}
+//                 />
+//               )
+//             })}
+//           </tbody>
+          
+//         </table> */}
