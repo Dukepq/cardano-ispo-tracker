@@ -30,7 +30,7 @@ export default function Navbar() {
       <nav style={scrolled ? {height: "4rem"} : {}} className={styles.navbar}>
         <li><Link href={"/"}>HOME</Link></li>
         <li><Link href={"/#about"}>ABOUT</Link></li>
-        <li><Link href={"/ispos"}>ISPO'S</Link></li>
+        <li><Link href={"/ispos"}>ISPO&apos;S</Link></li>
         <li><Link href={"/support"}>SUPPORT US</Link></li>
         <div>
           ToggleTheme

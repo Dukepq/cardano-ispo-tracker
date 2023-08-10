@@ -7,4 +7,5 @@ type ISPO = {
   allocation: string;
   ratio: string;
   rewards: string[]; // multiple types of rewards are possible
+  live: boolean;
 };

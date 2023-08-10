@@ -6,7 +6,7 @@ type Params = {
   }
 }
 
-export default function ISPO({ params: {ispo} }: Params) {
+export default function Ispo({ params: {ispo} }: Params) {
   console.log(ispo)
   return (
     <>

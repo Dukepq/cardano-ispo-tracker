@@ -1,15 +1,7 @@
 import styles from "./segment.module.css"
 import Link from "next/link"
 
-type Props = {
-  name: string
-  logo: string
-  token: string
-  categories: string[]
-  allocation: string
-  ratio: string
-  takesRewards: string
-}
+type Props = ISPO
 
 export default function DisplaySegment({
   name,
@@ -18,14 +10,15 @@ export default function DisplaySegment({
   categories,
   allocation,
   ratio,
-  takesRewards
+  rewards,
+  live,
 }: Props) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.top}>
         <img src={logo} alt="ISPO logo" />
         <div>
-          <h4>{token}</h4>
+          <h4>{name.length > 15 ? name.slice(0, 15) + "..." : name}</h4>
           <div className={styles["tags"]}>
             {categories.map((item, index) => {
             if (index < 3) {
@@ -35,7 +28,12 @@ export default function DisplaySegment({
           </div>
         </div>
       </div>
+      <br />
       <div className={styles.bottom}>
+        <div className={styles.token}>
+          <h5>Token</h5>
+          <p>{token}</p>
+        </div>
         <div className={styles.allocation}>
           <h5>ISPO Allocation</h5>
           <p>{allocation}</p>
@@ -50,7 +48,7 @@ export default function DisplaySegment({
         </div>
         <div className={styles.rewards}>
           <h5>Takes Rewards</h5>
-          <p>{takesRewards}</p>
+          <p>{rewards}</p>
         </div>
       </div>
     </div>

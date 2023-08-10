@@ -15,7 +15,7 @@ export default function Home() {
         <div className={styles["left-hero"]}>
           <h1>FIND YOUR CARDANO ISPO</h1>
           <p>We make it easy for you to determine which ISPO is worthy of your delegation.</p>
-          <Link href={"/ispos"}><button className={styles["ispo-button"]}>SEE ISPO'S</button></Link>
+          <Link href={"/ispos"}><button className={styles["ispo-button"]}>SEE ISPO&apos;S</button></Link>
         </div>
         <div className={styles["right-hero"]}>
           <img src="/undraw-innovative-placeholder.svg" alt="hero-image" />
@@ -28,12 +28,14 @@ export default function Home() {
               return (
                 <DisplaySegment key={index}
                 name={item.name}
+                description={item.description}
                 logo={"cardano-logo.svg"}
                 token={item.token}
                 categories={item.categories}
                 allocation={item.allocation}
                 ratio={item.ratio}
-                takesRewards={item.takesRewards}
+                rewards={[item.takesRewards]}
+                live={item.live}
                 />
               )
             }

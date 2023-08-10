@@ -1,5 +1,5 @@
 .wrapper {
-  padding: 0.5rem 1.5rem;
+  padding: 1.5rem;
   border: 1px solid var(--secondary-color);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -29,12 +29,14 @@
 .top > div:not(.image-wrapper) {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 }
 
 .tags {
   display: flex;
   gap: 0.5rem;
 }
+
 .tag {
   background-color: var(--accent-3);
   padding: 0.2rem 0.8rem;
@@ -43,8 +45,8 @@
 }
 
 .top h4 {
-  font-size: 2.5rem;
-  line-height: 3rem;
+  font-size: 2rem;
+  line-height: 2rem;
   margin: 0;
   padding: 0;
   color: var(--general-1)

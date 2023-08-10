@@ -19,7 +19,7 @@
   --animation-duration: 600ms
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     --primary-color: #FFFFFF;
     --primary-color-no-hex: 240, 240, 240;
