@@ -1,7 +1,6 @@
 import styles from "./segment.module.css"
 import Link from "next/link"
 
-type Props = ISPO
 
 export default function DisplaySegment({
   name,
@@ -10,9 +9,9 @@ export default function DisplaySegment({
   categories,
   allocation,
   ratio,
-  rewards,
+  takesRewards,
   live,
-}: Props) {
+}: ISPO) {
   return (
     <div className={styles.wrapper}>
       {!live && <div className={styles["live-icon"]}></div>}
@@ -49,7 +48,7 @@ export default function DisplaySegment({
         </div>
         <div className={styles.rewards}>
           <h5>Takes Rewards</h5>
-          <p>{rewards}</p>
+          <p>{takesRewards}</p>
         </div>
       </div>
     </div>

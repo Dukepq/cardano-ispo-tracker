@@ -6,6 +6,7 @@ import React, {useRef} from 'react'
 import ScrollButton from './components/ScrollButton'
 import Link from 'next/link'
 import { dummyData } from './dummyData'
+import Stats from './components/Stats'
 
 export default function Home() {
   return (
@@ -18,7 +19,12 @@ export default function Home() {
           <Link href={"/ispos"}><button className={styles["ispo-button"]}>SEE ISPO&apos;S</button></Link>
         </div>
         <div className={styles["right-hero"]}>
-          <img src="/undraw-innovative-placeholder.svg" alt="hero-image" />
+          {/* <img src="/undraw-innovative-placeholder.svg" alt="hero-image" /> */}
+          <h3>
+            <span>currently tracking</span>
+            <span>18</span>
+            <span>ISPO'S</span>
+          </h3>
         </div>
       </section>
       <section className={styles["ispo-section"]}>
@@ -27,6 +33,7 @@ export default function Home() {
             if (index < 6) {
               return (
                 <DisplaySegment key={index}
+                website={"/"}
                 name={item.name}
                 description={item.description}
                 logo={"cardano-logo.svg"}
@@ -34,8 +41,9 @@ export default function Home() {
                 categories={item.categories}
                 allocation={item.allocation}
                 ratio={item.ratio}
-                rewards={[item.takesRewards]}
+                takesRewards={item.takesRewards}
                 live={item.live}
+                status="upcoming"
                 />
               )
             }

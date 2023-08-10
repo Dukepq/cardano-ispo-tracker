@@ -71,17 +71,36 @@
   scale: 1.05;
 }
 
-
 .right-hero {
   width: 50%;
   height: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   transform: translateX(1920px);
   animation: var(--animation-duration) forwards slidein-right
 }
+
 .right-hero > img {
   object-fit: contain;
   width: 100%;
   height: 100%;
+}
+
+.right-hero > h3 > span {
+  display: block;
+}
+.right-hero > h3 > span:nth-of-type(1) {
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+.right-hero > h3 > span:nth-of-type(2) {
+  font-size: clamp(5rem, 12vw, 8rem);
+  display: inline;
+}
+.right-hero > h3 > span:nth-of-type(3) {
+  display: inline;
+  font-size: clamp(4rem, 6vw, 5rem);
+  margin-left: 0.5rem;
 }
 
 .ispo-section {
