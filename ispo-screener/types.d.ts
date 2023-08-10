@@ -9,5 +9,5 @@ type ISPO = {
   ratio: string;
   takesRewards: string[]; // multiple types of rewards are possible
   live: boolean;
-  status: "upcoming" | "in progress" | "ended";
+  status: string | "upcoming" | "in progress" | "ended" | "paused";
 };

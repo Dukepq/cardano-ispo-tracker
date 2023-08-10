@@ -14,7 +14,7 @@ export default async function ISPOS() {
   return (
     <main className={styles.main}>
       <div className={styles["bar"]}>
-        <h1>ISPO'S:</h1>
+        <h1>ISPO&apos;S:</h1>
       </div>
       <div className={styles.wrapper}>
         <table className={styles.table}>

@@ -11,6 +11,7 @@ export default function DisplaySegment({
   ratio,
   takesRewards,
   live,
+  status
 }: ISPO) {
   return (
     <div className={styles.wrapper}>

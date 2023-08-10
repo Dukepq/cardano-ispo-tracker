@@ -82,6 +82,7 @@ export default function Table({ data }: {data: ISPO[]}) {
             takesRewards={item.takesRewards}
             live={item.live}
             index={index}
+            status={item.status}
             />
           )
         })}

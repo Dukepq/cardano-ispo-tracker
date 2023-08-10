@@ -7,6 +7,7 @@ import ScrollButton from './components/ScrollButton'
 import Link from 'next/link'
 import { dummyData } from './dummyData'
 import Stats from './components/Stats'
+import CountAni from './components/CountAni'
 
 export default function Home() {
   return (
@@ -22,8 +23,8 @@ export default function Home() {
           {/* <img src="/undraw-innovative-placeholder.svg" alt="hero-image" /> */}
           <h3>
             <span>currently tracking</span>
-            <span>18</span>
-            <span>ISPO'S</span>
+            <CountAni number={18} />
+            <span>ISPO&apos;S</span>
           </h3>
         </div>
       </section>

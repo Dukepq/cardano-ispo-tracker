@@ -10,6 +10,7 @@ export const dummyData = [
     ratio: "0.00006%",
     takesRewards: ["yes"],
     live: true,
+    status: "paused",
   },
   {
     name: "Mongosi City",
@@ -22,6 +23,7 @@ export const dummyData = [
     ratio: "0.0000012%",
     takesRewards: ["no"],
     live: true,
+    status: "paused",
   },
   {
     name: "Verbatum",
@@ -34,6 +36,7 @@ export const dummyData = [
     ratio: "0.000135%",
     takesRewards: ["yes"],
     live: true,
+    status: "paused",
   },
   {
     name: "Mara Market",
@@ -46,6 +49,7 @@ export const dummyData = [
     ratio: "0.0000932%",
     takesRewards: ["partial"],
     live: false,
+    status: "paused",
   },
   {
     name: "Zirum",
@@ -58,6 +62,7 @@ export const dummyData = [
     ratio: "0.00932%",
     takesRewards: ["optional"],
     live: true,
+    status: "paused",
   },
   {
     name: "Cardano Casino",
@@ -70,6 +75,7 @@ export const dummyData = [
     ratio: "0.00000000932%",
     takesRewards: ["no"],
     live: false,
+    status: "paused",
   },
   {
     name: "Cardano Casino",
@@ -82,6 +88,7 @@ export const dummyData = [
     ratio: "0.00000000932%",
     takesRewards: ["no"],
     live: true,
+    status: "paused",
   },
   {
     name: "Cardano Casino",
@@ -94,6 +101,7 @@ export const dummyData = [
     ratio: "0.00000000932%",
     takesRewards: ["no"],
     live: true,
+    status: "paused",
   },
   {
     name: "Cardano Casino",
@@ -106,6 +114,7 @@ export const dummyData = [
     ratio: "0.00000000932%",
     takesRewards: ["no"],
     live: false,
+    status: "paused",
   },
   {
     name: "Cardano Casino",
@@ -118,6 +127,7 @@ export const dummyData = [
     ratio: "0.00000000932%",
     takesRewards: ["no"],
     live: true,
+    status: "paused",
   },
   {
     name: "Cardano Casino",
@@ -130,6 +140,7 @@ export const dummyData = [
     ratio: "0.00000000932%",
     takesRewards: ["no"],
     live: true,
+    status: "paused",
   },
   {
     name: "Cardano Casino",
@@ -142,6 +153,7 @@ export const dummyData = [
     ratio: "0.00000000932%",
     takesRewards: ["no"],
     live: true,
+    status: "paused",
   },
 ];
 
@@ -160,6 +172,7 @@ export default async function getDummyDataAsync(): Promise<ISPO[]> {
       ratio: "0.00006%",
       takesRewards: ["yes"],
       live: true,
+      status: "paused",
     },
     {
       name: "Mongosi City",
@@ -172,6 +185,7 @@ export default async function getDummyDataAsync(): Promise<ISPO[]> {
       ratio: "0.0000012%",
       takesRewards: ["no"],
       live: true,
+      status: "paused",
     },
     {
       name: "Verbatum",
@@ -184,6 +198,7 @@ export default async function getDummyDataAsync(): Promise<ISPO[]> {
       ratio: "0.000135%",
       takesRewards: ["yes"],
       live: true,
+      status: "paused",
     },
     {
       name: "Mara Market",
@@ -196,6 +211,7 @@ export default async function getDummyDataAsync(): Promise<ISPO[]> {
       ratio: "0.0000932%",
       takesRewards: ["partial"],
       live: false,
+      status: "paused",
     },
     {
       name: "Zirum",
@@ -208,6 +224,7 @@ export default async function getDummyDataAsync(): Promise<ISPO[]> {
       ratio: "0.00932%",
       takesRewards: ["optional"],
       live: true,
+      status: "paused",
     },
     {
       name: "Cardano Casino",
@@ -220,6 +237,7 @@ export default async function getDummyDataAsync(): Promise<ISPO[]> {
       ratio: "0.00000000932%",
       takesRewards: ["no"],
       live: false,
+      status: "paused",
     },
     {
       name: "Cardano Casino",
@@ -232,6 +250,7 @@ export default async function getDummyDataAsync(): Promise<ISPO[]> {
       ratio: "0.00000000932%",
       takesRewards: ["no"],
       live: true,
+      status: "paused",
     },
     {
       name: "Cardano Casino",
@@ -244,6 +263,7 @@ export default async function getDummyDataAsync(): Promise<ISPO[]> {
       ratio: "0.00000000932%",
       takesRewards: ["no"],
       live: true,
+      status: "paused",
     },
     {
       name: "Cardano Casino",
@@ -256,6 +276,7 @@ export default async function getDummyDataAsync(): Promise<ISPO[]> {
       ratio: "0.00000000932%",
       takesRewards: ["no"],
       live: false,
+      status: "paused",
     },
     {
       name: "Cardano Casino",
@@ -268,6 +289,7 @@ export default async function getDummyDataAsync(): Promise<ISPO[]> {
       ratio: "0.00000000932%",
       takesRewards: ["no"],
       live: true,
+      status: "paused",
     },
     {
       name: "Cardano Casino",
@@ -280,6 +302,7 @@ export default async function getDummyDataAsync(): Promise<ISPO[]> {
       ratio: "0.00000000932%",
       takesRewards: ["no"],
       live: true,
+      status: "paused",
     },
     {
       name: "Cardano Casino",
@@ -292,6 +315,7 @@ export default async function getDummyDataAsync(): Promise<ISPO[]> {
       ratio: "0.00000000932%",
       takesRewards: ["no"],
       live: true,
+      status: "paused",
     },
   ];
 }
