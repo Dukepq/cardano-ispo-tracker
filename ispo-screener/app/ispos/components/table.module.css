@@ -13,6 +13,15 @@
   margin-left: auto;
 }
 
+.table-head .row {
+  padding: 0;
+}
+
 .table-head th > div {
   display: flex;
+}
+
+.query {
+  display: flex;
+  padding: 0.5rem;
 }

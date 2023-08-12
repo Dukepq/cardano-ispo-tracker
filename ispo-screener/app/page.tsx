@@ -16,16 +16,18 @@ export default function Home() {
       <section className={styles["hero-section"]}>
         <div className={styles["left-hero"]}>
           <h1>FIND YOUR CARDANO ISPO</h1>
-          <p>We make it easy for you to determine which ISPO is worthy of your delegation.</p>
-          <Link href={"/ispos"}><button className={styles["ispo-button"]}>SEE ISPO&apos;S</button></Link>
+          <p>We try to make it easy for you to determine which ISPO is worthy of your delegation.</p>
+          <Link href={"/ispos"}><button className={styles["ispo-button"]}>See ISPO&apos;S</button></Link>
         </div>
         <div className={styles["right-hero"]}>
           {/* <img src="/undraw-innovative-placeholder.svg" alt="hero-image" /> */}
-          <h3>
-            <span>currently tracking</span>
-            <CountAni number={18} />
-            <span>ISPO&apos;S</span>
-          </h3>
+          <div className={styles["stat-wrapper"]}>
+            <span>CURRENTLY LIVE</span>
+            <div>
+              <CountAni number={18} />
+              <span>ISPO&apos;S</span>
+            </div>
+          </div>
         </div>
       </section>
       <section className={styles["ispo-section"]}>

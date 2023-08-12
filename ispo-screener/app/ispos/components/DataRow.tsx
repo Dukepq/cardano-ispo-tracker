@@ -19,7 +19,7 @@ export default function DataRow({
     <tr className={styles.row} data-cell="general-info">
       <td>
         <div className={styles["name"]}>
-          <p>{index}</p>
+          <p>{index + 1}</p>
           <Link href={"/"}>
             <Image src={"/cardano-logo.svg"} width={25} height={25} alt="logo"/>
             <h5>{name}</h5>
@@ -28,7 +28,7 @@ export default function DataRow({
       </td>
       <td data-cell="token">{token}</td>
       <td data-cell="allocation">{allocation}</td>
-      <td data-cell="rewards">{takesRewards}</td>
+      <td data-cell="%per100k">{ratio}</td>
       <td style={live ? {color: "green"} : {color: "red"}}>{live ? "yes" : "no"}</td>
       <td data-cell="categories">
         <div className={styles["categories-wrapper"]}>

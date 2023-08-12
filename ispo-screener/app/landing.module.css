@@ -61,14 +61,21 @@
   animation: var(--animation-duration) forwards slidein-left;
   animation-delay: 50ms;
   border: 1px solid var(--general-1);
-  padding: 1rem 2rem;
+  /* border: none; */
+  height: 3rem;
+  width: 10rem;
   background-color: transparent;
+  /* background-color: rgba(1, 107, 212, 1) */
   margin-top: 2rem;
   font-size: 1.2rem;
+  transition: 250ms;
+  font-weight: 700;
 }
 .ispo-button:hover {
   cursor: pointer;
-  scale: 1.05;
+  background-color: var(--general-1);
+  color: black;
+  border: none;
 }
 
 .right-hero {
@@ -81,26 +88,32 @@
   animation: var(--animation-duration) forwards slidein-right
 }
 
-.right-hero > img {
-  object-fit: contain;
-  width: 100%;
-  height: 100%;
+.stat-wrapper > :first-child {
+  position: relative;
+  font-size: 4rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.stat-wrapper > :first-child::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  right: -1.5rem;
+  top: 0;
 }
 
-.right-hero > h3 > span {
-  display: block;
+.stat-wrapper > div > :first-child {
+  font-size: 8rem;
+  line-height: 6rem;
+  font-weight: 800;
+  margin-right: 1rem;
 }
-.right-hero > h3 > span:nth-of-type(1) {
-  font-size: clamp(2rem, 5vw, 3rem);
-}
-.right-hero > h3 > span:nth-of-type(2) {
-  font-size: clamp(5rem, 12vw, 8rem);
-  display: inline;
-}
-.right-hero > h3 > span:nth-of-type(3) {
-  display: inline;
-  font-size: clamp(4rem, 6vw, 5rem);
-  margin-left: 0.5rem;
+.stat-wrapper > div > :last-child {
+  font-size: 4rem;
+  font-weight: 600;
 }
 
 .ispo-section {

@@ -13,9 +13,9 @@ export default async function ISPOS() {
   // const dummyData = await getDummyDataAsync()
   return (
     <main className={styles.main}>
-      <div className={styles["bar"]}>
+      {/* <div className={styles["bar"]}>
         <h1>ISPO&apos;S:</h1>
-      </div>
+      </div> */}
       <div className={styles.wrapper}>
         <table className={styles.table}>
           <Table
