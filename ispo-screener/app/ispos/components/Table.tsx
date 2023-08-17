@@ -3,7 +3,6 @@
 import styles from "./table.module.css"
 import DataRow from "./DataRow"
 import Link from "next/link"
-import { useEffect, useState } from "react"
 import { useSearchParams } from "next/navigation"
 
 export default function Table({ data }: {data: ISPO[]}) {
@@ -13,20 +12,19 @@ export default function Table({ data }: {data: ISPO[]}) {
     const valueA = a[sortBy as keyof ISPO]
     const valueB = b[sortBy as keyof ISPO]
     if (typeof valueA === "string" && typeof valueB === "string") {
-      if (sortBy === "allocation") { // add all fields with symbols to this if statement
-        const numA = parseFloat(valueA.replace(/[^0-9]/g, ''))
-        const numB = parseFloat(valueB.replace(/[^0-9]/g, ''))
+      if (sortBy === "allocation" || sortBy === "ratio") { // add all fields with symbols to this if statement
+        const numA = parseFloat(valueA.replace(/[^0-9.]/g, ''))
+        const numB = parseFloat(valueB.replace(/[^0-9.]/g, ''))
         return desc
         ? numA < numB ? -1 : 1
         : numA < numB ? 1 : -1
       }
       return desc
-        ? valueA < valueB ? -1 : 1
-        : valueA < valueB ? 1 : -1
+        ? valueA.localeCompare(valueB)
+        : valueB.localeCompare(valueA)
     }
     return 0
   })
-  console.log(sortBy)
   return (
     <>
       <thead className={styles["table-head"]}>
@@ -67,7 +65,7 @@ export default function Table({ data }: {data: ISPO[]}) {
           className={styles["row"]}
           >
             <Link className={styles.query} href={`/ispos?sort=ratio${desc ? "" : ":desc"}`}>
-              <p>% per 100k</p>
+              <p>% per million ADA</p>
               <div className={styles.arrow}>&#8597;</div>
             </Link>
           </th>
