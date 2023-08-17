@@ -29,9 +29,9 @@ model Pool {
   id              Int      @id @default(autoincrement())
   owner           Project  @relation(fields: [project_id], references: [id])
   project_id      Int
-  ticker          String
+  ticker          String   @unique
   name            String
-  poolId          String
+  poolId          String   @unique
   amountInPool    Int
   committedPledge Int?
   activePledge    Int?
