@@ -1,6 +1,5 @@
-import styles from "./segment.module.css"
-import Link from "next/link"
-
+import styles from "./segment.module.css";
+import Link from "next/link";
 
 export default function DisplaySegment({
   name,
@@ -11,7 +10,7 @@ export default function DisplaySegment({
   ratio,
   takesRewards,
   live,
-  status
+  status,
 }: ISPO) {
   return (
     <div className={styles.wrapper}>
@@ -22,9 +21,13 @@ export default function DisplaySegment({
           <h4>{name.length > 15 ? name.slice(0, 15) + "..." : name}</h4>
           <div className={styles["tags"]}>
             {categories.map((item, index) => {
-            if (index < 3) {
-              return <span className={styles.tag} key={index}>{item}</span>
-            }
+              if (index < 3) {
+                return (
+                  <span className={styles.tag} key={index}>
+                    {item}
+                  </span>
+                );
+              }
             })}
           </div>
         </div>
@@ -42,9 +45,11 @@ export default function DisplaySegment({
         <div className={styles.ratio}>
           <div className={styles["question-container"]}>
             <h5>SP/100K</h5>
-            <p className={styles.question}><Link href={"/"}>what is this?</Link></p>
+            <p className={styles.question}>
+              <Link href={"/"}>what is this?</Link>
+            </p>
           </div>
-          
+
           <p>{ratio}</p>
         </div>
         <div className={styles.rewards}>
@@ -53,6 +58,5 @@ export default function DisplaySegment({
         </div>
       </div>
     </div>
-      
-  )
+  );
 }

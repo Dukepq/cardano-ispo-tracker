@@ -1,22 +1,20 @@
-import styles from "./ispo.module.css"
+import styles from "./ispo.module.css";
 
 type Params = {
   params: {
-    ispo: string
-  }
-}
+    ispo: string;
+  };
+};
 
-export default function Ispo({ params: {ispo} }: Params) {
-  console.log(ispo)
+export default function Ispo({ params: { ispo } }: Params) {
+  console.log(ispo);
   return (
     <>
-    <br />
-    <br />
-    <br />
       <br />
-      <div>
-        {ispo}
-      </div>
+      <br />
+      <br />
+      <br />
+      <div>{ispo}</div>
     </>
-  )
+  );
 }

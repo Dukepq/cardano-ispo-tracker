@@ -1,13 +1,13 @@
-import styles from "./ispos.module.css"
-import { Metadata } from "next"
-import Table from "./components/Table"
-import { dummyData } from "@/app/dummyData"
-import getDummyDataAsync from "@/app/dummyData"
+import styles from "./ispos.module.css";
+import { Metadata } from "next";
+import Table from "./components/Table";
+import { dummyData } from "@/app/dummyData";
+import getDummyDataAsync from "@/app/dummyData";
 
 export const metadata: Metadata = {
   title: "Live ISPO's",
-  description: "Overview of currently running ISPO's"
-}
+  description: "Overview of currently running ISPO's",
+};
 
 export default async function ISPOS() {
   // const dummyData = await getDummyDataAsync()
@@ -18,13 +18,11 @@ export default async function ISPOS() {
       </div> */}
       <div className={styles.wrapper}>
         <table className={styles.table}>
-          <Table
-          data={dummyData}
-          />
+          <Table data={dummyData} />
         </table>
       </div>
     </main>
-  )
+  );
 }
 
 // {/* <table className={styles.table}>
@@ -53,5 +51,5 @@ export default async function ISPOS() {
 //               )
 //             })}
 //           </tbody>
-          
+
 //         </table> */}
