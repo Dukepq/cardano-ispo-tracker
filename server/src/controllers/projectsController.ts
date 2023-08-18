@@ -2,6 +2,7 @@ import { RewardTakingBehaviour } from "@prisma/client";
 import { prisma } from "../db";
 import { Response, Request } from "express";
 import { formatProjectData } from "../utils/ProjectDataFormatting";
+import { z } from "zod";
 
 export const getAllProjects = async (req: Request, res: Response) => {
   try {
@@ -22,8 +23,15 @@ export const getAllProjects = async (req: Request, res: Response) => {
   }
 };
 
+const RequestByIdSchema = z.object({
+  params: z.object({
+    id: z.coerce.number().int().positive(),
+  }),
+});
+
 export const getProjectById = async (req: Request, res: Response) => {
   try {
+    RequestByIdSchema.parse(req);
     const params = req.params;
     const id = Number(params.id);
     const project = await prisma.project.findUnique({
@@ -42,15 +50,22 @@ export const getProjectById = async (req: Request, res: Response) => {
     const formattedProject = formatProjectData(project);
     res.status(200).json({ success: "true", data: formattedProject });
   } catch (err) {
-    res.status(502).json({ success: "false" });
+    res.status(400).json({ success: "false" });
     console.error(err);
   } finally {
     prisma.$disconnect();
   }
 };
 
+const RequestByTokenSchema = z.object({
+  params: z.object({
+    token: z.string().min(1).max(10).regex(new RegExp("^[A-Z]+$")),
+  }),
+});
+
 export const getProjectByToken = async (req: Request, res: Response) => {
   try {
+    console.log(RequestByTokenSchema.parse(req));
     const params = req.params;
     const token = params.token;
     const project = await prisma.project.findUnique({
@@ -69,7 +84,7 @@ export const getProjectByToken = async (req: Request, res: Response) => {
     const formattedProject = formatProjectData(project);
     res.status(200).json({ success: "true", data: formattedProject });
   } catch (err) {
-    res.status(502).json({ success: "false" });
+    res.status(400).json({ success: "false" });
     console.error(err);
   } finally {
     prisma.$disconnect();
