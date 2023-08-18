@@ -10,6 +10,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String
+  password  String
+  role      Role     @default(BASIC)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  BASIC
+  EDITOR
+  ADMIN
+}
+
 model Project {
   id                 Int                   @id @default(autoincrement())
   name               String
@@ -30,7 +46,7 @@ model Pool {
   owner           Project  @relation(fields: [project_id], references: [id])
   project_id      Int
   ticker          String   @unique
-  name            String
+  name            String?
   poolId          String   @unique
   amountInPool    Int
   committedPledge Int?
