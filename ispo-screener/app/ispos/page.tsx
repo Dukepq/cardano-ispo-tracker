@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import Table from "./components/Table";
 import { dummyData } from "@/app/dummyData";
 import getDummyDataAsync from "@/app/dummyData";
+import { fetchAllProjects } from "../lib/fetchIspoData";
 
 export const metadata: Metadata = {
   title: "Live ISPO's",
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ISPOS() {
-  // const dummyData = await getDummyDataAsync()
+  const projects = await fetchAllProjects();
   return (
     <main className={styles.main}>
       {/* <div className={styles["bar"]}>
@@ -18,7 +19,7 @@ export default async function ISPOS() {
       </div> */}
       <div className={styles.wrapper}>
         <table className={styles.table}>
-          <Table data={dummyData} />
+          <Table projects={projects} />
         </table>
       </div>
     </main>

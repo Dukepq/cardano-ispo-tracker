@@ -4,17 +4,17 @@ import Image from "next/image";
 
 export default function DataRow({
   name,
-  categories,
-  description,
-  website,
-  logo,
   token,
-  allocation,
-  ratio,
-  takesRewards,
   live,
   index,
+  distributingAmount,
+  maxSupply,
+  maxSupplyExists,
+  pools,
 }: ISPO & { index: number }) {
+  const allocatedPercentage = maxSupplyExists
+    ? ((distributingAmount / maxSupply) * 100).toFixed(2) + "%"
+    : "N/A";
   return (
     <tr className={styles.row} data-cell="general-info">
       <td>
@@ -32,16 +32,16 @@ export default function DataRow({
         </div>
       </td>
       <td data-cell="token">{token}</td>
-      <td data-cell="allocation">{allocation}</td>
-      <td data-cell="%per100k">{ratio}</td>
+      <td data-cell="allocation">{allocatedPercentage}</td>
+      <td data-cell="%per100k">{live}</td>
       <td style={live ? { color: "green" } : { color: "red" }}>
         {live ? "yes" : "no"}
       </td>
       <td data-cell="categories">
         <div className={styles["categories-wrapper"]}>
-          {categories.map((item, index) => {
+          {/* {categories.map((item, index) => {
             if (index < 3) return <p key={index}>{item}</p>;
-          })}
+          })} */}
         </div>
       </td>
     </tr>

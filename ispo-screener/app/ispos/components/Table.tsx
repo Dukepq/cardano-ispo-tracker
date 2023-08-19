@@ -5,17 +5,19 @@ import DataRow from "./DataRow";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
-export default function Table({ data }: { data: ISPO[] }) {
+export default function Table({ projects }: { projects: ISPO[] }) {
   const sort = useSearchParams().get("sort");
   const [sortBy, desc] = sort?.split(":") ?? [];
-  const sortedData = [...data].sort((a, b) => {
+  const sortedProjects = [...projects].sort((a, b) => {
     const valueA = a[sortBy as keyof ISPO];
     const valueB = b[sortBy as keyof ISPO];
     if (typeof valueA === "string" && typeof valueB === "string") {
-      if (sortBy === "allocation" || sortBy === "ratio") {
+      if (sortBy === "allocation" || sortBy === "allocatedPercentage") {
         // add all fields with symbols to this if statement
-        const numA = parseFloat(valueA.replace(/[^0-9.]/g, ""));
-        const numB = parseFloat(valueB.replace(/[^0-9.]/g, ""));
+        let numA = parseFloat(valueA.replace(/[^0-9.]/g, ""));
+        let numB = parseFloat(valueB.replace(/[^0-9.]/g, ""));
+        if (isNaN(numA)) numA = 0;
+        if (isNaN(numB)) numB = 0;
         return desc ? (numA < numB ? -1 : 1) : numA < numB ? 1 : -1;
       }
       return desc ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA);
@@ -101,22 +103,18 @@ export default function Table({ data }: { data: ISPO[] }) {
       <tbody>
         {/* can chain a sorting function that returns an array here:
             sortArray(dummyData).map... */}
-        {(sortedData || data).map((item, index) => {
+        {(sortedProjects || projects).map((project, index) => {
           return (
             <DataRow
               key={index}
-              description={item.description}
-              name={item.name}
-              website={item.website}
-              logo={"cardano-logo.svg"}
-              token={item.token}
-              categories={item.categories}
-              allocation={item.allocation}
-              ratio={item.ratio}
-              takesRewards={item.takesRewards}
-              live={item.live}
+              name={project.name}
+              token={project.token}
+              live={project.live}
               index={index}
-              status={item.status}
+              maxSupplyExists={project.maxSupplyExists}
+              maxSupply={project.maxSupply}
+              distributingAmount={project.distributingAmount}
+              pools={project.pools}
             />
           );
         })}

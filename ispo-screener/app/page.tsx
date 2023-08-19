@@ -8,6 +8,7 @@ import Link from "next/link";
 import { dummyData } from "./dummyData";
 import Stats from "./components/Stats";
 import CountAni from "./components/CountAni";
+import { fetchAllProjects } from "./lib/fetchIspoData";
 
 export default function Home() {
   return (
@@ -37,7 +38,7 @@ export default function Home() {
         </section>
         <section className={styles["ispo-section"]}>
           <div className={styles["ispo-grid-wrapper"]}>
-            {dummyData.map((item, index) => {
+            {/* {dummyData.map((item, index) => {
               if (index < 6) {
                 return (
                   <DisplaySegment
@@ -56,7 +57,7 @@ export default function Home() {
                   />
                 );
               }
-            })}
+            })} */}
           </div>
         </section>
         <About />
