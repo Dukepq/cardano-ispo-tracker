@@ -36,7 +36,7 @@ model Project {
   maxSupplyExists        Boolean?
   maxSupply              Int?
   distributingPercentage Int?
-  DistributingAmount     Int
+  distributingAmount     Int
   takesRewards           RewardTakingBehaviour @default(NOT_SPECIFIED)
   live                   Boolean
   pools                  Pool[]
