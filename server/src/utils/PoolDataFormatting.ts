@@ -1,15 +1,18 @@
-import type { Pool } from "@prisma/client";
+import type { Pool, Project } from "@prisma/client";
 
-export const formatPoolsData = (pools: Pool[]) => {
-  return pools.map((pool) => {
-    return formatPoolData(pool);
-  });
-};
-
-export const formatPoolData = (pool: Pool) => {
+export const formatPoolData = (pool: Pool | (Pool & { owner: Project })) => {
+  if ("owner" in pool) {
+    return {
+      ticker: pool.ticker,
+      name: pool.name,
+      poolId: pool.poolId,
+      amountInPool: pool.amountInPool,
+      owner: pool.owner,
+    };
+  }
   return {
     ticker: pool.ticker,
-    name: pool.name || null,
+    name: pool.name,
     poolId: pool.poolId,
     amountInPool: pool.amountInPool,
   };

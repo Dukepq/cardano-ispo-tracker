@@ -1,48 +1,22 @@
 import { prisma } from "../db";
 import { Request, Response } from "express";
-import { formatPoolData } from "../utils/PoolDataFormatting";
 import { z } from "zod";
+
+const defaultPoolFieldsToSelect = {
+  ticker: true,
+  name: true,
+  poolId: true,
+  amountInPool: true,
+};
 
 export const getAllPools = async (req: Request, res: Response) => {
   try {
-    const pools = await prisma.pool.findMany();
-    const formattedPools = pools.map((pool) => {
-      return formatPoolData(pool);
+    const pools = await prisma.pool.findMany({
+      select: defaultPoolFieldsToSelect,
     });
-    res.status(200).json({ success: "true", data: formattedPools });
+    res.status(200).json(pools);
   } catch (err) {
-    res.status(404).json({ success: "false", message: "not found" });
-    console.error(err);
-  } finally {
-    prisma.$disconnect();
-  }
-};
-
-const RequestByIdSchema = z.object({
-  params: z.object({
-    id: z.coerce.number().int().positive(),
-  }),
-});
-
-export const getPoolById = async (req: Request, res: Response) => {
-  try {
-    RequestByIdSchema.parse(req);
-    const params = req.params;
-    const id = Number(params.id);
-    const pool = await prisma.pool.findUnique({
-      where: {
-        id: id,
-      },
-    });
-    if (!pool) {
-      return res
-        .status(404)
-        .json({ success: "false", message: "Resource not found" });
-    }
-    const formattedPool = formatPoolData(pool);
-    res.status(200).json({ success: "true", data: formattedPool });
-  } catch (err) {
-    res.status(400).json({ success: "false" });
+    res.status(404).json({ success: false, message: "not found" });
     console.error(err);
   } finally {
     prisma.$disconnect();
@@ -51,7 +25,7 @@ export const getPoolById = async (req: Request, res: Response) => {
 
 const RequestByTickerSchema = z.object({
   params: z.object({
-    ticker: z.string().min(1).max(10).regex(new RegExp("^[A-Z]+$")),
+    ticker: z.string().min(1).max(10).regex(new RegExp("^[0-9A-Z]+$")),
   }),
 });
 
@@ -64,16 +38,24 @@ export const getPoolByTicker = async (req: Request, res: Response) => {
       where: {
         ticker: ticker,
       },
+      select: {
+        ...defaultPoolFieldsToSelect,
+        owner: {
+          select: {
+            name: true,
+            token: true,
+          },
+        },
+      },
     });
     if (!pool) {
       return res
         .status(404)
-        .json({ success: "false", message: "Resource not found" });
+        .json({ success: false, message: "Resource not found" });
     }
-    const formattedPool = formatPoolData(pool);
-    res.status(200).json({ success: "true", data: formattedPool });
+    res.status(200).json(pool);
   } catch (err) {
-    res.status(400).json({ success: "false" });
+    res.status(400).json({ success: false });
     console.error(err);
   } finally {
     prisma.$disconnect();
