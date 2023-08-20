@@ -5,7 +5,7 @@ import {
   getProjectByToken,
 } from "../controllers/projectsController";
 
-router.get("/", getAllProjects);
+router.route("/").get(getAllProjects).post();
 
 router.get("/:token", getProjectByToken);
 
