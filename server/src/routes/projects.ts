@@ -3,9 +3,17 @@ const router = express.Router();
 import {
   getAllProjects,
   getProjectByToken,
+  createProject,
+  deleteProject,
+  updateProject,
 } from "../controllers/projectsController";
 
-router.route("/").get(getAllProjects).post();
+router
+  .route("/")
+  .get(getAllProjects)
+  .post(createProject)
+  .delete(deleteProject)
+  .put(updateProject);
 
 router.get("/:token", getProjectByToken);
 

@@ -1,6 +1,7 @@
 import { prisma } from "../db";
 import { Request, Response } from "express";
 import { z } from "zod";
+import { poolSchema } from "../zod/schemas";
 
 const defaultPoolFieldsToSelect = {
   ticker: true,
@@ -59,5 +60,41 @@ export const getPoolByTicker = async (req: Request, res: Response) => {
     console.error(err);
   } finally {
     prisma.$disconnect();
+  }
+};
+
+const createPoolOnProjectSchema = z.object({
+  body: z.object({
+    token: z.string(),
+    pools: z.array(poolSchema),
+  }),
+});
+
+export const createPoolOnProject = async (req: Request, res: Response) => {
+  const result = createPoolOnProjectSchema.safeParse(req);
+  if (!result.success) {
+    return res.status(406).json({
+      success: false,
+      message: "shape of request data likely incorrect",
+    });
+  }
+  try {
+    const body = result.data.body;
+    console.log(body);
+    const update = await prisma.project.update({
+      where: {
+        token: body.token,
+      },
+      data: {
+        pools: {
+          create: body.pools,
+        },
+      },
+    });
+    res.status(200).json(update);
+  } catch (err) {
+    res
+      .status(400)
+      .json({ success: false, message: "token likely didn't exist" });
   }
 };

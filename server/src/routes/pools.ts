@@ -1,8 +1,12 @@
 import express from "express";
 const router = express.Router();
-import { getAllPools, getPoolByTicker } from "../controllers/poolsController";
+import {
+  getAllPools,
+  getPoolByTicker,
+  createPoolOnProject,
+} from "../controllers/poolsController";
 
-router.get("/", getAllPools);
+router.route("/").get(getAllPools).post(createPoolOnProject);
 
 router.get("/:ticker", getPoolByTicker);
 
