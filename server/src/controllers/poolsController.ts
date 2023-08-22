@@ -80,7 +80,6 @@ export const createPoolOnProject = async (req: Request, res: Response) => {
   }
   try {
     const body = result.data.body;
-    console.log(body);
     const update = await prisma.project.update({
       where: {
         token: body.token,
@@ -91,10 +90,89 @@ export const createPoolOnProject = async (req: Request, res: Response) => {
         },
       },
     });
-    res.status(200).json(update);
+    res.status(200).json({
+      success: true,
+      message: `pool was successfully created on ${update.name}`,
+    });
   } catch (err) {
     res
       .status(400)
       .json({ success: false, message: "token likely didn't exist" });
+  } finally {
+    prisma.$disconnect();
+  }
+};
+
+const deletePoolSchema = z.object({
+  body: z.object({
+    ticker: z.string().max(10),
+  }),
+});
+
+export const deletePool = async (req: Request, res: Response) => {
+  const result = deletePoolSchema.safeParse(req);
+  if (!result.success) {
+    return res.status(406).json({
+      success: false,
+      message: "shape of request data likely incorrect",
+    });
+  }
+  try {
+    const target = result.data.body.ticker;
+    const deleted = await prisma.pool.delete({
+      where: {
+        ticker: target,
+      },
+    });
+    res.status(200).json({
+      success: true,
+      message: `${deleted.name} was successfully deleted.`,
+    });
+  } catch (err) {
+    res.status(400).json({ success: false });
+  } finally {
+    prisma.$disconnect();
+  }
+};
+
+const deleteManyPoolsSchema = z.object({
+  body: z.object({
+    token: z.string().max(10),
+  }),
+});
+
+export const deleteManyPools = async (req: Request, res: Response) => {
+  console.log(req.body);
+  const result = deleteManyPoolsSchema.safeParse(req);
+  if (!result.success) {
+    return res.status(406).json({
+      success: false,
+      message: "shape of request data likely incorrect",
+    });
+  }
+  try {
+    const target = result.data.body.token;
+    const project = await prisma.project.findUnique({
+      where: {
+        token: target,
+      },
+      select: {
+        id: true,
+      },
+    });
+
+    const deleted = await prisma.pool.deleteMany({
+      where: {
+        project_id: project?.id,
+      },
+    });
+    res.status(200).json({
+      success: true,
+      message: `${deleted.count} pools related to ${target} successfully deleted.`,
+    });
+  } catch (err) {
+    res.status(400).json({ success: false });
+  } finally {
+    prisma.$disconnect();
   }
 };

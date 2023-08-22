@@ -170,6 +170,8 @@ export const createProject = async (req: Request, res: Response) => {
       message:
         "failed to create a new project, it is likely that this error was caused by a 'Unique constraint'.",
     });
+  } finally {
+    prisma.$disconnect();
   }
 };
 
@@ -202,6 +204,8 @@ export const deleteProject = async (req: Request, res: Response) => {
     return res
       .status(400)
       .json({ success: false, message: "project likely didn't exist" });
+  } finally {
+    prisma.$disconnect();
   }
 };
 
@@ -241,6 +245,8 @@ export const updateProject = async (req: Request, res: Response) => {
   } catch (err) {
     console.error(err);
     res.status(400).json({ success: false });
+  } finally {
+    prisma.$disconnect();
   }
 };
 

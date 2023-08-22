@@ -4,9 +4,12 @@ import {
   getAllPools,
   getPoolByTicker,
   createPoolOnProject,
+  deletePool,
+  deleteManyPools,
 } from "../controllers/poolsController";
 
-router.route("/").get(getAllPools).post(createPoolOnProject);
+router.route("/").get(getAllPools).post(createPoolOnProject).delete(deletePool);
+router.delete("/deleteAll", deleteManyPools);
 
 router.get("/:ticker", getPoolByTicker);
 
