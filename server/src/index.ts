@@ -2,13 +2,17 @@ import express from "express";
 const app = express();
 import { default as projectsRouter } from "./routes/projects";
 import { default as poolsRouter } from "./routes/pools";
+import { default as categoriesRouter } from "./routes/categories";
 import { limiter } from "./config/rateLimitOptions";
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 app.use(limiter);
 app.use("/api/projects", projectsRouter);
 app.use("/api/pools", poolsRouter);
+app.use("/api/categories", categoriesRouter);
 app.get("/api/ping", (req, res) => {
   try {
     res.status(200).json({ success: "true", message: "pong" });

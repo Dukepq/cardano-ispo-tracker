@@ -6,9 +6,15 @@ import {
   createPoolOnProject,
   deletePool,
   deleteManyPools,
+  updatePool,
 } from "../controllers/poolsController";
 
-router.route("/").get(getAllPools).post(createPoolOnProject).delete(deletePool);
+router
+  .route("/")
+  .get(getAllPools)
+  .post(createPoolOnProject)
+  .delete(deletePool)
+  .put(updatePool);
 router.delete("/deleteAll", deleteManyPools);
 
 router.get("/:ticker", getPoolByTicker);

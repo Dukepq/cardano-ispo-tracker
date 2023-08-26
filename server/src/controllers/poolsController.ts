@@ -90,7 +90,7 @@ export const createPoolOnProject = async (req: Request, res: Response) => {
         },
       },
     });
-    res.status(200).json({
+    res.status(201).json({
       success: true,
       message: `pool was successfully created on ${update.name}`,
     });
@@ -124,7 +124,7 @@ export const deletePool = async (req: Request, res: Response) => {
         ticker: target,
       },
     });
-    res.status(200).json({
+    res.status(201).json({
       success: true,
       message: `${deleted.name} was successfully deleted.`,
     });
@@ -166,7 +166,7 @@ export const deleteManyPools = async (req: Request, res: Response) => {
         project_id: project?.id,
       },
     });
-    res.status(200).json({
+    res.status(201).json({
       success: true,
       message: `${deleted.count} pools related to ${target} successfully deleted.`,
     });
@@ -174,5 +174,40 @@ export const deleteManyPools = async (req: Request, res: Response) => {
     res.status(400).json({ success: false });
   } finally {
     prisma.$disconnect();
+  }
+};
+
+const updatePoolSchema = z.object({
+  ticker: z.string().max(10),
+  pool: poolSchema.omit({ owner: true }),
+});
+
+export const updatePool = async (req: Request, res: Response) => {
+  const result = updatePoolSchema.safeParse(req);
+  if (!result.success) {
+    return res.status(406).json({
+      success: false,
+      message: "shape of request data was likely incorrect",
+    });
+  }
+  try {
+    const target = result.data.ticker;
+    const pool = result.data.pool;
+    const update = await prisma.pool.update({
+      where: {
+        ticker: target,
+      },
+      data: pool,
+    });
+    return res.status(200).json({
+      success: true,
+      message: "pool successfully updated",
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(400).json({
+      success: false,
+      message: "failed to update pool",
+    });
   }
 };

@@ -1,7 +1,7 @@
 import { prisma } from "../db";
 import { Response, Request } from "express";
 import { set, z } from "zod";
-import { projectSchema } from "../zod/schemas";
+import { categorySchema, projectSchema } from "../zod/schemas";
 
 const defaultProjectFieldsToSelect = {
   name: true,
@@ -52,7 +52,9 @@ export const getAllProjects = async (req: Request, res: Response) => {
               },
             }
           : false,
-        categories: req.query.categories ? { select: { name: true } } : false,
+        categories: req.query.categories
+          ? { select: { name: true, id: true } }
+          : false,
       },
     });
     res.status(200).json(projects);
@@ -195,7 +197,7 @@ export const deleteProject = async (req: Request, res: Response) => {
         token: deleteTarget,
       },
     });
-    return res.status(200).json({
+    return res.status(201).json({
       success: true,
       message: `succesfully deleted ${deleted.name || deleted.token}`,
     });
@@ -240,7 +242,7 @@ export const updateProject = async (req: Request, res: Response) => {
       },
     });
     res
-      .status(200)
+      .status(201)
       .send({ success: true, message: "successfully updated project" });
   } catch (err) {
     console.error(err);

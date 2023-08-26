@@ -10,6 +10,7 @@ export const poolSchema = z.object({
   name: z.string().optional(),
   poolId: z.string(),
   amountInPool: z.number(),
+  owner: z.string().optional(),
   committedPledge: z.number().optional(),
   activePledge: z.number().optional(),
   lifetimeRewards: z.number().optional(),
