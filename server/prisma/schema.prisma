@@ -11,13 +11,23 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   email     String   @unique
   name      String
   password  String
   role      Role     @default(BASIC)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  session   Session? @relation(fields: [sessionId], references: [id])
+  sessionId String?  @unique
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  sid       String   @unique
+  data      String   @db.MediumText
+  expiresAt DateTime
+  user      User?
 }
 
 enum Role {
@@ -27,7 +37,7 @@ enum Role {
 }
 
 model Project {
-  id                     Int                   @id @default(autoincrement())
+  id                     String                @id @default(uuid())
   name                   String
   token                  String                @unique
   websiteURL             String?
@@ -46,9 +56,9 @@ model Project {
 }
 
 model Pool {
-  id              Int      @id @default(autoincrement())
+  id              String   @id @default(uuid())
   owner           Project  @relation(fields: [project_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  project_id      Int
+  project_id      String
   ticker          String   @unique
   name            String?
   poolId          String   @unique
@@ -62,7 +72,7 @@ model Pool {
 }
 
 model Category {
-  id       Int       @id @default(autoincrement())
+  id       String    @id @default(uuid())
   name     String    @unique
   projects Project[]
 }
