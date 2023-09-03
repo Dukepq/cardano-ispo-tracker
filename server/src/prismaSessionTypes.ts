@@ -1,3 +1,5 @@
+// mostly copied from https://github.com/kleydon/prisma-session-store/blob/master/src/%40types/prisma.ts
+
 export interface IPrismaSession {
   data: string | null;
   expiresAt: Date;

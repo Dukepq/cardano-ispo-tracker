@@ -7,7 +7,8 @@ import { default as userRouter } from "./routes/users";
 import { limiter } from "./config/rateLimitOptions";
 import session from "express-session";
 import { prisma } from "./db";
-import { expressSessionOptions } from "./config/express-session";
+import { expressSessionOptions } from "./config/session-config";
+import { isAuthAdmin } from "./middleware/auth";
 
 const PORT = process.env.PORT || 5000;
 
@@ -19,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(limiter);
 app.use(session(expressSessionOptions));
-app.use("/api/projects", projectsRouter);
+app.use("/api/projects", isAuthAdmin, projectsRouter);
 app.use("/api/pools", poolsRouter);
 app.use("/api/categories", categoriesRouter);
 app.use("/api/users", userRouter);
@@ -32,13 +33,8 @@ app.get("/api/ping", (req, res) => {
   }
 });
 
-declare module "express-session" {
-  interface SessionData {
-    count?: number;
-  }
-}
-
 app.get("/test", (req, res) => {
+  console.log(req.session.id);
   if (!req.session.count) {
     req.session.count = 1;
   } else {

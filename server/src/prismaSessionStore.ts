@@ -185,12 +185,6 @@ export class PrismaStore extends Store {
     });
     for (let session of sessions) {
       const remaining = session.expiresAt.valueOf() - Date.now();
-      console.log(session);
-      console.log(remaining);
-      console.log(
-        "session expires in: " + session.expiresAt.valueOf(),
-        "time now: " + Date.now()
-      );
       if (remaining < 0) {
         try {
           await this.prisma.session.delete({

@@ -29,13 +29,30 @@ export const loginUser = async (req: Request, res: Response) => {
       user.email === userEmail &&
       (await bcrypt.compare(userPassword, user.password))
     ) {
+      req.session.userId = user.id || null;
+      req.session.role = user.role || null;
       return res.status(200).json({ success: true });
+    } else {
+      return res
+        .status(404)
+        .json({ success: false, message: "email or password incorrect" });
     }
   } catch (err) {
     console.error(err);
     return res.status(400).json({ success: false });
   } finally {
     prisma.$disconnect();
+  }
+};
+
+export const logoutUser = async (req: Request, res: Response) => {
+  try {
+    req.session.userId = null;
+    req.session.role = null;
+    res.status(200).json({ success: true, message: "successfully logged out" });
+  } catch (err) {
+    console.error(err);
+    return res.status(404).json({ success: false });
   }
 };
 
@@ -54,7 +71,7 @@ export const registerUser = async (req: Request, res: Response) => {
   }
   try {
     const body = result.data.body;
-    const hashedPassword = await bcrypt.hash(body.password, 10);
+    const hashedPassword = await bcrypt.hash(body.password, 12);
     const user = await prisma.user.create({
       data: {
         email: body.email,

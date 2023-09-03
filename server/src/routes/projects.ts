@@ -7,13 +7,13 @@ import {
   deleteProject,
   updateProject,
 } from "../controllers/projectsController";
-
+import { isAuth } from "../middleware/auth";
 router
   .route("/")
   .get(getAllProjects)
-  .post(createProject)
-  .delete(deleteProject)
-  .put(updateProject);
+  .post(isAuth("ADMIN"), createProject)
+  .delete(isAuth("ADMIN"), deleteProject)
+  .put(isAuth("ADMIN"), updateProject);
 
 router.get("/:token", getProjectByToken);
 
