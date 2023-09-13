@@ -13,7 +13,8 @@ export default function Table({ projects }: { projects: ISPO[] }) {
     const valueB = b[sortBy as keyof ISPO];
     if (typeof valueA === "string" && typeof valueB === "string") {
       if (sortBy === "allocation" || sortBy === "allocatedPercentage") {
-        // add all fields with symbols to this if statement
+        // code below removes symbols from a string and turns it into a number.
+        // add all strings containing number values to the if statement above.
         let numA = parseFloat(valueA.replace(/[^0-9.]/g, ""));
         let numB = parseFloat(valueB.replace(/[^0-9.]/g, ""));
         if (isNaN(numA)) numA = 0;
@@ -87,6 +88,7 @@ export default function Table({ projects }: { projects: ISPO[] }) {
           >
             <Link className={styles.query} href={"/ispos?sort=placeholder"}>
               <p>test2</p>
+              <div className={styles.arrow}>&#8597;</div>
             </Link>
           </th>
           <th
@@ -96,6 +98,7 @@ export default function Table({ projects }: { projects: ISPO[] }) {
           >
             <Link className={styles.query} href={"/ispos?sort=placeholder"}>
               <p>test3</p>
+              <div className={styles.arrow}>&#8597;</div>
             </Link>
           </th>
         </tr>

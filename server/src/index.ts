@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(limiter);
 app.use(session(expressSessionOptions));
-app.use("/api/projects", isAuthAdmin, projectsRouter);
+app.use("/api/projects", projectsRouter);
 app.use("/api/pools", poolsRouter);
 app.use("/api/categories", categoriesRouter);
 app.use("/api/users", userRouter);

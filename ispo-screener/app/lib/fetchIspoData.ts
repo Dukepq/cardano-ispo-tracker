@@ -10,6 +10,6 @@ export async function fetchAllPools(): Promise<Pool[]> {
   const response = await fetch("http://localhost:5003/api/pools", {
     cache: "no-store",
   });
-  if (!response.ok) throw new Error("failed to fetch projects");
+  if (!response.ok) throw new Error("failed to fetch pools");
   return response.json();
 }
