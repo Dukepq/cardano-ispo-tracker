@@ -6,9 +6,10 @@ import { default as categoriesRouter } from "./routes/categories";
 import { default as userRouter } from "./routes/users";
 import { limiter } from "./config/rateLimitOptions";
 import session from "express-session";
-import { prisma } from "./db";
 import { expressSessionOptions } from "./config/session-config";
+import { prisma } from "./db";
 import { isAuthAdmin } from "./middleware/auth";
+const cors = require("cors");
 
 const PORT = process.env.PORT || 5000;
 
@@ -18,12 +19,17 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 app.use(limiter);
-app.use(session(expressSessionOptions));
 app.use("/api/projects", projectsRouter);
 app.use("/api/pools", poolsRouter);
-app.use("/api/categories", categoriesRouter);
-app.use("/api/users", userRouter);
+app.use("/api/categories", session(expressSessionOptions), categoriesRouter);
+app.use("/api/users", session(expressSessionOptions), userRouter);
 app.get("/api/ping", (req, res) => {
   try {
     res.status(200).json({ success: "true", message: "pong" });

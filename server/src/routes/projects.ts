@@ -1,4 +1,6 @@
 import express from "express";
+import session from "express-session";
+import { expressSessionOptions } from "../config/session-config";
 const router = express.Router();
 import {
   getAllProjects,
@@ -10,10 +12,10 @@ import {
 import { isAuth } from "../middleware/auth";
 router
   .route("/")
-  .get(getAllProjects)
-  .post(isAuth("ADMIN"), createProject)
-  .delete(isAuth("ADMIN"), deleteProject)
-  .put(isAuth("ADMIN"), updateProject);
+  .get(session(expressSessionOptions), getAllProjects)
+  .post(session(expressSessionOptions), isAuth("ADMIN"), createProject)
+  .delete(session(expressSessionOptions), isAuth("ADMIN"), deleteProject)
+  .put(session(expressSessionOptions), isAuth("ADMIN"), updateProject);
 
 router.get("/:token", getProjectByToken);
 

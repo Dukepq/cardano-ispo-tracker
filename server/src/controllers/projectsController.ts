@@ -133,6 +133,7 @@ const createProjectSchema = z.object({
 });
 
 export const createProject = async (req: Request, res: Response) => {
+  console.log(req.body);
   const result = createProjectSchema.safeParse(req);
   if (!result.success) {
     return res

@@ -11,6 +11,8 @@ const loginSchema = z.object({
 });
 
 export const loginUser = async (req: Request, res: Response) => {
+  console.log("hit");
+  console.log(req.body);
   const result = loginSchema.safeParse(req);
   if (!result.success) {
     return res.status(400).json({ success: false });

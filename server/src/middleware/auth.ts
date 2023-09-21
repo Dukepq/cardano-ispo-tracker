@@ -5,7 +5,8 @@ export const isAuthAdmin = (
   res: Response,
   next: NextFunction
 ) => {
-  if (!!req.session.userId && req.session.role === "ADMIN") {
+  console.log(req.session);
+  if (!!req.session?.userId && req.session?.role === "ADMIN") {
     return next();
   }
   return res.status(401).json({ success: false, message: "unauthorized" });
