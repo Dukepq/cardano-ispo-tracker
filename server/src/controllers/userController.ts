@@ -58,6 +58,33 @@ export const logoutUser = async (req: Request, res: Response) => {
   }
 };
 
+export const checkAuth = async (req: Request, res: Response) => {
+  try {
+    const role = req.session.role;
+    switch (role) {
+      case "ADMIN": {
+        res.status(200).json({ success: true, auth: "ADMIN" });
+        break;
+      }
+      case "EDITOR": {
+        res.status(200).json({ success: true, auth: "EDITOR" });
+        break;
+      }
+      case "BASIC": {
+        res.status(200).json({ success: true, auth: "BASIC" });
+        break;
+      }
+      default: {
+        res.status(200).json({ success: true, auth: null });
+        break;
+      }
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(404).json({ success: false, message: "something went wrong" });
+  }
+};
+
 const registerSchema = z.object({
   body: z.object({
     email: z.string().email(),
