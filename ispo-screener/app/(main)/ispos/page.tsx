@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import Table from "./components/Table";
 import { dummyData } from "@/app/dummyData";
 import getDummyDataAsync from "@/app/dummyData";
-import { fetchAllProjects } from "../lib/fetchIspoData";
+import { fetchAllProjects } from "../../lib/fetchIspoData";
 
 export const metadata: Metadata = {
   title: "Live ISPO's",
