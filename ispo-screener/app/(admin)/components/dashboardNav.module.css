@@ -1,0 +1,26 @@
+.navbar-wrapper {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  padding: 0 1rem;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid grey;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 3.5rem;
+  gap: 1rem;
+}
+
+.navbar {
+  display: flex;
+  gap: 3rem;
+  max-width: var(--max-width);
+  color: var(--general-1);
+}
+
+.logout-button {
+  cursor: pointer;
+}

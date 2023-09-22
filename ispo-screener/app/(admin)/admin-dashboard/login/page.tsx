@@ -1,7 +1,11 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import base from "@/app/lib/routes";
+import styles from "./login.module.css";
 
 export default function Login() {
+  const router = useRouter();
   const [fields, setFields] = useState<{
     email: string;
     password: string;
@@ -12,9 +16,9 @@ export default function Login() {
       return { ...prev, [targetField]: e.target.value };
     });
   };
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const login = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5003/api/users/login", {
+    const response = await fetch(base + "/api/users/login", {
       method: "POST",
       body: JSON.stringify(fields),
       credentials: "include",
@@ -22,29 +26,61 @@ export default function Login() {
         "Content-Type": "application/json",
       },
     });
-    if (response.ok) console.log(response);
-    // set auth context here on successfull login
+    if (response.ok) {
+      console.log(response);
+      router.push("/admin-dashboard");
+      // set auth context here on successfull login
+    } else {
+      console.log("something went wrong");
+      setFields((prev) => {
+        return { ...prev, password: "" };
+      });
+    }
   };
   return (
     <>
-      <h1>login goes here</h1>
-      <form onSubmit={handleSubmit} style={{ marginTop: "10rem" }}>
-        <input
-          onChange={onChangeHandle}
-          name="email"
-          type="text"
-          placeholder="email"
-          value={fields.email || ""}
-        />
-        <input
-          onChange={onChangeHandle}
-          name="password"
-          type="text"
-          placeholder="password"
-          value={fields.password || ""}
-        />
-        <button>login</button>
-      </form>
+      <div className={styles["wrapper-div"]}>
+        <div className={styles["form-wrapper"]}>
+          <div>
+            <div
+              style={{
+                width: "35px",
+                height: "35px",
+                border: "2px solid white",
+                borderRadius: "100%",
+              }}
+            ></div>
+          </div>
+          <div>
+            <form onSubmit={login} className={styles.form}>
+              <div>
+                <label htmlFor="email-input">Email</label>
+                <input
+                  id="email-input"
+                  onChange={onChangeHandle}
+                  name="email"
+                  type="text"
+                  placeholder="email"
+                  value={fields.email || ""}
+                />
+              </div>
+              <div>
+                <label htmlFor="pw-input">Password</label>
+                <input
+                  id="pw-input"
+                  onChange={onChangeHandle}
+                  name="password"
+                  type="password"
+                  placeholder="password"
+                  value={fields.password || ""}
+                />
+              </div>
+
+              <button>login</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

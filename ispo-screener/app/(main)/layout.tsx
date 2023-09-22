@@ -22,16 +22,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Navbar />
-        <div className="blob-wrapper">
-          <div className="blob blob-1"></div>
-          <div className="blob blob-2"></div>
-          <div className="blob blob-3"></div>
-        </div>
-        <div className="app-wrapper">{children}</div>
-      </body>
-    </html>
+    <>
+      <Navbar />
+      <div className="blob-wrapper">
+        <div className="blob blob-1"></div>
+        <div className="blob blob-2"></div>
+        <div className="blob blob-3"></div>
+      </div>
+      <div className="app-wrapper">{children}</div>
+    </>
   );
 }

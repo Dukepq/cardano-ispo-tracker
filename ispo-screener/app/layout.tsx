@@ -1,8 +1,7 @@
-import "../globals.css";
+import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Poppins } from "next/font/google";
-import Navbar from "./components/DashboardNav";
 
 const poppins = Poppins({
   weight: ["300", "500", "600", "700", "800"],
@@ -22,9 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
-      <Navbar />
-      <div style={{ minHeight: "100vh" }}>{children}</div>
-    </>
+    <html lang="en">
+      <body className={inter.className}>{children}</body>
+    </html>
   );
 }
