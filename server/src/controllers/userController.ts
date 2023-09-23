@@ -61,6 +61,7 @@ export const logoutUser = async (req: Request, res: Response) => {
 export const checkAuth = async (req: Request, res: Response) => {
   try {
     const role = req.session.role;
+    console.log(req.session);
     switch (role) {
       case "ADMIN": {
         res.status(200).json({ success: true, auth: "ADMIN" });

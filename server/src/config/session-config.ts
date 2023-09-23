@@ -1,6 +1,7 @@
 import { PrismaStore } from "../prismaSessionStore";
 import { prisma } from "../db";
 import { Role } from "@prisma/client";
+import session from "express-session";
 
 declare module "express-session" {
   interface SessionData {
@@ -20,3 +21,6 @@ export const expressSessionOptions = {
     secure: process.env.USING_HTTPS === "true" ? true : false,
   },
 };
+
+const sessionMiddleware = session(expressSessionOptions);
+export default sessionMiddleware;

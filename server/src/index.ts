@@ -5,10 +5,8 @@ import { default as poolsRouter } from "./routes/pools";
 import { default as categoriesRouter } from "./routes/categories";
 import { default as userRouter } from "./routes/users";
 import { limiter } from "./config/rateLimitOptions";
-import session from "express-session";
-import { expressSessionOptions } from "./config/session-config";
 import { prisma } from "./db";
-import { isAuthAdmin } from "./middleware/auth";
+import sessionMiddleware from "./config/session-config";
 const cors = require("cors");
 
 const PORT = process.env.PORT || 5000;
@@ -28,8 +26,8 @@ app.use(
 app.use(limiter);
 app.use("/api/projects", projectsRouter);
 app.use("/api/pools", poolsRouter);
-app.use("/api/categories", session(expressSessionOptions), categoriesRouter);
-app.use("/api/users", session(expressSessionOptions), userRouter);
+app.use("/api/categories", sessionMiddleware, categoriesRouter);
+app.use("/api/users", sessionMiddleware, userRouter);
 app.get("/api/ping", (req, res) => {
   try {
     res.status(200).json({ success: "true", message: "pong" });
