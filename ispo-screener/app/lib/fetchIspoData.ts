@@ -1,5 +1,7 @@
+import base from "./routes";
+
 export async function fetchAllProjects(): Promise<ISPO[]> {
-  const response = await fetch("http://localhost:5003/api/projects", {
+  const response = await fetch(base + "/api/projects", {
     cache: "no-store",
   });
   if (!response.ok) throw new Error("failed to fetch projects");
@@ -7,7 +9,7 @@ export async function fetchAllProjects(): Promise<ISPO[]> {
 }
 
 export async function fetchAllPools(): Promise<Pool[]> {
-  const response = await fetch("http://localhost:5003/api/pools", {
+  const response = await fetch(base + "/api/pools", {
     cache: "no-store",
   });
   if (!response.ok) throw new Error("failed to fetch pools");

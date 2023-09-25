@@ -1,0 +1,35 @@
+.table {
+  padding: 0.5rem;
+  margin: 0 auto;
+  border-collapse: collapse;
+  width: min(900px, 100%);
+  min-width: 600px;
+}
+.table th, .table td {
+  padding: 0.75rem 0.5rem;
+
+}
+
+.table td {
+  border: 1px solid black
+}
+
+.table th {
+  background-color: rgba(89, 101, 219, 1);
+  color: white;
+  height: 3rem;
+  font-weight: 600;
+}
+
+
+.head > tr > th {
+  text-align: left;
+}
+
+.head .center-align {
+  text-align: center;
+}
+
+.center-align {
+  text-align: center;
+}

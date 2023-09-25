@@ -39,11 +39,12 @@ export class PrismaStore extends Store {
     callback?: ((err?: any) => void) | undefined
   ): Promise<void> => {
     try {
-      await this.prisma.session.deleteMany({
+      const deleted = await this.prisma.session.deleteMany({
         where: {
           sid: sid,
         },
       });
+      console.log(deleted);
       if (callback) callback(null);
     } catch (err) {
       console.error(err);

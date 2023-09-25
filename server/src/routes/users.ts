@@ -16,6 +16,6 @@ router
 router.route("/login").post(sessionMiddleware, loginUser);
 router.route("/logout").post(sessionMiddleware, logoutUser);
 router.route("/delete").delete(sessionMiddleware, isAuth("ADMIN"), deleteUser);
-router.route("/checkAuth").post(checkAuth);
+router.route("/checkAuth").post(sessionMiddleware, checkAuth);
 
 export default router;

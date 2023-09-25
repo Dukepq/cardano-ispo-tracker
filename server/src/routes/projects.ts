@@ -11,7 +11,7 @@ import {
 import { isAuth } from "../middleware/auth";
 router
   .route("/")
-  .get(sessionMiddleware, getAllProjects)
+  .get(getAllProjects)
   .post(sessionMiddleware, isAuth("ADMIN"), createProject)
   .delete(sessionMiddleware, isAuth("ADMIN"), deleteProject)
   .put(sessionMiddleware, isAuth("ADMIN"), updateProject);

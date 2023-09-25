@@ -11,8 +11,9 @@ const loginSchema = z.object({
 });
 
 export const loginUser = async (req: Request, res: Response) => {
-  console.log("hit");
-  console.log(req.body);
+  console.log(req.headers);
+  console.log("login: " + req.sessionID);
+
   const result = loginSchema.safeParse(req);
   if (!result.success) {
     return res.status(400).json({ success: false });
@@ -61,7 +62,6 @@ export const logoutUser = async (req: Request, res: Response) => {
 export const checkAuth = async (req: Request, res: Response) => {
   try {
     const role = req.session.role;
-    console.log(req.session);
     switch (role) {
       case "ADMIN": {
         res.status(200).json({ success: true, auth: "ADMIN" });

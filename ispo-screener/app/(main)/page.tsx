@@ -1,14 +1,9 @@
 import Image from "next/image";
 import styles from "./landing.module.css";
-import DisplaySegment from "../components/DisplayISPO";
 import About from "../components/About";
 import React, { useRef } from "react";
-import ScrollButton from "../components/ScrollButton";
 import Link from "next/link";
-import { dummyData } from "../dummyData";
-import Stats from "../components/Stats";
 import CountAni from "../components/CountAni";
-import { fetchAllProjects } from "../lib/fetchIspoData";
 
 export default function Home() {
   return (

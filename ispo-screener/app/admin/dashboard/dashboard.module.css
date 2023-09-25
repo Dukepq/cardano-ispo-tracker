@@ -1,0 +1,16 @@
+.dashboard-wrapper {
+  color: rgba(40, 52, 63, 1);
+  padding-left: 10rem;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.dashboard-subwrapper {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.table-wrapper {
+  padding-top: 3rem;
+  overflow-x: auto;
+}

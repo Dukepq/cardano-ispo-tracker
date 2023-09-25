@@ -27,7 +27,7 @@ app.use(limiter);
 app.use("/api/projects", projectsRouter);
 app.use("/api/pools", poolsRouter);
 app.use("/api/categories", sessionMiddleware, categoriesRouter);
-app.use("/api/users", sessionMiddleware, userRouter);
+app.use("/api/users", userRouter);
 app.get("/api/ping", (req, res) => {
   try {
     res.status(200).json({ success: "true", message: "pong" });

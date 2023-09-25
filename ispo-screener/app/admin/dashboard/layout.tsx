@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import type { Metadata } from "next";
+import Navbar from "../components/DashboardNav";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <>
+      <Navbar />
       <div>{children}</div>
     </>
   );

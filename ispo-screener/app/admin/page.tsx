@@ -10,6 +10,7 @@ export default function Login() {
     email: string;
     password: string;
   }>({ email: "", password: "" });
+  const [failed, setFailed] = useState(false);
   const onChangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const targetField = e.target.name;
     setFields((prev) => {
@@ -25,16 +26,18 @@ export default function Login() {
       headers: {
         "Content-Type": "application/json",
       },
+      cache: "no-cache",
     });
     if (response.ok) {
       console.log(response);
-      router.push("/admin-dashboard");
+      router.push("/admin/dashboard");
       // set auth context here on successfull login
     } else {
       console.log("something went wrong");
       setFields((prev) => {
         return { ...prev, password: "" };
       });
+      setFailed(() => true);
     }
   };
   return (
@@ -77,6 +80,13 @@ export default function Login() {
               </div>
 
               <button>login</button>
+              {failed && (
+                <p
+                  style={{ marginTop: "2rem", color: "red", fontWeight: "600" }}
+                >
+                  password or email incorrect
+                </p>
+              )}
             </form>
           </div>
         </div>

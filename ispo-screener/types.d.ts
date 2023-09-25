@@ -28,3 +28,5 @@ type ISPO = {
 
   pools: Pool[];
 };
+
+type Role = "ADMIN" | "EDITOR" | "BASIC";

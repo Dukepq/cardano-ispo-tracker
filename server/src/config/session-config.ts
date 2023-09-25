@@ -17,8 +17,9 @@ export const expressSessionOptions = {
   saveUninitialized: true,
   store: new PrismaStore(prisma, { period: 1000 * 30 }),
   cookie: {
-    maxAge: 1000 * 60 * 30,
+    maxAge: 1000 * 60 * 10,
     secure: process.env.USING_HTTPS === "true" ? true : false,
+    sameSite: true, // potential issue?
   },
 };
 

@@ -13,6 +13,7 @@
   --accent-3: #A4161A;
   --accent-4: #BA181B;
   --general-1: #FFFFFF;
+  --general-1-rgb: 255, 255, 255;
   --general-2: #F5F3F4;
   --nav-height: 5rem;
   --max-width: 1350px;
@@ -29,6 +30,7 @@
     --accent-3: #A4161A;
     --accent-4: #BA181B;
     --general-1: #0B090A;
+    --general-1-rgb: 0, 0, 0;
     --general-2: #161A1D;
   }
 }
