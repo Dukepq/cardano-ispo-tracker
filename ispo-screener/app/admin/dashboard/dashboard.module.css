@@ -1,16 +1,34 @@
 .dashboard-wrapper {
   color: rgba(40, 52, 63, 1);
-  padding-left: 10rem;
   width: 100%;
   min-height: 100vh;
-}
-
-.dashboard-subwrapper {
-  max-width: 1500px;
-  margin: 0 auto;
 }
 
 .table-wrapper {
   padding-top: 3rem;
   overflow-x: auto;
+  width: min(900px, 100%);
+  min-width: 600px;
+  margin: 0 auto;
+}
+
+.action-bar {
+  display: flex;
+  padding-bottom: 0.5rem;
+}
+
+.action-bar > button {
+  border: 1px solid rgba(89, 101, 219, 1);
+  background-color: transparent;
+  color: black;
+  border-radius: 1rem;
+  cursor: pointer;
+  margin-left: auto;
+  padding: 0.5rem 1rem;
+}
+
+.action-bar > button:hover {
+  background-color: rgba(89, 101, 219, 0.25);
+  border: 1px solid rgba(89, 101, 219, 0.25);
+  transition: 100ms;
 }

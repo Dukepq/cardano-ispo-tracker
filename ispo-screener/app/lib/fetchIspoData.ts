@@ -1,9 +1,12 @@
 import base from "./routes";
 
 export async function fetchAllProjects(): Promise<ISPO[]> {
-  const response = await fetch(base + "/api/projects", {
-    cache: "no-store",
-  });
+  const response = await fetch(
+    base + "/api/projects?pools=true&categories=true",
+    {
+      cache: "no-store",
+    }
+  );
   if (!response.ok) throw new Error("failed to fetch projects");
   return response.json();
 }

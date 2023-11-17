@@ -33,9 +33,10 @@ export default function Navbar() {
             <Image
               className={styles["nav-icon"]}
               alt="dashboard image"
-              src={"/book.svg"}
+              src={"/dashboard.svg"}
               width={25}
               height={25}
+              style={{ filter: "invert(1)" }}
             />
             <p>Dashboard</p>
           </Link>

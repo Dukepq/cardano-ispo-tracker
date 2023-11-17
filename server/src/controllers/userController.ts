@@ -91,6 +91,9 @@ const registerSchema = z.object({
     email: z.string().email(),
     password: z.string().min(5),
     name: z.string().min(2).max(15),
+    role: z
+      .union([z.literal("BASIC"), z.literal("EDITOR"), z.literal("ADMIN")])
+      .optional(),
   }),
 });
 
@@ -107,10 +110,11 @@ export const registerUser = async (req: Request, res: Response) => {
         email: body.email,
         password: hashedPassword,
         name: body.name,
+        role: body.role || undefined,
       },
     });
     return res
-      .status(200)
+      .status(201)
       .json({ success: true, message: `registered: ${user.email}` });
   } catch (err) {
     console.error(err);

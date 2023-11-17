@@ -11,7 +11,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <>
       <Navbar />
-      <div>{children}</div>
+      <div style={{ marginLeft: "10rem" }}>{children}</div>
     </>
   );
 }

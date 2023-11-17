@@ -3,10 +3,10 @@ import { headers } from "next/headers";
 import styles from "./dashboard.module.css";
 import Table from "./components/Table";
 import isRole from "@/app/lib/isRole";
+import AddProject from "./components/AddProject";
 
 export default async function Dashboard() {
   const cookie = headers().get("cookie");
-  console.log(cookie);
   if (typeof cookie !== "string") {
     redirect("/admin");
   }
@@ -19,6 +19,9 @@ export default async function Dashboard() {
     <div className={styles["dashboard-wrapper"]}>
       <div className={styles["dashboard-subwrapper"]}>
         <div className={styles["table-wrapper"]}>
+          <div className={styles["action-bar"]}>
+            <AddProject />
+          </div>
           <Table />
         </div>
       </div>

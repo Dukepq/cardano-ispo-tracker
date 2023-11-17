@@ -31,7 +31,6 @@ export default function Login() {
     if (response.ok) {
       console.log(response);
       router.push("/admin/dashboard");
-      // set auth context here on successfull login
     } else {
       console.log("something went wrong");
       setFields((prev) => {

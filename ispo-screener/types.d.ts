@@ -16,7 +16,12 @@ type Pool = {
   name: string | null;
   poolId: string;
   amountInPool: number;
+  committedPledge?: Int;
+  activePledge?: Int;
+  lifetimeRewards?: Int;
+  lifetimeBlocks?: Int;
 };
+type Rewards = "NONE" | "PARTIAL" | "OPTIONAL" | "ALL" | "NOT_SPECIFIED";
 
 type ISPO = {
   name: string;
@@ -24,9 +29,20 @@ type ISPO = {
   maxSupplyExists: boolean;
   maxSupply: number;
   distributingAmount: number;
+  distributingPercentage?: string;
+  takesRewards: Rewards;
   live: boolean;
-
+  websiteURL?: string;
+  logoImageURL?: string;
+  description?: string;
   pools: Pool[];
+};
+
+type User = {
+  email: string;
+  name: string;
+  password: string;
+  role: Role;
 };
 
 type Role = "ADMIN" | "EDITOR" | "BASIC";

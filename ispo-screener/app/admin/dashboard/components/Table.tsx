@@ -24,6 +24,11 @@ export default async function Table() {
                 name={project.name}
                 token={project.token}
                 live={project.live}
+                takesRewards={project.takesRewards}
+                maxSupplyExists={project.maxSupplyExists}
+                maxSupply={project.maxSupply}
+                distributingAmount={project.distributingAmount}
+                pools={project.pools}
               />
             );
           })}

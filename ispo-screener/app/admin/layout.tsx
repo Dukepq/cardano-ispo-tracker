@@ -14,7 +14,10 @@ export default function RootLayout({
   return (
     <>
       <div
-        style={{ backgroundColor: "rgba(255, 255, 255, 1)", height: "100vh" }}
+        style={{
+          backgroundColor: "rgba(255, 255, 255, 1)",
+          height: "100vh",
+        }}
       >
         {children}
       </div>
