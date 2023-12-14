@@ -1,19 +1,44 @@
 .spinner {
-  display: grid;
-  place-content: center;
-  width: 5vw;
-  height: 5vw;
-  border: 10px solid var(--secondary-color);
-  background-color: transparent;
-  border-top-color: darkslategrey;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  animation: animate-spinner 1s linear infinite;
+  position: relative;
+  animation: rotate 800ms linear infinite;
 }
-@keyframes animate-spinner {
+.spinner::before,
+.spinner::after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  animation: prixClipFix 1.6s linear infinite;
+}
+.spinner::after {
+  inset: 8px;
+  transform: rotate3d(90, 90, 0, 180deg);
+  border-color: rgb(61, 61, 153);
+}
+
+@keyframes rotate {
   0% {
-    rotate: 0deg;
+    transform: rotate(0deg);
   }
   100% {
-    rotate: 360deg;
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes prixClipFix {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  75%,
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
   }
 }
