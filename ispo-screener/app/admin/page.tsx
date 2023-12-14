@@ -4,12 +4,17 @@ import { useRouter } from "next/navigation";
 import base from "@/app/lib/routes";
 import styles from "./login.module.css";
 
+interface LoginDetails {
+  email: string;
+  password: string;
+}
+
 export default function Login() {
   const router = useRouter();
-  const [fields, setFields] = useState<{
-    email: string;
-    password: string;
-  }>({ email: "", password: "" });
+  const [fields, setFields] = useState<LoginDetails>({
+    email: "",
+    password: "",
+  });
   const [failed, setFailed] = useState(false);
   const onChangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
     const targetField = e.target.name;
