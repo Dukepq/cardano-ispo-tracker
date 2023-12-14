@@ -5,6 +5,10 @@ import Logout from "../components/Logout";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
+function resourceMatches(pathname: string, slug: string): boolean {
+  return pathname.split("/")[pathname.split("/").length - 1] === slug;
+}
+
 export default function Navbar() {
   const pathname = usePathname();
   return (
@@ -24,8 +28,7 @@ export default function Navbar() {
           <Link
             href={"/admin/dashboard"}
             style={
-              pathname.split("/")[pathname.split("/").length - 1] ===
-              "dashboard"
+              resourceMatches(pathname, "dashboard")
                 ? { backgroundColor: "rgba(89, 101, 219, 1)" }
                 : {}
             }
@@ -45,7 +48,7 @@ export default function Navbar() {
           <Link
             href={"/admin/dashboard/users"}
             style={
-              pathname.split("/")[pathname.split("/").length - 1] === "users"
+              resourceMatches(pathname, "users")
                 ? { backgroundColor: "rgba(89, 101, 219, 1)" }
                 : {}
             }
