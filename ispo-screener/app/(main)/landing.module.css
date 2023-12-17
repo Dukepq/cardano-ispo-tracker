@@ -36,8 +36,9 @@
   justify-content: space-between;
 }
 
-.left-hero, .right-hero {
-  max-width: 50%
+.left-hero,
+.right-hero {
+  max-width: 50%;
 }
 
 .left-hero > h1 {
@@ -45,7 +46,7 @@
   font-weight: 600;
   line-height: clamp(3rem, 5vw, 4.5rem);
   transform: translateX(-1920px);
-  animation: var(--animation-duration) forwards slidein-left
+  animation: var(--animation-duration) forwards slidein-left;
 }
 
 .left-hero > p {
@@ -79,13 +80,11 @@
 }
 
 .right-hero {
-  width: 50%;
-  height: 40%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   transform: translateX(1920px);
-  animation: var(--animation-duration) forwards slidein-right
+  animation: var(--animation-duration) forwards slidein-right;
 }
 
 .stat-wrapper > :first-child {

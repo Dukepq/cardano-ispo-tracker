@@ -32,6 +32,7 @@ export default function Home() {
           </div>
         </section>
         <section className={styles["ispo-section"]}>
+          <h2>Featured</h2>
           <div className={styles["ispo-grid-wrapper"]}>
             {/* {dummyData.map((item, index) => {
               if (index < 6) {

@@ -1,7 +1,8 @@
 "use client";
 import { MouseEvent, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
-import styles from "./projectDialog.module.css";
+import styles from "./project-dialog.module.css";
+import toast from "react-hot-toast";
 
 const clearObjectValues = (object: { [keys: string]: any }) => {
   for (let key in object) {
@@ -25,9 +26,16 @@ export default function AddProject() {
       },
     });
     if (response.status === 201) {
+      (() =>
+        toast.success("created", {
+          style: { backgroundColor: "lightgreen" },
+        }))();
       setOpen(false);
     } else {
-      window.alert("something went wrong");
+      (() =>
+        toast.error("something went wrong", {
+          style: { backgroundColor: "red", color: "white" },
+        }))();
     }
   };
   const updateFields = (e: React.ChangeEvent<HTMLInputElement>) => {

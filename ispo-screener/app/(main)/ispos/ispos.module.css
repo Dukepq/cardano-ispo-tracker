@@ -31,6 +31,7 @@
 
 .table th {
   text-align: left;
+  text-wrap: nowrap;
 }
 
 .table tr {

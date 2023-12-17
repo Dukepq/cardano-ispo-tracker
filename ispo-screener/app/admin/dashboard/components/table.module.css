@@ -1,15 +1,16 @@
 .table {
+  color: black;
   padding: 0.5rem;
   width: 100%;
   border-collapse: collapse;
 }
-.table th, .table td {
+.table th,
+.table td {
   padding: 0.75rem 0.5rem;
-
 }
 
 .table td {
-  border: 1px solid black
+  border: 1px solid black;
 }
 
 .table th {
@@ -18,7 +19,6 @@
   height: 3rem;
   font-weight: 600;
 }
-
 
 .head > tr > th {
   text-align: left;
@@ -38,5 +38,5 @@
 
 .table img:hover {
   opacity: 1;
-  transition: opacity 100ms
+  transition: opacity 100ms;
 }

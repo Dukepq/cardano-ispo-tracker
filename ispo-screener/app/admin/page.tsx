@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import base from "@/app/lib/routes";
 import styles from "./login.module.css";
+import toast from "react-hot-toast";
 
 interface LoginDetails {
   email: string;
@@ -34,13 +35,20 @@ export default function Login() {
       cache: "no-cache",
     });
     if (response.ok) {
-      console.log(response);
+      (() =>
+        toast.success("logged in!", {
+          style: { backgroundColor: "lightgreen" },
+        }))();
       router.push("/admin/dashboard");
     } else {
       console.log("something went wrong");
-      setFields((prev) => {
-        return { ...prev, password: "" };
-      });
+      if (response.status === 404) {
+        (() =>
+          toast.error("please enter correct credentials", {
+            style: { backgroundColor: "red", color: "white" },
+          }))();
+      }
+      setFields((prev) => ({ ...prev, password: "" }));
       setFailed(() => true);
     }
   };

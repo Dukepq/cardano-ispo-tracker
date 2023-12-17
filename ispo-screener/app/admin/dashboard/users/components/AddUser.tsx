@@ -2,15 +2,18 @@
 import { MouseEvent, useState } from "react";
 import styles from "../users.module.css";
 import * as Dialog from "@radix-ui/react-dialog";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function AddUser() {
   const [open, setOpen] = useState(false);
   const [fields, setFields] = useState<User>({
     email: "",
-    password: "",
     name: "",
-    role: "BASIC",
+    password: "",
+    role: "ADMIN",
   });
+  const router = useRouter();
   const createUser = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const response = await fetch("http://localhost:5003/api/users/register", {
@@ -23,9 +26,17 @@ export default function AddUser() {
     });
     console.log(response);
     if (response.status === 201) {
+      (() =>
+        toast.success("created", {
+          style: { backgroundColor: "lightgreen" },
+        }))();
       setOpen(false);
+      router.refresh();
     } else {
-      window.alert("something went wrong");
+      (() =>
+        toast.error("something went wrong", {
+          style: { backgroundColor: "red", color: "white" },
+        }))();
     }
   };
   return (
@@ -73,48 +84,6 @@ export default function AddUser() {
                   })
                 }
               />
-              <div className={styles["select-wrapper"]}>
-                <div className={styles["radio-wrapper"]}>
-                  <input
-                    id="admin-radio"
-                    about="test"
-                    type="radio"
-                    checked={fields.role === "ADMIN" ? true : false}
-                    onChange={() =>
-                      setFields((prev) => {
-                        return { ...prev, role: "ADMIN" };
-                      })
-                    }
-                  />
-                  <label htmlFor="admin-radio">Admin</label>
-                </div>
-                <div className={styles["radio-wrapper"]}>
-                  <input
-                    id="editor-radio"
-                    type="radio"
-                    checked={fields.role === "EDITOR" ? true : false}
-                    onChange={() =>
-                      setFields((prev) => {
-                        return { ...prev, role: "EDITOR" };
-                      })
-                    }
-                  />
-                  <label htmlFor="editor-radio">Editor</label>
-                </div>
-                <div className={styles["radio-wrapper"]}>
-                  <input
-                    id="basic-radio"
-                    type="radio"
-                    checked={fields.role === "BASIC" ? true : false}
-                    onChange={() =>
-                      setFields((prev) => {
-                        return { ...prev, role: "BASIC" };
-                      })
-                    }
-                  />
-                  <label htmlFor="basic-radio">Basic</label>
-                </div>
-              </div>
               <button onClick={createUser} className={styles.button}>
                 Create user
               </button>

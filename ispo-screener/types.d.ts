@@ -45,4 +45,11 @@ type User = {
   role: Role;
 };
 
+type UserResponse = Omit<User, "password"> & {
+  createdAt: string;
+  updatedAt: string;
+};
+
 type Role = "ADMIN" | "EDITOR" | "BASIC";
+
+type DeleteUserResponse = { success: boolean; message: string };

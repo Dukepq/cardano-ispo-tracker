@@ -35,7 +35,7 @@
 
 .form > input:focus {
   outline: none;
-  border-color: blue
+  border-color: blue;
 }
 
 .select-wrapper {

@@ -13,7 +13,7 @@ export default function Logout({ children }: { children: React.ReactNode }) {
       cache: "no-cache",
     });
     if (!response.ok) {
-      throw new Error("response not ok, logout failed");
+      throw new Error("logout failed");
     } else {
       router.push("/");
     }

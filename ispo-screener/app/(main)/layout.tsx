@@ -30,6 +30,16 @@ export default function RootLayout({
         <div className="blob blob-3"></div>
       </div>
       <div className="app-wrapper">{children}</div>
+      <footer
+        style={{
+          height: "6rem",
+          display: "grid",
+          placeContent: "center",
+          backgroundColor: "#0b090a",
+        }}
+      >
+        <p>© all rights reserved</p>
+      </footer>
     </>
   );
 }
