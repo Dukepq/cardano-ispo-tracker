@@ -11,9 +11,9 @@ const cors = require("cors");
 
 const PORT = process.env.PORT || 5000;
 
-(async () => {
-  await prisma.session.deleteMany();
-})();
+// (async () => {
+//   await prisma.session.deleteMany();
+// })();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

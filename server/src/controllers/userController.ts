@@ -34,7 +34,10 @@ export const loginUser = async (req: Request, res: Response) => {
     ) {
       req.session.userId = user.id || null;
       req.session.role = user.role || null;
-      return res.status(200).json({ success: true });
+      console.log(req.session.userId);
+      return res
+        .status(200)
+        .json({ success: true, user: { email: user.email, name: user.name } });
     } else {
       return res
         .status(404)
@@ -152,3 +155,22 @@ export const deleteUser = async (req: Request, res: Response) => {
       .json({ success: false, message: "failed to delete user" });
   }
 };
+
+const getUsersSchema = z.object({});
+
+export async function getUsers(req: Request, res: Response) {
+  try {
+    const response = await prisma.user.findMany({
+      select: {
+        email: true,
+        name: true,
+        role: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
+    res.status(200).json(response);
+  } catch (err) {
+    res.status(400).json({ success: false, message: "something went wrong" });
+  }
+}
