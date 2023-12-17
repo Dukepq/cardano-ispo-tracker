@@ -14,6 +14,7 @@ export default function AddUser() {
     role: "ADMIN",
   });
   const router = useRouter();
+
   const createUser = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const response = await fetch("http://localhost:5003/api/users/register", {
@@ -26,19 +27,19 @@ export default function AddUser() {
     });
     console.log(response);
     if (response.status === 201) {
-      (() =>
-        toast.success("created", {
-          style: { backgroundColor: "lightgreen" },
-        }))();
+      toast.success("created", {
+        style: { backgroundColor: "lightgreen" },
+      });
       setOpen(false);
-      router.refresh();
+      setFields(() => ({ email: "", name: "", password: "", role: "ADMIN" }));
     } else {
-      (() =>
-        toast.error("something went wrong", {
-          style: { backgroundColor: "red", color: "white" },
-        }))();
+      toast.error("something went wrong", {
+        style: { backgroundColor: "red", color: "white" },
+      });
     }
+    router.refresh();
   };
+
   return (
     <>
       <Dialog.Root open={open} onOpenChange={() => setOpen((prev) => !prev)}>

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import styles from "./table.module.css";
 import base from "@/app/lib/routes";
 import { useState } from "react";
+import AlertDialogWindow from "./AlertDialog";
 
 type TableProps = Pick<ISPO, "name" | "token" | "live">;
 
@@ -19,10 +20,6 @@ export default function TableRow({
 }: ISPO) {
   const [checked, setChecked] = useState(live);
   const router = useRouter();
-  const deleteByToken = async () => {
-    await deleteISPO(token);
-    router.refresh();
-  };
   const toggleLive = async () => {
     const response = await fetch(base + "/api/projects", {
       method: "PUT",
@@ -55,14 +52,15 @@ export default function TableRow({
         <Image alt="edit icon" src="/edit.svg" width={25} height={25} />
       </td>
       <td className={styles["center-align"]}>
-        <Image
-          alt="trash icon"
-          src="/trash.svg"
-          width={25}
-          height={25}
-          onClick={deleteByToken}
-          style={{ cursor: "pointer" }}
-        />
+        <AlertDialogWindow deleteFunc={deleteISPO} arg={token}>
+          <Image
+            alt="trash icon"
+            src="/trash.svg"
+            width={25}
+            height={25}
+            style={{ cursor: "pointer" }}
+          />
+        </AlertDialogWindow>
       </td>
     </tr>
   );

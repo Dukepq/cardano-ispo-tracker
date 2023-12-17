@@ -35,18 +35,16 @@ export default function Login() {
       cache: "no-cache",
     });
     if (response.ok) {
-      (() =>
-        toast.success("logged in!", {
-          style: { backgroundColor: "lightgreen" },
-        }))();
+      toast.success("logged in!", {
+        style: { backgroundColor: "lightgreen" },
+      });
       router.push("/admin/dashboard");
     } else {
       console.log("something went wrong");
       if (response.status === 404) {
-        (() =>
-          toast.error("please enter correct credentials", {
-            style: { backgroundColor: "red", color: "white" },
-          }))();
+        toast.error("please enter correct credentials", {
+          style: { backgroundColor: "red", color: "white" },
+        });
       }
       setFields((prev) => ({ ...prev, password: "" }));
       setFailed(() => true);

@@ -7,15 +7,21 @@ import toast from "react-hot-toast";
 export default function AlertDialogWindow({
   arg,
   deleteFunc,
+  children,
 }: {
   arg: string;
-  deleteFunc: (arg: string) => Promise<DeleteUserResponse>;
+  deleteFunc: (arg: string) => Promise<any>;
+  children?: React.ReactNode;
 }) {
   const router = useRouter();
   return (
     <AlertDialog.Root>
       <AlertDialog.Trigger asChild>
-        <button className={styles.Button}>Delete account</button>
+        {children ? (
+          children
+        ) : (
+          <button className={styles.Button}>Delete account</button>
+        )}
       </AlertDialog.Trigger>
       <AlertDialog.Portal>
         <AlertDialog.Overlay className={styles.AlertDialogOverlay} />
