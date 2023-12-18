@@ -13,13 +13,14 @@
 // };
 
 type Pool = {
-  name: string | null;
+  ticker: string;
+  name?: string;
   poolId: string;
   amountInPool: number;
-  committedPledge?: Int;
-  activePledge?: Int;
-  lifetimeRewards?: Int;
-  lifetimeBlocks?: Int;
+  committedPledge?: number;
+  activePledge?: number;
+  lifetimeRewards?: number;
+  lifetimeBlocks?: number;
 };
 type Rewards = "NONE" | "PARTIAL" | "OPTIONAL" | "ALL" | "NOT_SPECIFIED";
 

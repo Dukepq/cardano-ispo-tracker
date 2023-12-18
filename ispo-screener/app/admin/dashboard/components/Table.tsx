@@ -1,9 +1,7 @@
-import { fetchAllProjects } from "@/app/lib/fetchIspoData";
 import styles from "./table.module.css";
 import TableRow from "./TableRow";
 
-export default async function Table() {
-  const projects = await fetchAllProjects();
+export default async function Table({ projects }: { projects: ISPO[] }) {
   return (
     <>
       <table className={styles.table}>

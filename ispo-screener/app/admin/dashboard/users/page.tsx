@@ -17,9 +17,10 @@ export default async function Page() {
   const users = await fetchUsers();
   return (
     <>
-      <h1 style={{ color: "black" }}>user management here</h1>
+      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <AddUser />
+      </div>
       <UserTable users={users} />
-      <AddUser />
     </>
   );
 }

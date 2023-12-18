@@ -6,18 +6,19 @@ import styles from "./table.module.css";
 import base from "@/app/lib/routes";
 import { useState } from "react";
 import AlertDialogWindow from "./AlertDialog";
+import AddProject from "./AddProject";
+import AddPool from "./AddPool";
 
-type TableProps = Pick<ISPO, "name" | "token" | "live">;
-
-export default function TableRow({
-  name,
-  token,
-  live,
-  distributingAmount,
-  maxSupply,
-  maxSupplyExists,
-  pools,
-}: ISPO) {
+export default function TableRow(props: ISPO) {
+  const {
+    name,
+    token,
+    live,
+    distributingAmount,
+    maxSupply,
+    maxSupplyExists,
+    pools,
+  } = props;
   const [checked, setChecked] = useState(live);
   const router = useRouter();
   const toggleLive = async () => {
@@ -49,7 +50,9 @@ export default function TableRow({
         <input type="checkbox" checked={checked} onChange={toggleLive} />
       </td>
       <td className={styles["center-align"]}>
-        <Image alt="edit icon" src="/edit.svg" width={25} height={25} />
+        <AddProject method="PUT" ISPO={props}>
+          <Image alt="edit icon" src="/edit.svg" width={25} height={25} />
+        </AddProject>
       </td>
       <td className={styles["center-align"]}>
         <AlertDialogWindow deleteFunc={deleteISPO} arg={token}>
@@ -61,6 +64,11 @@ export default function TableRow({
             style={{ cursor: "pointer" }}
           />
         </AlertDialogWindow>
+      </td>
+      <td>
+        <AddPool token={token}>
+          <p>add pool</p>
+        </AddPool>
       </td>
     </tr>
   );
