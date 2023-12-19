@@ -22,7 +22,7 @@
   --animation-duration: 600ms;
 }
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   :root {
     --primary-color: #ffffff;
     --primary-color-no-hex: 240, 240, 240;
@@ -35,7 +35,7 @@
     --general-1-rgb: 0, 0, 0;
     --general-2: #161a1d;
   }
-}
+} */
 
 body {
   overflow-x: hidden;
