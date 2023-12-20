@@ -98,3 +98,13 @@ li {
   color: var(--general-1);
   background-color: var(--secondary-color);
 }
+
+button {
+  padding: 0.5rem;
+  text-wrap: nowrap;
+  min-width: 6rem;
+  min-height: 1.5rem;
+  background-color: #343764;
+  border: none;
+  cursor: pointer;
+}
