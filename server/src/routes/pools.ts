@@ -8,6 +8,7 @@ import {
   deletePool,
   deleteManyPools,
   updatePool,
+  getPoolsByProjectToken,
 } from "../controllers/poolsController";
 import { isAuth } from "../middleware/auth";
 
@@ -24,6 +25,6 @@ router.delete(
   deleteManyPools
 );
 
-router.get("/:ticker", getPoolByTicker);
+router.get("/:token", getPoolsByProjectToken);
 
 export default router;
