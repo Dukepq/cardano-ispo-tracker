@@ -1,0 +1,27 @@
+.content {
+  padding: 0.25rem;
+  background-color: darkslategray;
+  border-radius: 0.25rem;
+}
+
+.button {
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  background-color: lightblue;
+  border: none;
+  border-radius: 0.25rem;
+}
+
+.item {
+  transition: background-color 50ms, color 50ms;
+  width: 5rem;
+  padding: 0.25rem;
+  border-radius: 0.125rem;
+  outline: none;
+}
+
+.item:hover {
+  background-color: lightblue;
+  color: black;
+  cursor: default;
+}
