@@ -9,9 +9,11 @@ export default async function Table({ projects }: { projects: ISPO[] }) {
           <tr>
             <th>Name</th>
             <th>Token</th>
-            <th className={styles["center-align"]}>Live</th>
             <th className={styles["center-align"]}>Edit</th>
             <th className={styles["center-align"]}>Delete</th>
+            <th rowSpan={2} className={styles["center-align"]}>
+              Pool Options
+            </th>
           </tr>
         </thead>
         <tbody>
