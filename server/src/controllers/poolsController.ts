@@ -24,6 +24,40 @@ export const getAllPools = async (req: Request, res: Response) => {
   }
 };
 
+const requestByProjectTokenSchema = z.object({
+  params: z.object({
+    token: z.string().min(1).max(10).regex(new RegExp("^[0-9A-Z]+$")),
+  }),
+});
+
+export const getPoolsByProjectToken = async (req: Request, res: Response) => {
+  try {
+    requestByProjectTokenSchema.parse(req);
+    const params = req.params;
+    const token = params.token;
+    const pool = await prisma.pool.findMany({
+      where: {
+        owner: {
+          token,
+        },
+      },
+      select: {
+        ...defaultPoolFieldsToSelect,
+      },
+    });
+    if (!pool) {
+      return res
+        .status(400)
+        .json({ success: false, message: "could not fetch pool by token" });
+    }
+    res.status(200).json(pool);
+  } catch (err) {
+    res
+      .status(400)
+      .json({ success: false, message: "could not fetch pool by token" });
+  }
+};
+
 const RequestByTickerSchema = z.object({
   params: z.object({
     ticker: z.string().min(1).max(10).regex(new RegExp("^[0-9A-Z]+$")),
@@ -105,7 +139,7 @@ export const createPoolOnProject = async (req: Request, res: Response) => {
 
 const deletePoolSchema = z.object({
   body: z.object({
-    ticker: z.string().max(10),
+    ticker: z.string(),
   }),
 });
 
@@ -142,7 +176,6 @@ const deleteManyPoolsSchema = z.object({
 });
 
 export const deleteManyPools = async (req: Request, res: Response) => {
-  console.log(req.body);
   const result = deleteManyPoolsSchema.safeParse(req);
   if (!result.success) {
     return res.status(406).json({
@@ -178,8 +211,10 @@ export const deleteManyPools = async (req: Request, res: Response) => {
 };
 
 const updatePoolSchema = z.object({
-  ticker: z.string().max(10),
-  pool: poolSchema.omit({ owner: true }),
+  body: z.object({
+    ticker: z.string().max(10),
+    pool: poolSchema.omit({ owner: true }),
+  }),
 });
 
 export const updatePool = async (req: Request, res: Response) => {
@@ -191,8 +226,8 @@ export const updatePool = async (req: Request, res: Response) => {
     });
   }
   try {
-    const target = result.data.ticker;
-    const pool = result.data.pool;
+    const target = result.data.body.ticker;
+    const pool = result.data.body.pool;
     const update = await prisma.pool.update({
       where: {
         ticker: target,
