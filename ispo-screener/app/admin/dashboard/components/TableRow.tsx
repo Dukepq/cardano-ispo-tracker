@@ -1,57 +1,28 @@
 "use client";
+
 import Image from "next/image";
 import { deleteISPO } from "@/app/lib/deleteISPO";
-import { useRouter } from "next/navigation";
 import styles from "./table.module.css";
-import base from "@/app/lib/routes";
-import { useState } from "react";
 import AlertDialogWindow from "./AlertDialog";
 import AddProject from "./AddProject";
 import AddPool from "./AddPool";
+import EditPoolModal from "./EditPoolModal";
 
 export default function TableRow(props: ISPO) {
-  const {
-    name,
-    token,
-    live,
-    distributingAmount,
-    maxSupply,
-    maxSupplyExists,
-    pools,
-  } = props;
-  const [checked, setChecked] = useState(live);
-  const router = useRouter();
-  const toggleLive = async () => {
-    const response = await fetch(base + "/api/projects", {
-      method: "PUT",
-      credentials: "include",
-      body: JSON.stringify({
-        token: token,
-        live: !checked,
-      }),
-      headers: { "Content-Type": "application/json" },
-      cache: "no-store",
-    });
-    if (response.ok) {
-      setChecked((prev) => {
-        return !prev;
-      });
-    } else {
-      if (response.status === 401) {
-        router.push("/admin");
-      }
-    }
-  };
+  const { name, token } = props;
   return (
     <tr>
       <td>{name}</td>
       <td>{token}</td>
       <td className={styles["center-align"]}>
-        <input type="checkbox" checked={checked} onChange={toggleLive} />
-      </td>
-      <td className={styles["center-align"]}>
         <AddProject method="PUT" ISPO={props}>
-          <Image alt="edit icon" src="/edit.svg" width={25} height={25} />
+          <Image
+            alt="edit icon"
+            src="/edit.svg"
+            style={{ cursor: "pointer" }}
+            width={25}
+            height={25}
+          />
         </AddProject>
       </td>
       <td className={styles["center-align"]}>
@@ -65,10 +36,25 @@ export default function TableRow(props: ISPO) {
           />
         </AlertDialogWindow>
       </td>
-      <td>
+      <td
+        style={{
+          border: "none",
+          display: "flex",
+          marginLeft: "0.25rem",
+          gap: "0.25rem",
+          alignItems: "center",
+        }}
+      >
         <AddPool token={token}>
-          <p>add pool</p>
+          <button className={styles.button}>
+            <span>add pool</span> <span>+</span>
+          </button>
         </AddPool>
+        <EditPoolModal poolOf={token}>
+          <button className={styles.button}>
+            <span>edit pools</span> <span>&#9998;</span>
+          </button>
+        </EditPoolModal>
       </td>
     </tr>
   );
