@@ -17,8 +17,9 @@ export default function onPoolFormChange(
     setFields((prev) => {
       return { ...prev, [name]: valueNum };
     });
+  } else {
+    setFields((prev) => {
+      return { ...prev, [name]: value };
+    });
   }
-  setFields((prev) => {
-    return { ...prev, [name]: value };
-  });
 }
