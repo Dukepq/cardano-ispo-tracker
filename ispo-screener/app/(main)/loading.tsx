@@ -1,9 +1,5 @@
-import styles from "./loading.module.css";
+import Spinner from "../components/Spinner";
 
 export default function Loading() {
-  return (
-    <div style={{ display: "grid", placeContent: "center", height: "100vh" }}>
-      <span className={styles.spinner}></span>
-    </div>
-  );
+  return <Spinner css={{ height: "100vh" }} />;
 }
