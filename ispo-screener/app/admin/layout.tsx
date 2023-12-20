@@ -15,7 +15,8 @@ export default function RootLayout({
     <>
       <div
         style={{
-          backgroundColor: "rgba(255, 255, 255, 1)",
+          color: "white",
+          backgroundColor: "rgba(242, 242, 242, 1)",
           height: "100vh",
         }}
       >

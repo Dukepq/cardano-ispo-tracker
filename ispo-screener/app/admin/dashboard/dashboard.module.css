@@ -1,14 +1,11 @@
 .dashboard-wrapper {
-  color: rgba(40, 52, 63, 1);
-  width: 100%;
   min-height: 100vh;
 }
 
 .table-wrapper {
   padding-top: 3rem;
   overflow-x: auto;
-  width: min(900px, 100%);
-  min-width: 600px;
+  width: fit-content;
   margin: 0 auto;
 }
 
@@ -23,7 +20,6 @@
   color: black;
   border-radius: 1rem;
   cursor: pointer;
-  margin-left: auto;
   padding: 0.5rem 1rem;
 }
 

@@ -5,7 +5,6 @@ export async function connectSessionToUser(
   sid: string,
   userId: User["id"]
 ): Promise<boolean> {
-  console.log(sid);
   if (typeof sid !== "string") {
     return false;
   }

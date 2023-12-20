@@ -19,7 +19,6 @@
   padding: 1rem;
   min-width: 500px;
   min-height: 660px;
-
 }
 
 .wrapper-div > div > div:first-child {
@@ -54,7 +53,6 @@
   outline: none;
 }
 
-
 .form > button {
   margin-top: 1rem;
   width: 6rem;
@@ -68,7 +66,7 @@
   cursor: pointer;
   background-color: white;
   color: black;
-  transition: 100ms
+  transition: 100ms;
 }
 
 @media (max-width: 1000px) {

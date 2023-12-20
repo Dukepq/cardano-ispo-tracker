@@ -180,7 +180,7 @@ export const createProject = async (req: Request, res: Response) => {
 
 const deleteProjectSchema = z.object({
   body: z.object({
-    token: z.string().max(10).regex(new RegExp("[A-Z]+")),
+    token: z.string(),
   }),
 });
 
@@ -252,9 +252,3 @@ export const updateProject = async (req: Request, res: Response) => {
     prisma.$disconnect();
   }
 };
-
-// (async () => {
-//   await prisma.category.deleteMany();
-//   await prisma.pool.deleteMany();
-//   await prisma.project.deleteMany();
-// })();
