@@ -1,10 +1,11 @@
-import { MouseEvent, useState } from "react";
+"use client";
+
+import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import styles from "./project-dialog.module.css";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
-import pruneFalsy from "@/app/lib/pruneFalsy";
 import base from "@/app/lib/routes";
+import onPoolFormChange from "@/app/lib/onPoolFormChange";
 
 export default function AddPool({
   children,
@@ -39,14 +40,8 @@ export default function AddPool({
       toast.success("created", {
         style: { backgroundColor: "lightGreen" },
       });
+      setOpen(false);
     }
-  };
-
-  const onChangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFields((prev) => {
-      return { ...prev, [name]: value };
-    });
   };
 
   return (
@@ -69,21 +64,21 @@ export default function AddPool({
             <form className={styles.form}>
               <input
                 name="ticker"
-                value={fields.ticker}
+                value={fields.ticker || ""}
                 type="text"
-                onChange={onChangeHandle}
+                onChange={(e) => onPoolFormChange(e, setFields)}
                 placeholder="pool ticker"
               />
               <input
                 name="poolId"
-                value={fields.poolId}
+                value={fields.poolId || ""}
                 type="text"
-                onChange={onChangeHandle}
+                onChange={(e) => onPoolFormChange(e, setFields)}
                 placeholder="pool id"
               />
               <input
                 name="amountInPool"
-                value={fields.amountInPool}
+                value={fields.amountInPool || ""}
                 type="text"
                 onChange={(e) => {
                   setFields((prev) => {
@@ -96,40 +91,40 @@ export default function AddPool({
               />
               <input
                 name="name"
-                value={fields.name}
+                value={fields.name || ""}
                 type="text"
-                onChange={onChangeHandle}
+                onChange={(e) => onPoolFormChange(e, setFields)}
                 placeholder="name"
               />
               <input
                 name="activePledge"
-                value={fields.activePledge}
+                value={fields.activePledge || ""}
                 type="text"
-                onChange={onChangeHandle}
+                onChange={(e) => onPoolFormChange(e, setFields)}
                 placeholder="active pledge"
               />
               <input
                 name="committedPledge"
-                value={fields.committedPledge}
+                value={fields.committedPledge || ""}
                 type="text"
-                onChange={onChangeHandle}
+                onChange={(e) => onPoolFormChange(e, setFields)}
                 placeholder="committed pledge"
               />
               <input
                 name="lifetimeBlocks"
-                value={fields.lifetimeBlocks}
+                value={fields.lifetimeBlocks || ""}
                 type="text"
-                onChange={onChangeHandle}
+                onChange={(e) => onPoolFormChange(e, setFields)}
                 placeholder="lifetime blocks"
               />
               <input
                 name="lifetimeRewards"
-                value={fields.lifetimeRewards}
+                value={fields.lifetimeRewards || ""}
                 type="text"
-                onChange={onChangeHandle}
+                onChange={(e) => onPoolFormChange(e, setFields)}
                 placeholder="lifetime rewards"
               />
-              <button onClick={createPoolOnProject}>add pool</button>
+              <button onClick={createPoolOnProject}>confirm</button>
             </form>
           </Dialog.Content>
         </Dialog.Portal>
