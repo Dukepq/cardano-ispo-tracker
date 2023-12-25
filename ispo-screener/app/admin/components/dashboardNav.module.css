@@ -1,15 +1,16 @@
 .navbar-wrapper {
   position: fixed;
   height: 100vh;
-  z-index: 100;
+  z-index: 99;
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(20px);
-  background-color: #3b3a48;
+  background-color: #121826;
   display: flex;
   flex-direction: column;
   gap: 2rem;
   align-items: center;
   color: white;
+  border-right: 1px solid rgba(128, 128, 128, 0.5);
 }
 
 .navbar-wrapper > a:first-child {
@@ -49,7 +50,7 @@
   padding: 0.25rem 0.5rem;
   display: flex;
   align-items: center;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
 }
 .navbar a:hover {
   background-color: rgba(255, 255, 255, 0.1);
@@ -81,4 +82,25 @@
   max-width: 20px;
   max-height: 20px;
   margin-right: 0.75rem;
+}
+
+.toggler {
+  display: none;
+  position: absolute;
+  z-index: 10000;
+  right: 23px;
+  top: 23px;
+}
+
+@media (width < 576px) {
+  .navbar-wrapper {
+    display: none;
+  }
+  .active {
+    display: flex;
+    width: 100vw;
+  }
+  .toggler {
+    display: block;
+  }
 }
