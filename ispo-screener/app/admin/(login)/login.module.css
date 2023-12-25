@@ -1,0 +1,82 @@
+.wrapper-div {
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  background-color: #121826;
+}
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  border: 1px solid #393f4a;
+  border-radius: 1rem;
+  overflow: hidden;
+  margin: 1rem;
+  font-weight: 400;
+}
+
+.wrapper-div > div > div {
+  padding: 1rem;
+  min-width: 500px;
+  min-height: 660px;
+}
+
+.wrapper-div > div > div:last-child {
+  background-color: rgb(12, 12, 12);
+  border-left: 1px solid #393f4a;
+}
+
+.form {
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form label {
+  margin-left: 0.1rem;
+}
+
+.form input {
+  transition: border 200ms;
+  display: block;
+  margin-top: 0.5rem;
+  width: 90%;
+  background-color: transparent;
+  border: 1px solid #393f4a;
+  height: 2rem;
+  padding-left: 0.5rem;
+  border-radius: 0.5rem;
+}
+.form input:focus {
+  border: 1px solid rgb(66, 137, 137);
+  outline: none;
+}
+
+.form > button {
+  margin-top: 1rem;
+  width: 6rem;
+  background-color: transparent;
+  border: 1px solid darkslategray;
+  border-radius: 0.5rem;
+  height: 2rem;
+}
+
+.form > button:hover {
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  transition: 100ms;
+}
+
+@media (max-width: 1000px) {
+  .wrapper-div > div > div:first-child {
+    display: none;
+  }
+  .wrapper-div > div > div:last-child {
+    display: flex;
+    flex-direction: column;
+    min-width: 250px;
+    width: 90vw;
+  }
+}
