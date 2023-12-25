@@ -64,7 +64,7 @@ export default function AddPool({
             <form className={styles.form}>
               <div className={styles.wrapper}>
                 <label>
-                  <p>Pool ticker</p>
+                  <p>* Pool ticker</p>
                   <input
                     name="ticker"
                     value={fields.ticker || ""}
@@ -77,6 +77,7 @@ export default function AddPool({
 
               <div className={styles.wrapper}>
                 <label>
+                  <p>* Pool id</p>
                   <input
                     name="poolId"
                     value={fields.poolId || ""}
@@ -86,9 +87,9 @@ export default function AddPool({
                   />
                 </label>
               </div>
-
               <div className={styles.wrapper}>
                 <label>
+                  <p>* Amount in pool</p>
                   <input
                     name="amountInPool"
                     value={fields.amountInPool || ""}
@@ -107,6 +108,7 @@ export default function AddPool({
 
               <div className={styles.wrapper}>
                 <label>
+                  <p>* Pool name</p>
                   <input
                     name="name"
                     value={fields.name || ""}
@@ -119,6 +121,7 @@ export default function AddPool({
 
               <div className={styles.wrapper}>
                 <label>
+                  <p>Active pledge</p>
                   <input
                     name="activePledge"
                     value={fields.activePledge || ""}
@@ -131,6 +134,7 @@ export default function AddPool({
 
               <div className={styles.wrapper}>
                 <label>
+                  <p>Committed pledge</p>
                   <input
                     name="committedPledge"
                     value={fields.committedPledge || ""}
@@ -143,6 +147,7 @@ export default function AddPool({
 
               <div className={styles.wrapper}>
                 <label>
+                  <p>Lifetime blocks</p>
                   <input
                     name="lifetimeBlocks"
                     value={fields.lifetimeBlocks || ""}
@@ -155,6 +160,7 @@ export default function AddPool({
 
               <div className={styles.wrapper}>
                 <label>
+                  <p>Lifetime rewards</p>
                   <input
                     name="lifetimeRewards"
                     value={fields.lifetimeRewards || ""}
@@ -165,7 +171,13 @@ export default function AddPool({
                 </label>
               </div>
 
-              <button onClick={createPoolOnProject}>confirm</button>
+              <button
+                style={{ marginTop: "1rem" }}
+                className={styles.button}
+                onClick={createPoolOnProject}
+              >
+                confirm
+              </button>
             </form>
           </Dialog.Content>
         </Dialog.Portal>

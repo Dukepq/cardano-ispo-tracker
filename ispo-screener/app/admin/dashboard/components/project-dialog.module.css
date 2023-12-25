@@ -104,8 +104,8 @@
   align-items: center;
 }
 
-.form button {
-  transition: filter 100ms;
+.button {
+  max-height: 2rem;
 }
 
 .form button:hover {
