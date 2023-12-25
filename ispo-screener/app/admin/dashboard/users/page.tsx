@@ -1,9 +1,10 @@
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import isRole from "@/app/lib/isRole";
-import AddUser from "./components/AddUser";
 import { fetchUsers } from "@/app/lib/fetchUserData";
-import UserTable from "../components/userTable";
+import UserTable from "./components/userTable";
+import styles from "../../dashboard/dashboard.module.css";
+import PageHeader from "../components/PageHeader";
 
 export default async function Page() {
   const cookie = headers().get("cookie");
@@ -17,10 +18,12 @@ export default async function Page() {
   const users = await fetchUsers();
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "flex-end" }}>
-        <AddUser />
+      <PageHeader>
+        <h2 className={styles.title}>User Management</h2>
+      </PageHeader>
+      <div className={styles["table-wrapper"]}>
+        <UserTable users={users} />
       </div>
-      <UserTable users={users} />
     </>
   );
 }

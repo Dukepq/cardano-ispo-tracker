@@ -3,8 +3,9 @@ import { headers } from "next/headers";
 import styles from "./dashboard.module.css";
 import Table from "./components/Table";
 import isRole from "@/app/lib/isRole";
-import AddProject from "./components/AddProject";
+import ManageProjectButton from "./components/ManageProjectButton";
 import { fetchAllProjects } from "@/app/lib/fetchIspoData";
+import PageHeader from "./components/PageHeader";
 
 export default async function Dashboard() {
   const cookie = headers().get("cookie");
@@ -18,15 +19,13 @@ export default async function Dashboard() {
   const projects = await fetchAllProjects();
 
   return (
-    <div className={styles["dashboard-wrapper"]}>
-      <div className={styles["dashboard-subwrapper"]}>
-        <div className={styles["table-wrapper"]}>
-          <div className={styles["action-bar"]}>
-            <AddProject method={"POST"} ISPO={{}} />
-          </div>
-          <Table projects={projects} />
-        </div>
+    <>
+      <PageHeader>
+        <h2 className={styles.title}>Project Management</h2>
+      </PageHeader>
+      <div className={styles["table-wrapper"]}>
+        <Table projects={projects} />
       </div>
-    </div>
+    </>
   );
 }
