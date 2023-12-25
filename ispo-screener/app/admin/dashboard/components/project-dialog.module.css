@@ -1,41 +1,89 @@
 .dialog-overlay {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.25);
   position: fixed;
   inset: 0;
 }
 
 .dialog-content {
-  width: 800px;
   min-height: 300px;
-  max-height: 90vh;
-  overflow-y: auto;
-  background-color: white;
-  color: black;
+  max-height: 35rem;
+  min-width: 300px;
+  max-width: 95vw;
+  overflow: auto;
+  background-color: #212936;
+  color: white;
   position: fixed;
   left: calc(50% + 5rem);
   top: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   padding: 1rem;
+  animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 0.9rem;
+}
+
+.dialog-content::-webkit-scrollbar {
+  width: 0.5rem;
+  overflow: auto;
+}
+
+.dialog-content::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 50vw;
+}
+
+.dialog-content::-webkit-scrollbar-track-piece {
+  border-radius: 20rem;
+}
+
+@keyframes contentShow {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
 
 .form {
   margin-top: 1rem;
 }
 
-.form > input {
-  color: black;
+.form label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.form input {
   display: block;
   background-color: transparent;
   border: 1px solid lightblue;
-  margin: 1rem 0;
   padding: 0.25rem;
   border-radius: 0.25rem;
+  height: 1.75rem;
 }
 
-.form > input:focus {
+.wrapper {
+  margin-bottom: 0.5rem;
+}
+
+.form input {
+  background-color: #121826;
+  border: 1px solid #393f4a;
   outline: none;
-  border-color: blue;
+  transition: border-color 100ms;
+  width: 100%;
+}
+
+.form input:focus {
+  border-color: #536589;
+}
+
+.form .radio,
+.form .checkbox {
+  width: 1rem;
 }
 
 .select-wrapper {
@@ -44,31 +92,51 @@
   flex-direction: column;
 }
 
-.radio-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.button {
-  padding: 0.25rem 1rem;
-  border: 1px solid rgba(0, 0, 255, 0.5);
-  border-radius: 0.5rem;
-  background-color: transparent;
-  color: black;
-}
-
-.button:hover {
-  border-color: rgba(0, 0, 255, 1);
-  cursor: pointer;
-}
-
 .title {
   display: flex;
   justify-content: space-between;
+  gap: 2rem;
 }
 
-.rewards-radio-label {
+.form .rewards-radio-label {
   display: flex;
   gap: 0.5rem;
+  align-items: center;
+}
+
+.form button {
+  transition: filter 100ms;
+}
+
+.form button:hover {
+  filter: brightness(1.05);
+}
+
+.form > div {
+  margin-bottom: 0.25rem;
+}
+
+.form > div > label > p {
+  margin-bottom: 0.25rem;
+  padding-left: 2px;
+}
+
+.delete-button {
+  background-color: transparent;
+  border: 1px solid red;
+  margin-left: 1rem;
+}
+
+.delete-button:hover {
+  background-color: red;
+}
+
+.button-wrapper {
+  margin-top: 1rem;
+}
+
+@media (width < 576px) {
+  .dialog-content {
+    left: 50%;
+  }
 }
