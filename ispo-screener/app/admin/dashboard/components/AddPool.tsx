@@ -62,68 +62,109 @@ export default function AddPool({
               <Dialog.Close className={styles.button}>close</Dialog.Close>
             </Dialog.Title>
             <form className={styles.form}>
-              <input
-                name="ticker"
-                value={fields.ticker || ""}
-                type="text"
-                onChange={(e) => onPoolFormChange(e, setFields)}
-                placeholder="pool ticker"
-              />
-              <input
-                name="poolId"
-                value={fields.poolId || ""}
-                type="text"
-                onChange={(e) => onPoolFormChange(e, setFields)}
-                placeholder="pool id"
-              />
-              <input
-                name="amountInPool"
-                value={fields.amountInPool || ""}
-                type="text"
-                onChange={(e) => {
-                  setFields((prev) => {
-                    const amount = Number(e.target.value);
-                    if (isNaN(amount)) return { ...prev };
-                    return { ...prev, amountInPool: amount };
-                  });
-                }}
-                placeholder="amount in pool"
-              />
-              <input
-                name="name"
-                value={fields.name || ""}
-                type="text"
-                onChange={(e) => onPoolFormChange(e, setFields)}
-                placeholder="name"
-              />
-              <input
-                name="activePledge"
-                value={fields.activePledge || ""}
-                type="text"
-                onChange={(e) => onPoolFormChange(e, setFields)}
-                placeholder="active pledge"
-              />
-              <input
-                name="committedPledge"
-                value={fields.committedPledge || ""}
-                type="text"
-                onChange={(e) => onPoolFormChange(e, setFields)}
-                placeholder="committed pledge"
-              />
-              <input
-                name="lifetimeBlocks"
-                value={fields.lifetimeBlocks || ""}
-                type="text"
-                onChange={(e) => onPoolFormChange(e, setFields)}
-                placeholder="lifetime blocks"
-              />
-              <input
-                name="lifetimeRewards"
-                value={fields.lifetimeRewards || ""}
-                type="text"
-                onChange={(e) => onPoolFormChange(e, setFields)}
-                placeholder="lifetime rewards"
-              />
+              <div className={styles.wrapper}>
+                <label>
+                  <p>Pool ticker</p>
+                  <input
+                    name="ticker"
+                    value={fields.ticker || ""}
+                    type="text"
+                    onChange={(e) => onPoolFormChange(e, setFields)}
+                    placeholder="pool ticker"
+                  />
+                </label>
+              </div>
+
+              <div className={styles.wrapper}>
+                <label>
+                  <input
+                    name="poolId"
+                    value={fields.poolId || ""}
+                    type="text"
+                    onChange={(e) => onPoolFormChange(e, setFields)}
+                    placeholder="pool id"
+                  />
+                </label>
+              </div>
+
+              <div className={styles.wrapper}>
+                <label>
+                  <input
+                    name="amountInPool"
+                    value={fields.amountInPool || ""}
+                    type="text"
+                    onChange={(e) => {
+                      setFields((prev) => {
+                        const amount = Number(e.target.value);
+                        if (isNaN(amount)) return { ...prev };
+                        return { ...prev, amountInPool: amount };
+                      });
+                    }}
+                    placeholder="amount in pool"
+                  />
+                </label>
+              </div>
+
+              <div className={styles.wrapper}>
+                <label>
+                  <input
+                    name="name"
+                    value={fields.name || ""}
+                    type="text"
+                    onChange={(e) => onPoolFormChange(e, setFields)}
+                    placeholder="name"
+                  />
+                </label>
+              </div>
+
+              <div className={styles.wrapper}>
+                <label>
+                  <input
+                    name="activePledge"
+                    value={fields.activePledge || ""}
+                    type="text"
+                    onChange={(e) => onPoolFormChange(e, setFields)}
+                    placeholder="active pledge"
+                  />
+                </label>
+              </div>
+
+              <div className={styles.wrapper}>
+                <label>
+                  <input
+                    name="committedPledge"
+                    value={fields.committedPledge || ""}
+                    type="text"
+                    onChange={(e) => onPoolFormChange(e, setFields)}
+                    placeholder="committed pledge"
+                  />
+                </label>
+              </div>
+
+              <div className={styles.wrapper}>
+                <label>
+                  <input
+                    name="lifetimeBlocks"
+                    value={fields.lifetimeBlocks || ""}
+                    type="text"
+                    onChange={(e) => onPoolFormChange(e, setFields)}
+                    placeholder="lifetime blocks"
+                  />
+                </label>
+              </div>
+
+              <div className={styles.wrapper}>
+                <label>
+                  <input
+                    name="lifetimeRewards"
+                    value={fields.lifetimeRewards || ""}
+                    type="text"
+                    onChange={(e) => onPoolFormChange(e, setFields)}
+                    placeholder="lifetime rewards"
+                  />
+                </label>
+              </div>
+
               <button onClick={createPoolOnProject}>confirm</button>
             </form>
           </Dialog.Content>
