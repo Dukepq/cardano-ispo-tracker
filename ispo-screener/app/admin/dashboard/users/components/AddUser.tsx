@@ -1,6 +1,6 @@
 "use client";
 import { MouseEvent, useState } from "react";
-import styles from "../users.module.css";
+import styles from "./users-dialog.module.css";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -11,7 +11,7 @@ export default function AddUser() {
     email: "",
     name: "",
     password: "",
-    role: "ADMIN",
+    role: "BASIC",
   });
   const router = useRouter();
 
@@ -25,7 +25,6 @@ export default function AddUser() {
         "Content-Type": "application/json",
       },
     });
-    console.log(response);
     if (response.status === 201) {
       toast.success("created", {
         style: { backgroundColor: "lightgreen" },
@@ -44,7 +43,7 @@ export default function AddUser() {
     <>
       <Dialog.Root open={open} onOpenChange={() => setOpen((prev) => !prev)}>
         <Dialog.Trigger asChild>
-          <button className={styles.button}>Add user</button>
+          <button style={{ margin: "0.5rem" }}>Create User</button>
         </Dialog.Trigger>
         <Dialog.Portal>
           <Dialog.Overlay className={styles["dialog-overlay"]} />
@@ -55,37 +54,74 @@ export default function AddUser() {
             </Dialog.Title>
             <Dialog.Description></Dialog.Description>
             <form action="" className={styles.form}>
-              <input
-                type="text"
-                placeholder="name"
-                value={fields.name}
-                onChange={(e) =>
-                  setFields((prev) => {
-                    return { ...prev, name: e.target.value };
-                  })
-                }
-              />
-              <input
-                type="email"
-                placeholder="email"
-                value={fields.email}
-                onChange={(e) =>
-                  setFields((prev) => {
-                    return { ...prev, email: e.target.value };
-                  })
-                }
-              />
-              <input
-                type="password"
-                placeholder="password"
-                value={fields.password}
-                onChange={(e) =>
-                  setFields((prev) => {
-                    return { ...prev, password: e.target.value };
-                  })
-                }
-              />
-              <button onClick={createUser} className={styles.button}>
+              <div>
+                <label>
+                  <p>* Username</p>
+                  <input
+                    type="text"
+                    placeholder="name"
+                    value={fields.name}
+                    onChange={(e) =>
+                      setFields((prev) => {
+                        return { ...prev, name: e.target.value };
+                      })
+                    }
+                  />
+                </label>
+              </div>
+              <div>
+                <label>
+                  <p>* Email</p>
+                  <input
+                    type="email"
+                    placeholder="email"
+                    value={fields.email}
+                    onChange={(e) =>
+                      setFields((prev) => {
+                        return { ...prev, email: e.target.value };
+                      })
+                    }
+                  />
+                </label>
+              </div>
+              <div>
+                <label>
+                  <p>* Password</p>
+                  <input
+                    type="password"
+                    placeholder="password"
+                    value={fields.password}
+                    onChange={(e) =>
+                      setFields((prev) => {
+                        return { ...prev, password: e.target.value };
+                      })
+                    }
+                  />
+                </label>
+              </div>
+              <div>
+                <label
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    onChange={(e) => {
+                      const role = e.target.checked ? "ADMIN" : "BASIC";
+                      setFields((prev) => ({ ...prev, role }));
+                    }}
+                  />
+                  <p>Administrator</p>
+                </label>
+              </div>
+              <button
+                style={{ marginTop: "1rem" }}
+                onClick={createUser}
+                className={styles.button}
+              >
                 Create user
               </button>
             </form>

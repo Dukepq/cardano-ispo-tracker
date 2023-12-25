@@ -1,0 +1,99 @@
+.dialog-overlay {
+  background-color: rgba(0, 0, 0, 0.25);
+  position: fixed;
+  inset: 0;
+}
+
+.dialog-content {
+  max-height: 90vh;
+  max-width: 95vw;
+  overflow-y: auto;
+  background-color: #212936;
+  color: white;
+  position: fixed;
+  left: calc(50% + 5rem);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 1rem;
+  padding: 1rem;
+  animation: contentShow 150ms ease;
+  font-size: 0.9rem;
+}
+
+.title {
+  display: flex;
+  gap: 2rem;
+}
+
+.title > p {
+  white-space: nowrap;
+}
+
+@keyframes contentShow {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.form {
+  margin-top: 1rem;
+}
+
+.form label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.form input {
+  display: block;
+  background-color: transparent;
+  border: 1px solid lightblue;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  height: 1.75rem;
+}
+
+.form input {
+  background-color: #121826;
+  border: 1px solid #393f4a;
+  outline: none;
+  transition: border-color 100ms;
+}
+
+.form input:focus {
+  border-color: #536589;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  transition: 100ms;
+  max-height: 2rem;
+}
+
+.form button:hover {
+  transform: translateY(-1px);
+}
+
+.form > div {
+  margin-bottom: 0.25rem;
+}
+
+.form > div > label > p {
+  margin-bottom: 0.25rem;
+  padding-left: 2px;
+}
+
+@media (width < 576px) {
+  .dialog-content {
+    left: 50%;
+  }
+}
