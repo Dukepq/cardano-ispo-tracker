@@ -32,7 +32,7 @@ export default function AlertDialogWindow({
           <AlertDialog.Description className={styles.AlertDialogDescription}>
             This action cannot be undone.
           </AlertDialog.Description>
-          <div style={{ display: "flex", gap: 25, justifyContent: "flex-end" }}>
+          <div className={styles["button-wrapper"]}>
             <AlertDialog.Cancel asChild>
               <button>Cancel</button>
             </AlertDialog.Cancel>
