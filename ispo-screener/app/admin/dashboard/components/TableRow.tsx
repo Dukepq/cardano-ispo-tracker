@@ -4,18 +4,29 @@ import Image from "next/image";
 import { deleteISPO } from "@/app/lib/deleteISPO";
 import styles from "./table.module.css";
 import AlertDialogWindow from "./AlertDialog";
-import AddProject from "./AddProject";
+import ManageProjectButton from "./ManageProjectButton";
 import AddPool from "./AddPool";
 import EditPoolModal from "./EditPoolModal";
 
 export default function TableRow(props: ISPO) {
-  const { name, token } = props;
+  const { name, token, live } = props;
   return (
     <tr>
-      <td>{name}</td>
+      <td style={{ minWidth: "15rem" }} title={name}>
+        {name}
+      </td>
       <td>{token}</td>
+      <td
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {live ? "\u2713" : "\u00D7"}
+      </td>
       <td className={styles["center-align"]}>
-        <AddProject method="PUT" ISPO={props}>
+        <ManageProjectButton method="PUT" ISPO={props}>
           <Image
             alt="edit icon"
             src="/edit.svg"
@@ -23,7 +34,7 @@ export default function TableRow(props: ISPO) {
             width={25}
             height={25}
           />
-        </AddProject>
+        </ManageProjectButton>
       </td>
       <td className={styles["center-align"]}>
         <AlertDialogWindow deleteFunc={deleteISPO} arg={token}>
@@ -32,29 +43,32 @@ export default function TableRow(props: ISPO) {
             src="/trash.svg"
             width={25}
             height={25}
-            style={{ cursor: "pointer" }}
+            style={{
+              cursor: "pointer",
+            }}
           />
         </AlertDialogWindow>
       </td>
-      <td
-        style={{
-          border: "none",
-          display: "flex",
-          marginLeft: "0.25rem",
-          gap: "0.25rem",
-          alignItems: "center",
-        }}
-      >
-        <AddPool token={token}>
-          <button className={styles.button}>
-            <span>add pool</span> <span>+</span>
-          </button>
-        </AddPool>
-        <EditPoolModal poolOf={token}>
-          <button className={styles.button}>
-            <span>edit pools</span> <span>&#9998;</span>
-          </button>
-        </EditPoolModal>
+      <td>
+        <div
+          style={{
+            display: "flex",
+            gap: "0.25rem",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <AddPool token={token}>
+            <button className={styles.button}>
+              <span>add pool</span> <span>+</span>
+            </button>
+          </AddPool>
+          <EditPoolModal poolOf={token}>
+            <button className={styles.button}>
+              <span>edit pools</span> <span>&#9998;</span>
+            </button>
+          </EditPoolModal>
+        </div>
       </td>
     </tr>
   );
