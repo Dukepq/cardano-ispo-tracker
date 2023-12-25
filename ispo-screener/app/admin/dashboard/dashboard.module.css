@@ -1,30 +1,42 @@
 .dashboard-wrapper {
-  min-height: 100vh;
+  margin-left: 10rem;
 }
 
 .table-wrapper {
-  padding-top: 3rem;
   overflow-x: auto;
-  width: fit-content;
+  max-width: fit-content;
   margin: 0 auto;
+  padding: 1rem;
+  border-radius: 0.8rem;
 }
 
-.action-bar {
-  display: flex;
-  padding-bottom: 0.5rem;
+.table-wrapper::-webkit-scrollbar {
+  height: 0.5rem;
+  overflow: auto;
 }
 
-.action-bar > button {
-  border: 1px solid rgba(89, 101, 219, 1);
-  background-color: transparent;
-  color: black;
-  border-radius: 1rem;
-  cursor: pointer;
-  padding: 0.5rem 1rem;
+.table-wrapper::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 50vw;
 }
 
-.action-bar > button:hover {
-  background-color: rgba(89, 101, 219, 0.25);
-  border: 1px solid rgba(89, 101, 219, 0.25);
-  transition: 100ms;
+.table-wrapper::-webkit-scrollbar-track-piece {
+  border-radius: 20rem;
+}
+
+.header {
+  height: 100px;
+  overflow: hidden;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 300;
+  white-space: nowrap;
+}
+
+@media (width < 576px) {
+  .dashboard-wrapper {
+    margin-left: 0px;
+  }
 }
