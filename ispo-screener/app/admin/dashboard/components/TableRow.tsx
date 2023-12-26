@@ -7,9 +7,10 @@ import AlertDialogWindow from "./AlertDialog";
 import ManageProjectButton from "./ManageProjectButton";
 import AddPool from "./AddPool";
 import EditPoolModal from "./EditPoolModal";
+import CategoryDropdown from "./CategoryDropdown";
 
 export default function TableRow(props: ISPO) {
-  const { name, token, live } = props;
+  const { name, token, live, categories } = props;
   return (
     <tr>
       <td style={{ minWidth: "15rem" }} title={name}>
@@ -24,6 +25,9 @@ export default function TableRow(props: ISPO) {
         }}
       >
         {live ? "\u2713" : "\u00D7"}
+      </td>
+      <td>
+        <CategoryDropdown token={token} categories={categories} />
       </td>
       <td className={styles["center-align"]}>
         <ManageProjectButton method="PUT" ISPO={props}>

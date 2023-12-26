@@ -20,6 +20,7 @@ export default function Table({ projects }: { projects: ISPO[] }) {
             <th style={{ width: "15rem" }}>Name</th>
             <th>Token</th>
             <th className={styles["center-align"]}>Live</th>
+            <th className={styles["center-align"]}>Categories</th>
             <th className={styles["center-align"]}>Edit</th>
             <th className={styles["center-align"]}>Delete</th>
             <th
@@ -54,6 +55,7 @@ export default function Table({ projects }: { projects: ISPO[] }) {
                   maxSupply={project.maxSupply}
                   distributingAmount={project.distributingAmount}
                   pools={project.pools}
+                  categories={project.categories}
                 />
               );
             })}

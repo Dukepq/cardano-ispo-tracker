@@ -1,0 +1,123 @@
+.dropdown-content {
+  background-color: #393f4a;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  animation: slideIn 50ms ease;
+}
+
+.dropdown-content > button {
+  border: 1px solid #121826;
+  background-color: #12182633;
+}
+
+.dropdown-content > button:hover {
+  background-color: #1218265c;
+  transition: 50ms;
+}
+
+.dialog-overlay {
+  background-color: rgba(0, 0, 0, 0.25);
+  position: fixed;
+  inset: 0;
+  animation: overlayShow 50ms ease;
+}
+
+.item {
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #121826;
+  padding: 0.2rem 0.6rem;
+  cursor: default;
+  border-radius: 0.25rem;
+  gap: 1rem;
+}
+
+.item:focus {
+  outline: none;
+}
+
+.item > *:first-child {
+  cursor: pointer;
+  max-width: 100%;
+}
+
+.item > *:last-child {
+  cursor: pointer;
+}
+
+.dialog-content {
+  max-height: 35rem;
+  min-width: 300px;
+  max-width: 95vw;
+  overflow: auto;
+  background-color: #212936;
+  color: white;
+  position: fixed;
+  left: calc(50% + 5rem);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dropdown-trigger {
+  max-width: min-content;
+}
+
+.subcontent > input {
+  background-color: transparent;
+  border: 1px solid lightblue;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  height: 2rem;
+  margin-right: 1rem;
+  background-color: #121826;
+  border: 1px solid #393f4a;
+  outline: none;
+  transition: border-color 100ms;
+}
+
+.subcontent > input:focus {
+  border-color: #536589;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes overlayShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes contentShow {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

@@ -56,6 +56,10 @@
   margin-bottom: 0.25rem;
 }
 
+.wrapper {
+  margin-bottom: 0.5rem;
+}
+
 .form input {
   display: block;
   background-color: transparent;
@@ -63,13 +67,6 @@
   padding: 0.25rem;
   border-radius: 0.25rem;
   height: 1.75rem;
-}
-
-.wrapper {
-  margin-bottom: 0.5rem;
-}
-
-.form input {
   background-color: #121826;
   border: 1px solid #393f4a;
   outline: none;
