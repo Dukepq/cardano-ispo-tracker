@@ -72,7 +72,7 @@ export default function Navbar() {
                 style={{ filter: "invert(1)" }}
                 onClick={() => setActive(false)}
               />
-              <p>ISPO's</p>
+              <p>ISPO&apos;s</p>
             </Link>
           </li>
           <li>

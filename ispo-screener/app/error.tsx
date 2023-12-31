@@ -10,21 +10,13 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Log the error to an error reporting service
     console.error(error);
   }, [error]);
 
   return (
     <div style={{ display: "grid", placeContent: "center", height: "100vh" }}>
       <h2>{error?.message.toUpperCase() || "Something went wrong!"}</h2>
-      <button
-        onClick={
-          // Attempt to recover by trying to re-render the segment
-          () => reset()
-        }
-      >
-        Try again
-      </button>
+      <button onClick={() => reset()}>Try again</button>
     </div>
   );
 }
