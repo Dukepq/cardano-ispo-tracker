@@ -1,4 +1,5 @@
-.name, .name > a {
+.name,
+.name > a {
   display: flex;
   gap: 0.8rem;
   align-items: center;
@@ -24,6 +25,7 @@
   flex-shrink: 1;
   gap: 0.5rem;
   max-width: 100px;
+  overflow-x: hidden;
 }
 
 .categories-wrapper > p {

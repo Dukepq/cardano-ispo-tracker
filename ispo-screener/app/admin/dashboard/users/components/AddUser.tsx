@@ -26,15 +26,11 @@ export default function AddUser() {
       },
     });
     if (response.status === 201) {
-      toast.success("created", {
-        style: { backgroundColor: "lightgreen" },
-      });
+      toast.success("created");
       setOpen(false);
       setFields(() => ({ email: "", name: "", password: "", role: "ADMIN" }));
     } else {
-      toast.error("something went wrong", {
-        style: { backgroundColor: "red", color: "white" },
-      });
+      toast.error("something went wrong");
     }
     router.refresh();
   };

@@ -3,7 +3,6 @@ import { headers } from "next/headers";
 import styles from "./dashboard.module.css";
 import Table from "./components/Table";
 import isRole from "@/app/lib/isRole";
-import ManageProjectButton from "./components/ManageProjectButton";
 import { fetchAllProjects } from "@/app/lib/fetchIspoData";
 import PageHeader from "./components/PageHeader";
 

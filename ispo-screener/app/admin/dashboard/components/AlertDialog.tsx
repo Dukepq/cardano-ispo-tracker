@@ -45,14 +45,10 @@ export default function AlertDialogWindow({
                   }
                   try {
                     await deleteFunc(arg);
-                    (() =>
-                      toast.success("deleted", {
-                        style: {
-                          backgroundColor: "lightgreen",
-                        },
-                      }))();
+
+                    toast.success("deleted");
                   } catch (err) {
-                    (() => toast.error("error"))();
+                    toast.error("error");
                   }
                   router.refresh();
                 }}

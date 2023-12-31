@@ -38,17 +38,11 @@ export default function ManageProjectButton({
       },
     });
     if (response.status === 201) {
-      (() =>
-        toast.success("created", {
-          style: { backgroundColor: "lightgreen" },
-        }))();
+      toast.success(method === "POST" ? "created" : "updated");
       setOpen(false);
       router.refresh();
     } else {
-      (() =>
-        toast.error("something went wrong", {
-          style: { backgroundColor: "red", color: "white" },
-        }))();
+      toast.error("something went wrong");
     }
   };
   const updateFields = (e: React.ChangeEvent<HTMLInputElement>) => {

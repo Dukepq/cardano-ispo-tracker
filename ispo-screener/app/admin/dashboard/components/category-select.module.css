@@ -1,21 +1,11 @@
 .dropdown-content {
-  background-color: #393f4a;
-  padding: 0.25rem;
+  background-color: rgb(10, 10, 10);
   border-radius: 0.25rem;
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
   animation: slideIn 50ms ease;
-}
-
-.dropdown-content > button {
-  border: 1px solid #121826;
-  background-color: #12182633;
-}
-
-.dropdown-content > button:hover {
-  background-color: #1218265c;
-  transition: 50ms;
+  overflow: hidden;
 }
 
 .dialog-overlay {
@@ -26,14 +16,13 @@
 }
 
 .item {
+  height: 2rem;
   font-size: 0.9rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #121826;
   padding: 0.2rem 0.6rem;
   cursor: default;
-  border-radius: 0.25rem;
   gap: 1rem;
 }
 
@@ -42,12 +31,22 @@
 }
 
 .item > *:first-child {
-  cursor: pointer;
   max-width: 100%;
 }
 
 .item > *:last-child {
   cursor: pointer;
+}
+
+.dropdown-content > button {
+  background-color: #1f377933;
+  height: 3rem;
+  border-radius: 0;
+}
+
+.dropdown-content > button:hover {
+  background-color: #24417f5c;
+  transition: 50ms;
 }
 
 .dialog-content {
@@ -68,10 +67,6 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-}
-
-.dropdown-trigger {
-  max-width: min-content;
 }
 
 .subcontent > input {

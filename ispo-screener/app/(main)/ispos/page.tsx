@@ -15,11 +15,7 @@ export default async function ISPOS() {
       {/* <div className={styles["bar"]}>
         <h1>ISPO&apos;S:</h1>
       </div> */}
-      <div className={styles.wrapper}>
-        <table className={styles.table}>
-          <Table projects={projects} />
-        </table>
-      </div>
+      <Table projects={projects} />
     </main>
   );
 }

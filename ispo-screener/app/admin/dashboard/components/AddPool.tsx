@@ -33,13 +33,9 @@ export default function AddPool({
       },
     });
     if (!response.ok) {
-      toast.error("failed to create", {
-        style: { backgroundColor: "red", color: "white" },
-      });
+      toast.error("failed to create");
     } else {
-      toast.success("created", {
-        style: { backgroundColor: "lightGreen" },
-      });
+      toast.success("created");
       setOpen(false);
     }
   };

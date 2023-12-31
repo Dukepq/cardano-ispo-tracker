@@ -20,15 +20,9 @@ export default async function onSubmitHandle(
     }),
   });
   if (!response.ok) {
-    toast.error("error", {
-      style: {
-        backgroundColor: "red",
-      },
-    });
+    toast.error("error");
     throw new Error("failed to submit: " + response.status);
   } else {
-    toast.success("updated", {
-      style: { backgroundColor: "lightgreen" },
-    });
+    toast.success("updated");
   }
 }
