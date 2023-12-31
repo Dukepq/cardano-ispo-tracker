@@ -3,6 +3,7 @@
 import base from "../../lib/routes";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 export default function Logout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -13,8 +14,9 @@ export default function Logout({ children }: { children: React.ReactNode }) {
       cache: "no-cache",
     });
     if (!response.ok) {
-      throw new Error("logout failed");
+      toast.error("logout failed");
     } else {
+      toast.success("logged out");
       router.push("/");
     }
   };
