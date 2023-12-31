@@ -8,6 +8,12 @@ const defaultPoolFieldsToSelect = {
   name: true,
   poolId: true,
   amountInPool: true,
+  committedPledge: true,
+  activePledge: true,
+  lifetimeRewards: true,
+  lifetimeBlocks: true,
+  updatedAt: true,
+  createdAt: true,
 };
 
 export const getAllPools = async (req: Request, res: Response) => {
