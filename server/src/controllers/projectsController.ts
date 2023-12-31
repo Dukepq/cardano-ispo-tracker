@@ -202,7 +202,6 @@ export const deleteProject = async (req: Request, res: Response) => {
       message: `succesfully deleted ${deleted.name || deleted.token}`,
     });
   } catch (err) {
-    console.log(err);
     return res
       .status(400)
       .json({ success: false, message: "project likely didn't exist" });
