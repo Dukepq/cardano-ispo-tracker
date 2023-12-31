@@ -1,12 +1,13 @@
 import base from "./routes";
 import toast from "react-hot-toast";
+import pruneFalsy from "./pruneFalsy";
 
 export default async function onSubmitHandle(
   e: React.FormEvent<HTMLFormElement>,
   fields: Partial<Pool>
 ) {
   e.preventDefault();
-
+  const prunedFields = pruneFalsy(fields);
   const response = await fetch(`${base}/api/pools`, {
     method: "PUT",
     cache: "no-cache",
@@ -15,8 +16,8 @@ export default async function onSubmitHandle(
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      ticker: fields.ticker,
-      pool: fields,
+      ticker: prunedFields.ticker,
+      pool: prunedFields,
     }),
   });
   if (!response.ok) {
