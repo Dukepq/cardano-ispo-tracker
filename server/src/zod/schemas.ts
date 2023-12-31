@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const categorySchema = z.object({
-  name: z.string(),
+  name: z.string().min(2),
 });
 export type CategorySchemaType = z.infer<typeof categorySchema>;
 
