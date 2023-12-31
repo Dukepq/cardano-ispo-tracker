@@ -40,6 +40,7 @@ export const getAllProjects = async (req: Request, res: Response) => {
   try {
     RequestAllSchema.parse(req);
     const projects = await prisma.project.findMany({
+      orderBy: [{ token: "asc" }],
       select: {
         ...defaultProjectFieldsToSelect,
         pools: req.query.pools
@@ -52,9 +53,7 @@ export const getAllProjects = async (req: Request, res: Response) => {
               },
             }
           : false,
-        categories: req.query.categories
-          ? { select: { name: true, id: true } }
-          : false,
+        categories: req.query.categories ? { select: { name: true } } : false,
       },
     });
     res.status(200).json(projects);

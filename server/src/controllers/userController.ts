@@ -161,6 +161,7 @@ const getUsersSchema = z.object({});
 export async function getUsers(req: Request, res: Response) {
   try {
     const response = await prisma.user.findMany({
+      orderBy: [{ email: "asc" }],
       select: {
         email: true,
         name: true,
