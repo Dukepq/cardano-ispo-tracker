@@ -7,12 +7,12 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 export default function Dropdown({
   children,
   parentOpen,
-  setTargetPool,
+  setFields,
   pools,
 }: {
   children: React.ReactNode;
   parentOpen: boolean;
-  setTargetPool: (callback: React.SetStateAction<Pool | null>) => void;
+  setFields: (callback: React.SetStateAction<Partial<Pool>>) => void;
   pools: Pool[];
 }) {
   const [open, setOpen] = useState(false);
@@ -42,7 +42,7 @@ export default function Dropdown({
                   onClick={() => {
                     const pool = pools.find((entry) => entry.ticker === child);
                     if (!pool) return;
-                    setTargetPool(() => pool);
+                    setFields(() => pool);
                   }}
                   className={styles.item}
                   key={index}

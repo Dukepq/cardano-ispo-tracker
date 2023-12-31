@@ -19,7 +19,6 @@ export default function EditPoolModal({
   poolOf: string;
 }) {
   const [fields, setFields] = useState<Partial<Pool>>({});
-  const [targetPool, setTargetPool] = useState<Pool | null>(null);
   const [open, setOpen] = useState(false);
   const [pools, setPools] = useState<Pool[]>([]);
   const [isUpdating, setIsUpdating] = useState(false);
@@ -28,20 +27,12 @@ export default function EditPoolModal({
     setPools(pools);
   };
 
-  useEffect(() => {
-    if (targetPool) {
-      setFields(() => {
-        return { ...targetPool };
-      });
-    }
-  }, [targetPool]);
-
   return (
     <Dialog.Root
       open={open}
       onOpenChange={() => {
         setOpen((prev) => !prev);
-        setTargetPool(null);
+        setFields({});
       }}
     >
       <Dialog.Trigger asChild>
@@ -61,14 +52,10 @@ export default function EditPoolModal({
             <p>Edit existing pools</p>
             <Dialog.Close className={styles.button}>close</Dialog.Close>
           </Dialog.Title>
-          <Dropdown
-            parentOpen={open}
-            setTargetPool={setTargetPool}
-            pools={pools}
-          >
+          <Dropdown parentOpen={open} setFields={setFields} pools={pools}>
             {pools.map((pool) => pool.ticker)}
           </Dropdown>
-          {targetPool && (
+          {fields.ticker && (
             <>
               <EditPoolForm
                 fieldsHook={[fields, setFields]}
@@ -87,11 +74,13 @@ export default function EditPoolModal({
               >
                 <AlertDialogWindow
                   deleteFunc={async () => {
-                    const res = await deletePool(targetPool.ticker);
-                    setOpen(false);
-                    return res;
+                    if (fields.ticker) {
+                      const res = await deletePool(fields.ticker);
+                      setOpen(false);
+                      return res;
+                    }
                   }}
-                  arg={targetPool.ticker}
+                  arg={fields.ticker}
                 >
                   <button className={styles["delete-button"]}>
                     delete pool

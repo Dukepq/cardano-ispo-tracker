@@ -16,7 +16,6 @@ export default function EditPoolForm({
   onSubmitHandle: (e: React.FormEvent<HTMLFormElement>) => void;
 }) {
   const [fields, setFields] = fieldsHook;
-  console.log(fields);
   return (
     <form className={styles.form} onSubmit={onSubmitHandle}>
       <div className={styles.wrapper}>
