@@ -1,7 +1,7 @@
 "use client";
 
 import * as Dialog from "@radix-ui/react-dialog";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./project-dialog.module.css";
 import Dropdown from "./PoolSelectDropdown";
 import fetchPools from "@/app/lib/fetchPool";
@@ -22,9 +22,12 @@ export default function EditPoolModal({
   const [open, setOpen] = useState(false);
   const [pools, setPools] = useState<Pool[]>([]);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [isFetchingPools, setIsFetchingPools] = useState(false);
   const onClickHandle = async () => {
+    setIsFetchingPools(true);
     const pools = await fetchPools(poolOf);
     setPools(pools);
+    setIsFetchingPools(false);
   };
 
   return (
@@ -52,7 +55,12 @@ export default function EditPoolModal({
             <p>Edit existing pools</p>
             <Dialog.Close className={styles.button}>close</Dialog.Close>
           </Dialog.Title>
-          <Dropdown parentOpen={open} setFields={setFields} pools={pools}>
+          <Dropdown
+            parentOpen={open}
+            setFields={setFields}
+            pools={pools}
+            isFetchingPools={isFetchingPools}
+          >
             {pools.map((pool) => pool.ticker)}
           </Dropdown>
           {fields.ticker && (

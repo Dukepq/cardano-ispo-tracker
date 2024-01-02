@@ -9,11 +9,13 @@ export default function Dropdown({
   parentOpen,
   setFields,
   pools,
+  isFetchingPools,
 }: {
   children: React.ReactNode;
   parentOpen: boolean;
   setFields: (callback: React.SetStateAction<Partial<Pool>>) => void;
   pools: Pool[];
+  isFetchingPools: boolean;
 }) {
   const [open, setOpen] = useState(false);
   return (
@@ -27,15 +29,11 @@ export default function Dropdown({
         select {open ? "\u2B9D" : "\u2B9F"}
       </DropdownMenu.Trigger>
       <DropdownMenu.Portal>
-        <DropdownMenu.Content
-          style={
-            Array.isArray(children) && children.length > 0
-              ? {}
-              : { display: "none" }
-          }
-          className={styles.content}
-        >
-          {Array.isArray(children) &&
+        <DropdownMenu.Content className={styles.content}>
+          {isFetchingPools ? (
+            <p style={{ padding: "0 0.5rem" }}>loading...</p>
+          ) : (
+            Array.isArray(children) &&
             children.map((child: string, index) => {
               return (
                 <DropdownMenu.Item
@@ -50,7 +48,8 @@ export default function Dropdown({
                   {child}
                 </DropdownMenu.Item>
               );
-            })}
+            })
+          )}
         </DropdownMenu.Content>
       </DropdownMenu.Portal>
     </DropdownMenu.Root>
