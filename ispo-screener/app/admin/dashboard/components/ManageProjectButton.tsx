@@ -19,6 +19,7 @@ export default function ManageProjectButton({
   const [open, setOpen] = useState(false);
   const [fields, setFields] = useState<Partial<ISPO>>(ISPO);
   const router = useRouter();
+  console.log(fields);
   const createProject = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const deepCopy: Partial<ISPO> = JSON.parse(JSON.stringify(fields));
