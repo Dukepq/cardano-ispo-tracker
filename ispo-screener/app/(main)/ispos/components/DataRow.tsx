@@ -1,36 +1,18 @@
 import styles from "./datarow.module.css";
 import Link from "next/link";
 import Image from "next/image";
-
-function getAmountInPools(pools: Pool[]) {
-  let amount = 0;
-  for (let pool of pools) {
-    amount += pool.amountInPool;
-  }
-  return amount;
-}
+import { FormattedISPO } from "@/app/lib/formatISPOArray";
 
 export default function DataRow({
   name,
   token,
   live,
   index,
-  distributingAmount,
-  maxSupply,
-  maxSupplyExists,
-  pools,
-  takesRewards,
+  allocatedPercentage,
+  ratio,
+  rewards,
   categories,
-}: ISPO & { index: number }) {
-  const allocatedPercentage = maxSupplyExists
-    ? ((distributingAmount / maxSupply) * 100).toFixed(2) + "%"
-    : "N/A";
-  const amountInPools = getAmountInPools(pools);
-  const ratio =
-    amountInPools > 0 && distributingAmount > 0
-      ? (distributingAmount / amountInPools).toFixed(2) + "%"
-      : "N/A";
-
+}: FormattedISPO & { index: number }) {
   return (
     <tr className={styles.row} data-cell="general-info">
       <td>
@@ -53,9 +35,9 @@ export default function DataRow({
         </div>
       </td>
       <td data-cell="token">{token}</td>
-      <td data-cell="allocation">{allocatedPercentage}</td>
-      <td data-cell="rewards">{takesRewards.toLowerCase()}</td>
-      <td data-cell="%per100k">{ratio}</td>
+      <td data-cell="allocation">{allocatedPercentage?.toFixed(2) || "N/A"}</td>
+      <td data-cell="rewards">{rewards.toLowerCase()}</td>
+      <td data-cell="%per100k">{ratio?.toFixed(2) || "N/A"}</td>
       <td style={live ? { color: "green" } : { color: "red" }}>
         {live ? "yes" : "no"}
       </td>

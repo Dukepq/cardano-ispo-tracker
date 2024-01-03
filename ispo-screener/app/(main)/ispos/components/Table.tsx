@@ -3,48 +3,27 @@
 import styles from "./table.module.css";
 import DataRow from "./DataRow";
 import Link from "next/link";
+import { useMemo } from "react";
 import { useSearchParams } from "next/navigation";
-
-type DictType = {
-  [key: string]: string;
-  rewards: "takesRewards";
-  allocation: "allocation";
-  token: "token";
-  name: "name";
-  live: "live";
-  pools: "pools";
-  distPercentage: "distributingPercentage";
-};
-
-const dict: DictType = {
-  rewards: "takesRewards",
-  allocation: "allocation",
-  token: "token",
-  name: "name",
-  live: "live",
-  pools: "pools",
-  distPercentage: "distributingPercentage",
-};
-
-const numerics: string[] = ["allocation", "allocatedPercentage"];
+import formatISPOArray, { FormattedISPO } from "@/app/lib/formatISPOArray";
 
 export default function Table({ projects }: { projects: ISPO[] }) {
+  const extract = useMemo(() => formatISPOArray(projects), [projects.length]);
+  /*^extracts the exact data needed to fill table fields*/
   const sort = useSearchParams().get("sort");
-  const [_sortBy, desc] = sort?.split(":") ?? [];
-  const sortBy = dict[_sortBy] || _sortBy;
-  const sortedProjects = [...projects].sort((a, b) => {
-    const valueA = a[sortBy as keyof ISPO];
-    const valueB = b[sortBy as keyof ISPO];
-    if (typeof valueA === "string" && typeof valueB === "string") {
-      if (numerics.includes(sortBy)) {
-        // code below removes symbols from a string and turns it into a number.
-        // add all strings containing number values to "numerics".
-        let numA = parseFloat(valueA.replace(/[^0-9.]/g, ""));
-        let numB = parseFloat(valueB.replace(/[^0-9.]/g, ""));
-        if (isNaN(numA)) numA = 0;
-        if (isNaN(numB)) numB = 0;
-        return desc ? (numA < numB ? -1 : 1) : numA < numB ? 1 : -1;
-      }
+  const [sortBy, desc] =
+    (sort?.split(":") as [keyof FormattedISPO, "desc" | ""] | undefined) ?? [];
+
+  const sortedProjects = [...extract].sort((a, b) => {
+    const valueA = a[sortBy as keyof typeof a];
+    const valueB = b[sortBy as keyof typeof b];
+    if (valueA === null) return 1;
+    if (valueB === null) return -1;
+
+    if (typeof valueA === "number" && typeof valueB === "number") {
+      console.log("im here");
+      return desc ? valueA - valueB : valueB - valueA;
+    } else if (typeof valueA === "string" && typeof valueB === "string") {
       return desc ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA);
     }
     return 0;
@@ -87,7 +66,7 @@ export default function Table({ projects }: { projects: ISPO[] }) {
             >
               <Link
                 className={styles.query}
-                href={`/ispos?sort=allocation${desc ? "" : ":desc"}`}
+                href={`/ispos?sort=allocatedPercentage${desc ? "" : ":desc"}`}
               >
                 <p>ISPO Allocation</p>
                 <div className={styles.arrow}>&#8597;</div>
@@ -124,7 +103,7 @@ export default function Table({ projects }: { projects: ISPO[] }) {
               onClick={() => null}
               className={styles["row"]}
             >
-              <Link className={styles.query} href={"/ispos?sort=placeholder"}>
+              <Link className={styles.query} href={""}>
                 <p>live</p>
                 <div className={styles.arrow}>&#8597;</div>
               </Link>
@@ -134,20 +113,18 @@ export default function Table({ projects }: { projects: ISPO[] }) {
         <tbody>
           {/* can chain a sorting function that returns an array here:
             sortArray(dummyData).map... */}
-          {(sortedProjects || projects).map((project, index) => {
+          {sortedProjects.map((project, index) => {
             return (
               <DataRow
                 key={index}
+                index={index}
                 name={project.name}
                 token={project.token}
                 live={project.live}
-                index={index}
-                maxSupplyExists={project.maxSupplyExists}
-                maxSupply={project.maxSupply}
-                distributingAmount={project.distributingAmount}
-                pools={project.pools}
-                takesRewards={project.takesRewards}
                 categories={project.categories}
+                rewards={project.rewards}
+                allocatedPercentage={project.allocatedPercentage}
+                ratio={project.ratio}
               />
             );
           })}
