@@ -5,15 +5,17 @@ import { default as poolsRouter } from "./routes/pools";
 import { default as categoriesRouter } from "./routes/categories";
 import { default as userRouter } from "./routes/users";
 import { limiter } from "./config/rateLimitOptions";
-import { prisma } from "./db";
 import sessionMiddleware from "./config/session-config";
 const cors = require("cors");
 
+const entryDir = __dirname;
+export { entryDir };
+
 const PORT = process.env.PORT || 5000;
 
-(async () => {
-  await prisma.session.deleteMany();
-})();
+// (async () => {
+//   await prisma.session.deleteMany();
+// })();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -50,6 +52,7 @@ app.get("/test", (req, res) => {
     message: `cookie: ${JSON.stringify(req.session.cookie)}`,
   });
 });
+
 app.all("*", (req, res) => {
   try {
     res.status(404).json({ success: "false", message: "Resource not found" });
