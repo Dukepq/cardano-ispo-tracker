@@ -1,11 +1,14 @@
 "use client";
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useState, useEffect } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import styles from "./project-dialog.module.css";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import pruneFalsy from "@/app/lib/pruneFalsy";
 import onProjectFormChange from "@/app/lib/onProjectFormChange";
+import UploadFileInput from "./UploadFileInput";
+import Image from "next/image";
+import fetchImage from "@/app/lib/fetchImage";
 
 export default function ManageProjectButton({
   method,
@@ -17,19 +20,45 @@ export default function ManageProjectButton({
   children?: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
+  const [isUploading, setIsUploading] = useState<boolean>(false);
   const [fields, setFields] = useState<Partial<ISPO>>(ISPO);
+  const [image, setImage] = useState<string>("");
+  const [fetchingImage, setFetchingImage] = useState<boolean>(false);
   const router = useRouter();
-  console.log(fields);
+  useEffect(() => {
+    (async () => {
+      if (!fields.logoImageURL) return;
+      setFetchingImage(true);
+      try {
+        const blob = await fetchImage(fields.logoImageURL);
+        if (!blob.type.includes("image")) return;
+        const imageURL = URL.createObjectURL(blob);
+        setImage((prev) => {
+          URL.revokeObjectURL(prev);
+          return imageURL;
+        });
+        setFetchingImage(false);
+      } catch (err) {
+        setFields((prev) => {
+          return { ...prev, logoImageURL: "" };
+        });
+        setFetchingImage(false);
+      }
+    })();
+    return () => {
+      URL.revokeObjectURL(image);
+    };
+  }, [open, fields.logoImageURL]);
+
   const createProject = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const deepCopy: Partial<ISPO> = JSON.parse(JSON.stringify(fields));
-    const filtered = pruneFalsy(deepCopy);
+    const filtered = pruneFalsy(deepCopy, ["boolean", "string"]);
     const body = JSON.stringify({
       ...filtered,
       maxSupplyExists: !!fields.maxSupply,
       live: typeof filtered.live === "boolean" ? fields.live : false,
     });
-
     const response = await fetch("http://localhost:5003/api/projects", {
       method,
       credentials: "include",
@@ -67,7 +96,11 @@ export default function ManageProjectButton({
         onOpenChange={() => {
           setOpen((prev) => !prev);
           if (method === "POST") {
+            setImage("");
             setFields(() => ({}));
+          } else {
+            setImage("");
+            setFields(() => ISPO);
           }
         }}
       >
@@ -126,18 +159,6 @@ export default function ManageProjectButton({
                     name="websiteURL"
                     onChange={(e) => onProjectFormChange(e, setFields)}
                     value={fields?.websiteURL || ""}
-                  />
-                </label>
-              </div>
-              <div>
-                <label>
-                  <p>Logo URL</p>
-                  <input
-                    type="text"
-                    placeholder="Logo URL"
-                    name="logoImageURL"
-                    onChange={(e) => onProjectFormChange(e, setFields)}
-                    value={fields?.logoImageURL || ""}
                   />
                 </label>
               </div>
@@ -256,7 +277,26 @@ export default function ManageProjectButton({
                   <p>Not specified</p>
                 </label>
               </div>
-              <button onClick={createProject}>
+              <div style={{ margin: "1rem 0" }}>
+                <label>
+                  <UploadFileInput
+                    accept=".png, .jpg, .jpeg"
+                    setPath={(path) => {
+                      setFields((prev) => ({ ...prev, logoImageURL: path }));
+                    }}
+                    setIsUploading={setIsUploading}
+                    className={styles["upload-input"]}
+                  />
+                </label>
+                {image &&
+                  (fetchingImage ? (
+                    <span>...loading image</span>
+                  ) : (
+                    <Image alt="logo" src={image} width={100} height={100} />
+                  ))}
+              </div>
+
+              <button disabled={isUploading} onClick={createProject}>
                 {method === "POST" ? "Add project" : "Update project"}
               </button>
             </form>

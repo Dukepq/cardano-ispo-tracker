@@ -1,7 +1,10 @@
 import { prisma } from "../db";
 import { Response, Request } from "express";
-import { set, z } from "zod";
-import { categorySchema, projectSchema } from "../zod/schemas";
+import { z } from "zod";
+import { projectSchema } from "../zod/schemas";
+import storage from "../config/multerConfig";
+import multer from "multer";
+import fs from "fs";
 
 const defaultProjectFieldsToSelect = {
   name: true,
@@ -13,6 +16,8 @@ const defaultProjectFieldsToSelect = {
   live: true,
   description: true,
   takesRewards: true,
+  logoImageURL: true,
+  websiteURL: true,
   pools: {
     select: {
       name: true,
@@ -132,7 +137,6 @@ const createProjectSchema = z.object({
 });
 
 export const createProject = async (req: Request, res: Response) => {
-  console.log(req.body);
   const result = createProjectSchema.safeParse(req);
   if (!result.success) {
     return res
@@ -166,7 +170,7 @@ export const createProject = async (req: Request, res: Response) => {
       .status(201)
       .json({ success: true, message: "Successfully created a new project" });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.status(400).json({
       success: false,
       message:
@@ -227,6 +231,7 @@ export const updateProject = async (req: Request, res: Response) => {
   try {
     const updateTarget = result.data.body.token;
     const body = result.data.body;
+
     await prisma.project.update({
       where: {
         token: updateTarget,
@@ -250,3 +255,66 @@ export const updateProject = async (req: Request, res: Response) => {
     prisma.$disconnect();
   }
 };
+
+const imageUploadSchema = z.object({
+  file: z.object({
+    fieldname: z.string(),
+    originalName: z.string(),
+    encoding: z.string(),
+    mimetype: z.string(),
+    destination: z.string(),
+    filename: z.string(),
+    path: z.string(),
+    size: z.number(),
+  }),
+});
+
+const upload = multer({ storage, limits: { fileSize: 50000 } }).single("file");
+export async function uploadImage(req: Request, res: Response) {
+  upload(req, res, (err) => {
+    if (err instanceof multer.MulterError) {
+      if (err.code === "LIMIT_FILE_SIZE") {
+        return res.status(413).json({ success: false, message: err.message });
+      } else {
+        return res.status(406).json({ success: false, message: err.message });
+      }
+    } else if (err) {
+      return res.status(406).json({ success: false });
+    }
+    const path = req.file?.path;
+    if (!path) return res.status(406).json({ success: false });
+
+    res.status(201).json({ success: true, path });
+  });
+}
+
+const getImageSchema = z.object({
+  body: z.object({
+    path: z.string(),
+  }),
+});
+
+export async function getImage(req: Request, res: Response) {
+  const result = getImageSchema.safeParse(req);
+  if (!result.success) {
+    return res
+      .status(406)
+      .json({ success: false, message: "shape of request data incorrect" });
+  }
+  const { path } = result.data.body;
+  const split = path.toLowerCase().split(".");
+  const extension = split[split.length - 1];
+
+  if (!["png", "jpg", "jpeg"].includes(extension)) {
+    return res
+      .status(406)
+      .json({ success: false, message: "extension type not acceptable" });
+  }
+  fs.access(path, (err) => {
+    if (err) {
+      return res.status(404).json({ success: false, message: "not found" });
+    }
+    res.contentType(`image/${extension}`);
+    res.sendFile(path);
+  });
+}

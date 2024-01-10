@@ -21,6 +21,11 @@ router
 
 router.post("/logo", getImage);
 router.get("/:token", getProjectByToken);
-router.post("/upload-image", sessionMiddleware, isAuth(["ADMIN"]), uploadImage);
+router.post(
+  "/upload-image",
+  sessionMiddleware,
+  isAuth(["ADMIN", "EDITOR"]),
+  uploadImage
+);
 
 export default router;
