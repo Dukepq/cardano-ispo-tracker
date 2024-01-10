@@ -56,6 +56,8 @@ export default function Table({ projects }: { projects: ISPO[] }) {
                   distributingAmount={project.distributingAmount}
                   pools={project.pools}
                   categories={project.categories}
+                  logoImageURL={project.logoImageURL}
+                  websiteURL={project.websiteURL}
                 />
               );
             })}
