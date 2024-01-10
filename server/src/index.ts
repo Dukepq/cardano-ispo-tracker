@@ -39,20 +39,6 @@ app.get("/api/ping", (req, res) => {
   }
 });
 
-app.get("/test", (req, res) => {
-  console.log(req.session.id);
-  if (!req.session.count) {
-    req.session.count = 1;
-  } else {
-    req.session.count += 1;
-  }
-  console.log(req.session);
-  res.status(200).json({
-    success: true,
-    message: `cookie: ${JSON.stringify(req.session.cookie)}`,
-  });
-});
-
 app.all("*", (req, res) => {
   try {
     res.status(404).json({ success: "false", message: "Resource not found" });
