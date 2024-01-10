@@ -4,13 +4,16 @@ import { useRef } from "react";
 import styles from "./table.module.css";
 import debounce from "@/app/lib/debounce";
 
+type SearchBarProps = {
+  setState: (prev: React.SetStateAction<string>) => void;
+  setIsDebouncing?: (prev: React.SetStateAction<boolean>) => void;
+} & React.InputHTMLAttributes<HTMLInputElement>;
+
 export default function SearchBar({
   setState,
   setIsDebouncing,
-}: {
-  setState: (prev: React.SetStateAction<string>) => void;
-  setIsDebouncing?: (prev: React.SetStateAction<boolean>) => void;
-}) {
+  ...attributes
+}: SearchBarProps) {
   const searchRef = useRef<HTMLInputElement | null>(null);
   return (
     <input
@@ -30,6 +33,7 @@ export default function SearchBar({
         if (setIsDebouncing) setIsDebouncing(false);
       }}
       className={styles["search-input"]}
+      {...attributes}
     />
   );
 }
