@@ -17,7 +17,7 @@ export default function RootLayout({
         style={{
           color: "white",
           backgroundColor: "rgba(242, 242, 242, 1)",
-          height: "100vh",
+          minHeight: "100vh",
         }}
       >
         {children}

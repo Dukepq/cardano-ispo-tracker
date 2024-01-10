@@ -6,7 +6,7 @@
   padding: 0 1rem;
   transition: 300ms;
   backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(20px)
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .navbar {
@@ -17,7 +17,7 @@
   height: var(--nav-height);
   align-items: center;
   color: var(--general-1);
-  transition: height 300ms ease
+  transition: height 300ms ease;
 }
 
 .navbar > li {
@@ -34,7 +34,7 @@
   background-color: white;
   height: 2px;
   width: 0;
-  transition: 200ms ease
+  transition: 200ms ease;
 }
 .navbar > li:hover::after {
   width: 110%;

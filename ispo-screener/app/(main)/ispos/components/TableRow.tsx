@@ -1,9 +1,9 @@
-import styles from "./datarow.module.css";
+import styles from "../styles/tableRow.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { FormattedISPO } from "@/app/lib/formatISPOArray";
 
-export default function DataRow({
+export default function TableRow({
   name,
   token,
   live,
@@ -19,6 +19,19 @@ export default function DataRow({
         <div className={styles["name"]}>
           <p>{index + 1}</p>
           <Link href={"/"}>
+            <Image
+              src={"/cardano-logo.svg"}
+              width={25}
+              height={25}
+              alt="logo"
+            />
+            <Image
+              alt="link symbol"
+              src={"/link.png"}
+              width={20}
+              height={20}
+              style={{ filter: "invert(1)" }}
+            />
             <Image
               src={"/cardano-logo.svg"}
               width={25}

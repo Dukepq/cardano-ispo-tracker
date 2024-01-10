@@ -1,4 +1,4 @@
-import styles from "./ispos.module.css";
+import styles from "./styles/table.module.css";
 import { Metadata } from "next";
 import Table from "./components/Table";
 import { fetchAllProjects } from "../../lib/fetchIspoData";

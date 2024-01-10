@@ -6,6 +6,10 @@
   margin: 0;
 }
 
+img {
+  max-width: 100%;
+}
+
 :root {
   --primary-color: #0b090a;
   --primary-color-no-hex: 11, 9, 10;

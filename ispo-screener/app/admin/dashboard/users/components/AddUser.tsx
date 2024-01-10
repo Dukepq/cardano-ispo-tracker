@@ -11,7 +11,7 @@ export default function AddUser() {
     email: "",
     name: "",
     password: "",
-    role: "BASIC",
+    role: "EDITOR",
   });
   const router = useRouter();
 
@@ -106,7 +106,7 @@ export default function AddUser() {
                   <input
                     type="checkbox"
                     onChange={(e) => {
-                      const role = e.target.checked ? "ADMIN" : "BASIC";
+                      const role = e.target.checked ? "ADMIN" : "EDITOR";
                       setFields((prev) => ({ ...prev, role }));
                     }}
                   />

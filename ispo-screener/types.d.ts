@@ -28,7 +28,7 @@ type ISPO = {
   name: string;
   token: string;
   maxSupplyExists: boolean;
-  maxSupply: number;
+  maxSupply?: number;
   distributingAmount: number;
   distributingPercentage?: string;
   takesRewards: Rewards;

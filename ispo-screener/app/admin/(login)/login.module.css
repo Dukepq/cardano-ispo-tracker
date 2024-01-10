@@ -77,6 +77,6 @@
     display: flex;
     flex-direction: column;
     min-width: 250px;
-    width: 90vw;
+    width: 100vw;
   }
 }

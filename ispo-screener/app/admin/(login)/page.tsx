@@ -38,7 +38,6 @@ export default function Login() {
       toast.success("logged in!");
       router.push("/admin/dashboard");
     } else {
-      console.log("something went wrong");
       if (response.status === 404) {
         toast.error("please enter correct credentials");
       }

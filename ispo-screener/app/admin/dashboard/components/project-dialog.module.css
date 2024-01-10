@@ -153,3 +153,9 @@
     border-radius: 0.5rem 0.5rem 0 0;
   }
 }
+
+.upload-input:first-child {
+  background-color: transparent;
+  border: none;
+  margin: 1rem 0;
+}

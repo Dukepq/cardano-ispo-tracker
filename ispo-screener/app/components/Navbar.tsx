@@ -39,10 +39,6 @@ export default function Navbar() {
         <li>
           <Link href={"/ispos"}>ISPO&apos;S</Link>
         </li>
-        <li>
-          <Link href={"/support"}>SUPPORT US</Link>
-        </li>
-        <div>ToggleTheme</div>
       </nav>
     </div>
   );
