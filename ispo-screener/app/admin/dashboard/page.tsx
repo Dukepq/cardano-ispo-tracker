@@ -11,7 +11,7 @@ export default async function Dashboard() {
   if (typeof cookie !== "string") {
     redirect("/admin");
   }
-  const isAdmin = await isRole(cookie, "ADMIN");
+  const isAdmin = await isRole(cookie, ["ADMIN", "EDITOR"]);
   if (!isAdmin) {
     redirect("/admin");
   }

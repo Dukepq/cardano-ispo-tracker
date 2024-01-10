@@ -12,12 +12,17 @@ export const isAuthAdmin = (
   return res.status(401).json({ success: false, message: "unauthorized" });
 };
 
-export const isAuth = (role: Role) => {
-  console.log("returning auth function -->");
+export const isAuth = (roles: Role[]) => {
   return (req: Request, res: Response, next: NextFunction) => {
-    if (!!req.session.userId && req.session.role === role) {
+    if (
+      req.session.userId &&
+      req.session.role &&
+      roles.includes(req.session.role)
+    ) {
+      console.log("authorized");
       return next();
     }
+    console.log("not authorized");
     return res.status(401).json({ success: false, message: "unauthorized" });
   };
 };

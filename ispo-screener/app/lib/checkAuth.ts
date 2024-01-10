@@ -10,10 +10,8 @@ export default async function checkAuth(auth: Roles) {
     credentials: "include",
     cache: "no-cache",
   });
-  console.log(response.ok);
   if (response.ok) {
     const data: ResponseType = await response.json();
-    console.log(data);
     return data.auth;
   } else {
     throw new Error("something went wrong");

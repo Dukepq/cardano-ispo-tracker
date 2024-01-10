@@ -1,4 +1,4 @@
-const isRole = async (cookie: string, role: Role) => {
+const isRole = async (cookie: string, roles: Role[]) => {
   const response = await fetch("http://localhost:5003/api/users/checkAuth", {
     method: "POST",
     cache: "no-cache",
@@ -7,7 +7,7 @@ const isRole = async (cookie: string, role: Role) => {
     },
   });
   const data = await response.json();
-  if (data.auth === role) {
+  if (roles.includes(data.auth)) {
     return true;
   }
   return false;

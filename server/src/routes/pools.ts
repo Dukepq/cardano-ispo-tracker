@@ -15,12 +15,12 @@ import { isAuth } from "../middleware/auth";
 router
   .route("/")
   .get(getAllPools)
-  .post(sessionMiddleware, isAuth("ADMIN"), createPoolOnProject)
-  .delete(sessionMiddleware, isAuth("ADMIN"), deletePool)
-  .put(sessionMiddleware, isAuth("ADMIN"), updatePool);
+  .post(sessionMiddleware, isAuth(["ADMIN"]), createPoolOnProject)
+  .delete(sessionMiddleware, isAuth(["ADMIN"]), deletePool)
+  .put(sessionMiddleware, isAuth(["ADMIN"]), updatePool);
 router.delete(
   "/deleteAll",
-  isAuth("ADMIN"),
+  isAuth(["ADMIN"]),
   sessionMiddleware,
   deleteManyPools
 );
