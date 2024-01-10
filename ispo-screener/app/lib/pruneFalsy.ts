@@ -1,9 +1,19 @@
 export default function pruneFalsy<T extends { [key: string]: any }>(
-  object: T
+  object: T,
+  exceptions?: (
+    | "string"
+    | "number"
+    | "bigint"
+    | "boolean"
+    | "symbol"
+    | "undefined"
+    | "object"
+    | "function"
+  )[]
 ): Partial<T> {
   return Object.fromEntries(
     Object.entries(object).filter(
-      ([_, value]) => typeof value === "boolean" || !!value
+      ([_, value]) => exceptions?.includes(typeof value) || !!value
     )
   ) as Partial<T>;
 }
