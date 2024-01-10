@@ -21,6 +21,7 @@ export default function EditPoolForm({
       <div className={styles.wrapper}>
         <label htmlFor="ticker">ticker: </label>
         <input
+          id="ticker"
           name="ticker"
           value={fields.ticker || ""}
           type="text"
@@ -31,6 +32,7 @@ export default function EditPoolForm({
       <div className={styles.wrapper}>
         <label htmlFor="id">id: </label>
         <input
+          id="id"
           name="poolId"
           value={fields.poolId || ""}
           type="text"
@@ -41,6 +43,7 @@ export default function EditPoolForm({
       <div className={styles.wrapper}>
         <label htmlFor="amountInPool">amount in pool: </label>
         <input
+          id="amountInPool"
           name="amountInPool"
           value={fields.amountInPool || ""}
           type="text"
@@ -50,6 +53,7 @@ export default function EditPoolForm({
       <div className={styles.wrapper}>
         <label htmlFor="name">name: </label>
         <input
+          id="name"
           name="name"
           value={fields.name || ""}
           type="text"
@@ -59,6 +63,7 @@ export default function EditPoolForm({
       <div className={styles.wrapper}>
         <label htmlFor="activePledge">active pledge: </label>
         <input
+          id="activePledge"
           name="activePledge"
           value={fields.activePledge || ""}
           type="text"
@@ -68,6 +73,7 @@ export default function EditPoolForm({
       <div className={styles.wrapper}>
         <label htmlFor="committedPledge">committed pledge: </label>
         <input
+          id="committedPledge"
           name="committedPledge"
           value={fields.committedPledge || ""}
           type="text"
@@ -77,6 +83,7 @@ export default function EditPoolForm({
       <div className={styles.wrapper}>
         <label htmlFor="lifetimeBlocks">lifetime blocks: </label>
         <input
+          id="lifetimeBlocks"
           name="lifetimeBlocks"
           value={fields.lifetimeBlocks || ""}
           type="text"
@@ -86,6 +93,7 @@ export default function EditPoolForm({
       <div className={styles.wrapper}>
         <label htmlFor="lifetimeRewards">lifetime rewards: </label>
         <input
+          id="lifetimeRewards"
           name="lifetimeRewards"
           value={fields.lifetimeRewards || ""}
           type="text"
