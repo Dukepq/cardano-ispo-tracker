@@ -1,9 +1,10 @@
-import Image from "next/image";
 import styles from "./landing.module.css";
 import About from "../components/About";
-import React, { useRef } from "react";
+import React, { Suspense } from "react";
 import Link from "next/link";
 import CountAni from "../components/CountAni";
+import CardCollection from "../components/CardCollection";
+import LoadingCardCollection from "../components/LoadingCardCollection";
 
 export default function Home() {
   return (
@@ -31,31 +32,10 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className={styles["ispo-section"]}>
-          <h2>Featured</h2>
-          <div className={styles["ispo-grid-wrapper"]}>
-            {/* {dummyData.map((item, index) => {
-              if (index < 6) {
-                return (
-                  <DisplaySegment
-                    key={index}
-                    website={"/"}
-                    name={item.name}
-                    description={item.description}
-                    logo={"cardano-logo.svg"}
-                    token={item.token}
-                    categories={item.categories}
-                    allocation={item.allocation}
-                    ratio={item.ratio}
-                    takesRewards={item.takesRewards}
-                    live={item.live}
-                    status="upcoming"
-                  />
-                );
-              }
-            })} */}
-          </div>
-        </section>
+        <h2>Featured</h2>
+        <Suspense fallback={<LoadingCardCollection />}>
+          <CardCollection />
+        </Suspense>
         <About />
       </main>
     </>

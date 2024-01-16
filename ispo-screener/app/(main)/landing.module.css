@@ -114,14 +114,3 @@
   font-size: 4rem;
   font-weight: 600;
 }
-
-.ispo-section {
-  width: 100%;
-  margin-bottom: 2rem;
-}
-
-.ispo-grid-wrapper {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(3, 1fr);
-}
