@@ -9,6 +9,7 @@ import onProjectFormChange from "@/app/lib/onProjectFormChange";
 import UploadFileInput from "./UploadFileInput";
 import Image from "next/image";
 import fetchImage from "@/app/lib/fetchImage";
+import base from "@/app/lib/routes";
 
 export default function ManageProjectButton({
   method,
@@ -25,6 +26,7 @@ export default function ManageProjectButton({
   const [image, setImage] = useState<string>("");
   const [fetchingImage, setFetchingImage] = useState<boolean>(false);
   const router = useRouter();
+  console.log(ISPO);
   useEffect(() => {
     (async () => {
       if (!fields.logoImageURL) return;
@@ -59,7 +61,7 @@ export default function ManageProjectButton({
       maxSupplyExists: !!fields.maxSupply,
       live: typeof filtered.live === "boolean" ? fields.live : false,
     });
-    const response = await fetch("http://localhost:5003/api/projects", {
+    const response = await fetch(base + "/api/projects", {
       method,
       credentials: "include",
       body,
