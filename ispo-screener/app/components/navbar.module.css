@@ -17,7 +17,7 @@
   height: var(--nav-height);
   align-items: center;
   color: var(--general-1);
-  transition: height 300ms ease;
+  transition: height 300ms ease-out;
 }
 
 .navbar > li {

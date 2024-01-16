@@ -24,11 +24,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <div
-      ref={navRef}
-      className={styles["navbar-wrapper"]}
-      style={scrolled ? { backgroundColor: "rgb(0, 0, 255, 0.1)" } : {}}
-    >
+    <div ref={navRef} className={styles["navbar-wrapper"]}>
       <nav style={scrolled ? { height: "4rem" } : {}} className={styles.navbar}>
         <li>
           <Link href={"/"}>HOME</Link>
