@@ -7,8 +7,6 @@ export default async function CardCollection({
 }: {
   maxCards?: number;
 }) {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-
   const ISPOs = await fetchAllProjects();
   return (
     <section className={styles["ispo-section"]}>
