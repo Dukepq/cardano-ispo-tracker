@@ -26,7 +26,6 @@ export default function ManageProjectButton({
   const [image, setImage] = useState<string>("");
   const [fetchingImage, setFetchingImage] = useState<boolean>(false);
   const router = useRouter();
-  console.log(ISPO);
   useEffect(() => {
     (async () => {
       if (!fields.logoImageURL) return;
