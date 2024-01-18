@@ -36,6 +36,7 @@ type ISPO = {
   websiteURL?: string;
   logoImageURL?: string;
   description?: string;
+  shortDescription?: string;
   pools: Pool[];
   categories: Category[];
 };
