@@ -15,6 +15,7 @@ const defaultProjectFieldsToSelect = {
   distributingPercentage: true,
   live: true,
   description: true,
+  shortDescription: true,
   takesRewards: true,
   logoImageURL: true,
   websiteURL: true,

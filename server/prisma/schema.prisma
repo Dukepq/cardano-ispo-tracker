@@ -42,7 +42,8 @@ model Project {
   token                  String                @unique
   websiteURL             String?
   logoImageURL           String?
-  description            String?
+  description            String?               @db.LongText
+  shortDescription       String?               @db.MediumText
   maxSupplyExists        Boolean?
   maxSupply              Int?
   distributingPercentage Int?

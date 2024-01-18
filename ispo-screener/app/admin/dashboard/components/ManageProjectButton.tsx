@@ -169,13 +169,25 @@ export default function ManageProjectButton({
               </div>
               <div>
                 <label>
-                  <p>Description</p>
+                  <p>Full description</p>
                   <input
                     type="text"
                     placeholder="Description"
                     name="description"
                     onChange={(e) => onProjectFormChange(e, setFields)}
                     value={fields?.description || ""}
+                  />
+                </label>
+              </div>
+              <div>
+                <label>
+                  <p>Short description</p>
+                  <input
+                    type="text"
+                    placeholder="Short description"
+                    name="shortDescription"
+                    onChange={(e) => onProjectFormChange(e, setFields)}
+                    value={fields?.shortDescription || ""}
                   />
                 </label>
               </div>

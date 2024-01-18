@@ -21,9 +21,10 @@ export type PoolSchemaType = z.infer<typeof poolSchema>;
 export const projectSchema = z.object({
   name: z.string(),
   token: z.string(),
-  websiteURL: z.string().url().optional(),
-  logoImageURL: z.string().optional(),
-  description: z.string().optional(),
+  websiteURL: z.string().url().nullable().optional().or(z.string().max(0)),
+  logoImageURL: z.string().nullable().optional(),
+  description: z.string().nullable().optional(),
+  shortDescription: z.string().nullable().optional(),
   maxSupplyExists: z.boolean().optional(),
   maxSupply: z.number().optional(),
   distributingPercentage: z.number().optional(),
