@@ -7,9 +7,9 @@ import { useRouter } from "next/navigation";
 import pruneFalsy from "@/app/lib/pruneFalsy";
 import onProjectFormChange from "@/app/lib/onProjectFormChange";
 import UploadFileInput from "./UploadFileInput";
-import Image from "next/image";
 import fetchImage from "@/app/lib/fetchImage";
 import base from "@/app/lib/routes";
+import uploadImage from "@/app/lib/uploadImage";
 
 export default function ManageProjectButton({
   method,
@@ -21,39 +21,29 @@ export default function ManageProjectButton({
   children?: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
-  const [isUploading, setIsUploading] = useState<boolean>(false);
   const [fields, setFields] = useState<Partial<ISPO>>(ISPO);
-  const [image, setImage] = useState<string>("");
+  const [image, setImage] = useState<string | null>(null);
   const [fetchingImage, setFetchingImage] = useState<boolean>(false);
+  const [file, setFile] = useState<File | null>(null);
   const router = useRouter();
-  useEffect(() => {
-    (async () => {
-      if (!fields.logoImageURL) return;
-      setFetchingImage(true);
-      try {
-        const blob = await fetchImage(fields.logoImageURL);
-        if (!blob.type.includes("image")) return;
-        const imageURL = URL.createObjectURL(blob);
-        setImage((prev) => {
-          URL.revokeObjectURL(prev);
-          return imageURL;
-        });
-        setFetchingImage(false);
-      } catch (err) {
-        setFields((prev) => {
-          return { ...prev, logoImageURL: "" };
-        });
-        setFetchingImage(false);
-      }
-    })();
-    return () => {
-      URL.revokeObjectURL(image);
-    };
-  }, [open, fields.logoImageURL]);
 
   const createProject = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const deepCopy: Partial<ISPO> = JSON.parse(JSON.stringify(fields));
+    let path = "";
+    if (file) {
+      const data = await uploadImage(file);
+      if (data.success) {
+        path = data.path;
+        setFields((prev) => ({ ...prev, logoImageURL: path }));
+      } else {
+        toast.error(data.message || "failed to upload image");
+      }
+    }
+    const deepCopy: Partial<ISPO> = JSON.parse(
+      JSON.stringify(
+        path.length > 0 ? { ...fields, logoImageURL: path } : fields
+      )
+    );
     const filtered = pruneFalsy(deepCopy, ["boolean", "string"]);
     const body = JSON.stringify({
       ...filtered,
@@ -72,6 +62,8 @@ export default function ManageProjectButton({
       toast.success(method === "POST" ? "created" : "updated");
       setOpen(false);
       router.refresh();
+    } else if (response.status === 401) {
+      router.replace("/admin");
     } else {
       toast.error("something went wrong");
     }
@@ -94,14 +86,26 @@ export default function ManageProjectButton({
     <>
       <Dialog.Root
         open={open}
-        onOpenChange={() => {
+        onOpenChange={async () => {
           setOpen((prev) => !prev);
           if (method === "POST") {
-            setImage("");
             setFields(() => ({}));
           } else {
-            setImage("");
-            setFields(() => ISPO);
+            const path = fields.logoImageURL;
+            if (path) {
+              setFetchingImage(true);
+              try {
+                const blob = await fetchImage(path);
+                setImage((prev) => {
+                  if (prev) URL.revokeObjectURL(prev);
+                  return URL.createObjectURL(blob);
+                });
+                setFetchingImage(false);
+              } catch (err) {
+                setFields(() => ({ ...ISPO, logoImageURL: "" }));
+                setFetchingImage(false);
+              }
+            }
           }
         }}
       >
@@ -278,26 +282,16 @@ export default function ManageProjectButton({
                   <p>Not specified</p>
                 </label>
               </div>
-              <div style={{ margin: "1rem 0" }}>
-                <label>
-                  <UploadFileInput
-                    accept=".png, .jpg, .jpeg"
-                    setPath={(path) => {
-                      setFields((prev) => ({ ...prev, logoImageURL: path }));
-                    }}
-                    setIsUploading={setIsUploading}
-                    className={styles["upload-input"]}
-                  />
-                </label>
-                {image &&
-                  (fetchingImage ? (
-                    <span>...loading image</span>
-                  ) : (
-                    <Image alt="logo" src={image} width={100} height={100} />
-                  ))}
-              </div>
 
-              <button disabled={isUploading} onClick={createProject}>
+              <UploadFileInput
+                accept=".png, .jpg, .jpeg"
+                className={styles["upload-input"]}
+                imageHook={[image, setImage]}
+                setFile={setFile}
+                fetchingImage={fetchingImage}
+              />
+
+              <button onClick={createProject}>
                 {method === "POST" ? "Add project" : "Update project"}
               </button>
             </form>
