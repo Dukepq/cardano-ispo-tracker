@@ -14,7 +14,7 @@ export default async function Home() {
       <main className={styles.main}>
         <section className={styles["hero-section"]}>
           <div className={styles["left-hero"]}>
-            <h1>FIND YOUR CARDANO ISPO</h1>
+            <h1>Find Your Cardano ISPO</h1>
             <p>
               We try to make it easier for you to determine which ISPO is worth
               your delegation.

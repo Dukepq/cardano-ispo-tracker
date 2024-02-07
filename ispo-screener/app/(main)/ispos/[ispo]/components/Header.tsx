@@ -29,7 +29,7 @@ export default function Header({
       )}
       <div className={styles["info-wrapper"]}>
         <ConditionalLink href={websiteURL}>
-          <h1>{name.toUpperCase()}</h1>
+          <h1>{name}</h1>
           {websiteURL && <ExternalLink width={32} height={32} />}
         </ConditionalLink>
 

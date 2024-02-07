@@ -8,7 +8,7 @@ type CarouselProps = { children: React.ReactNode };
 
 export default function Carousel({ children }: CarouselProps) {
   const [emblaRef] = useEmblaCarousel({ loop: true }, [
-    Autoplay({ stopOnFocusIn: true, stopOnMouseEnter: true }),
+    Autoplay({ delay: 5000 }),
   ]);
   return (
     <div ref={emblaRef} className={styles.embla}>

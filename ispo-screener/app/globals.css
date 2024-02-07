@@ -17,12 +17,12 @@ p {
 :root {
   --primary-color: #090909;
   --primary-color-no-hex: 11, 9, 10;
-  --secondary-color: #191419;
+  --secondary-color: #191414;
   --accent-1: #0033ad;
   --general-1: #ffffff;
   --general-1-rgb: 255, 255, 255;
   --general-2: #f5f3f4;
-  --nav-height: 5rem;
+  --nav-height: 4.5rem;
   --max-width: 1350px;
   --animation-duration: 600ms;
   --landing-grid-width: 300px;

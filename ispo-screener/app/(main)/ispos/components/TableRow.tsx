@@ -2,7 +2,7 @@ import styles from "../styles/tableRow.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { FormattedISPO } from "@/app/lib/formatISPOArray";
-import { Link as LinkIcon } from "../../../../node_modules/lucide-react";
+import { Check, X } from "../../../../node_modules/lucide-react";
 
 export default function TableRow({
   name,
@@ -28,7 +28,6 @@ export default function TableRow({
             />
             <div className={styles["name-wrapper"]}>
               <h5 style={{ color: "rgb(150, 150, 255)" }}>{name}</h5>
-              <LinkIcon width={15} height={15} />
             </div>
           </Link>
           <div className={styles["categories-wrapper"]}>
@@ -58,7 +57,7 @@ export default function TableRow({
           : "N/A"}
       </td>
       <td style={live ? { color: "green" } : { color: "red" }}>
-        {live ? "yes" : "no"}
+        {live ? <Check /> : <X />}
       </td>
     </tr>
   );

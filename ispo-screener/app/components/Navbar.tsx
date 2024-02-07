@@ -4,6 +4,7 @@ import styles from "./navbar.module.css";
 import Link from "next/link";
 import throttle from "../lib/throttle";
 import { ArrowRight } from "../../node_modules/lucide-react";
+import Image from "next/image";
 
 export default function Navbar() {
   const navRef = useRef(null);
@@ -24,11 +25,15 @@ export default function Navbar() {
   }, []);
 
   return (
-    <div ref={navRef} className={styles["navbar-wrapper"]}>
-      <nav style={scrolled ? { height: "4rem" } : {}} className={styles.navbar}>
+    <div
+      ref={navRef}
+      className={styles["navbar-wrapper"]}
+      // style={scrolled ? { backgroundColor: "var(--secondary-color)" } : {}}
+    >
+      <nav className={styles.navbar}>
         <li>
           <Link href={"/"}>
-            <img src="./C-ISPO.svg" alt="logo" className={styles.logo} />
+            <img src={"./C-ISPO.svg"} alt="logo" className={styles.logo} />
           </Link>
         </li>
         <li>

@@ -40,8 +40,6 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  transform: translateX(1920px);
-  animation: var(--animation-duration) forwards slidein-right;
   max-width: 500px;
 }
 
@@ -53,13 +51,13 @@
 .left-hero > h1 {
   font-size: 4rem;
   font-weight: 600;
-  line-height: 4rem;
+  line-height: 4.6rem;
   transform: translateX(-1920px);
   animation: var(--animation-duration) forwards slidein-left;
 }
 
 .left-hero > p {
-  margin-top: 0.6rem;
+  margin-top: 1rem;
   font-weight: 300;
   transform: translateX(-1920px);
   animation: var(--animation-duration) forwards slidein-left;

@@ -70,10 +70,9 @@
 }
 
 .live {
-  padding: 1rem;
-  background-color: rgb(11, 46, 46);
-  border-radius: 0.2rem;
-  margin-bottom: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid white;
+  margin-bottom: 1.5rem;
 }
 
 .live > *:first-child {

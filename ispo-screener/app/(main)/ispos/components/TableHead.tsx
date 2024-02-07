@@ -70,7 +70,7 @@ export default function TableHead({ desc }: TableHeadProps) {
               href={`/ispos?sort=rewards${desc ? "" : ":desc"}`}
             >
               <ArrowUpDown width={16} height={16} className={styles.arrow} />
-              <p>Rewards</p>
+              <p>Keeps Rewards</p>
             </Link>
             <HelpPopup width={20} height={20} className={styles.help}>
               <p style={{ marginBottom: "1rem" }}>
@@ -121,12 +121,21 @@ export default function TableHead({ desc }: TableHeadProps) {
               <p style={{ marginTop: "0.5rem" }}>
                 simply put:{" "}
                 <em>
-                  Available rewards / cumulative ADA held in participating pools
+                  Available rewards / cumulative stake in participating pools
                 </em>
               </p>
-              <p style={{ marginTop: "2rem", color: "yellowgreen" }}>
-                <strong>Other modifiers may alter this metric.</strong>
-              </p>
+              <div style={{ marginTop: "2rem", color: "yellowgreen" }}>
+                <strong>
+                  <p>
+                    This amount is not representative of the rewards you will
+                    receive!
+                  </p>
+                  <br />
+                  <p>Different pools may offer different rewards.</p>
+                  <br />
+                  <p>Other modifiers could affect the size of your rewards.</p>
+                </strong>
+              </div>
             </HelpPopup>
           </div>
         </th>

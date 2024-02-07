@@ -15,15 +15,15 @@
 
 .wrapper:hover {
   border: 1px solid white;
-  transform: translateX(6px);
 }
 
 .name {
   font-size: 1.2rem;
   font-weight: 500;
-  flex-basis: 20%;
+  flex-basis: 100%;
   white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .wrapper > div > span {

@@ -57,7 +57,7 @@
 }
 
 .table th:first-child {
-  min-width: 25rem;
+  min-width: 18rem;
 }
 
 .table tr {
