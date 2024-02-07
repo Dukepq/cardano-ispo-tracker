@@ -1,4 +1,5 @@
 .navbar-wrapper {
+  --font-size: 1.2rem;
   width: 100%;
   position: fixed;
   top: 0;
@@ -18,28 +19,69 @@
   align-items: center;
   color: var(--general-1);
   transition: height 300ms ease-out;
+  justify-content: space-between;
 }
 
 .navbar > li {
   position: relative;
-  font-size: 1.2rem;
+  font-size: var(--font-size);
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: calc(var(--font-size) / 4);
 }
 
-.navbar > li::after {
-  content: "";
+.logo {
+  height: 25px;
+}
+
+.ispo-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--general-1);
+  width: 7rem;
+  height: 2.5rem;
+  background-color: transparent;
+  transition: 200ms;
+  font-weight: 400;
+}
+
+.ispo-button:hover {
+  cursor: pointer;
+  background-color: var(--general-1);
+  color: black;
+  border: 1px solid transparent;
+  width: 8rem;
+}
+
+.ispo-button > span:first-child {
+  transition: 200ms;
+}
+
+.ispo-button:hover > span:first-child {
+  transform: translateX(-1rem);
+}
+
+.ispo-button > *:last-child {
   position: absolute;
-  left: 0;
-  bottom: 0;
-  background-color: white;
-  height: 2px;
-  width: 0;
-  transition: 200ms ease;
-}
-.navbar > li:hover::after {
-  width: 110%;
+  transition: 200ms;
+  right: 0.5rem;
+  display: none;
+  animation: arrow-slide 200ms ease-in-out;
 }
 
-.navbar > div {
-  margin-left: auto;
+.ispo-button:hover > *:last-child {
+  display: inline;
+}
+
+@keyframes arrow-slide {
+  from {
+    opacity: 0;
+    transform: translateX(-2rem);
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }

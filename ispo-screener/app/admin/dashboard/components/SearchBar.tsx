@@ -27,7 +27,7 @@ export default function SearchBar({
       onChange={async (e) => {
         const value = e.target.value;
         await debounce(() => {
-          setState(() => value || "");
+          setState(() => value.toLowerCase() || "");
           if (setIsDebouncing) setIsDebouncing(true);
         }, 300);
         if (setIsDebouncing) setIsDebouncing(false);

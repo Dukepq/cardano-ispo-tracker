@@ -1,17 +1,3 @@
-// type ISPO = {
-//   name: string;
-//   categories: string[];
-//   description: string;
-//   website: string;
-//   logo: string;
-//   token: string;
-//   allocation: string;
-//   ratio: string;
-//   takesRewards: string[]; // multiple types of rewards are possible
-//   live: boolean;
-//   status: string | "upcoming" | "in progress" | "ended" | "paused";
-// };
-
 type Pool = {
   ticker: string;
   name?: string;
@@ -21,6 +7,7 @@ type Pool = {
   activePledge?: number;
   lifetimeRewards?: number;
   lifetimeBlocks?: number;
+  margin: number;
 };
 type Rewards = "NONE" | "PARTIAL" | "OPTIONAL" | "ALL" | "NOT_SPECIFIED";
 

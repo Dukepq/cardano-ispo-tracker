@@ -1,7 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./card.module.css";
 import truncateString from "../lib/truncateString";
+import useImageURL from "../hooks/useImageURL";
 
 type ISPOCardProps = ISPO & {};
 
@@ -10,17 +13,13 @@ export default function ISPOCard({
   token,
   categories,
   description,
+  logoImageURL,
 }: ISPOCardProps) {
+  const [url] = useImageURL(logoImageURL, []);
   return (
     <div className={styles.wrapper}>
       <header className={styles["top-flex"]}>
-        <Image
-          width={25}
-          height={25}
-          alt="logo"
-          src={"/link.png"}
-          style={{ filter: "invert(1)" }}
-        />
+        {!!url && <Image width={38} height={38} alt="logo" src={url} />}
         <span>{name}</span>
       </header>
       <ul className={styles.categories}>
@@ -34,7 +33,7 @@ export default function ISPOCard({
         {truncateString(description || "", 150)}
       </p>
       <div className={styles["read-more-wrapper"]}>
-        <Link href={"/ispos/token"}>Read more &rarr;</Link>
+        <Link href={`/ispos/${token}`}>Read more &rarr;</Link>
       </div>
     </div>
   );

@@ -101,6 +101,24 @@ export default function AddPool({
                   />
                 </label>
               </div>
+              <div className={styles.wrapper}>
+                <label>
+                  <p>* Pool margin</p>
+                  <input
+                    name="margin"
+                    value={fields.margin || ""}
+                    type="text"
+                    onChange={(e) => {
+                      setFields((prev) => {
+                        const amount = Number(e.target.value);
+                        if (isNaN(amount)) return { ...prev };
+                        return { ...prev, margin: amount };
+                      });
+                    }}
+                    placeholder="Pool margin (%)"
+                  />
+                </label>
+              </div>
 
               <div className={styles.wrapper}>
                 <label>

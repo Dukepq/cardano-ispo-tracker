@@ -1,0 +1,28 @@
+.content {
+  max-width: 380px;
+  background-color: rgb(var(--primary-color-no-hex), 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  animation: slideDownAndFade 200ms;
+  border-radius: 0.5rem;
+  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+    hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.arrow {
+  fill: rgb(var(--primary-color-no-hex), 0.5);
+}
+
+@keyframes slideDownAndFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

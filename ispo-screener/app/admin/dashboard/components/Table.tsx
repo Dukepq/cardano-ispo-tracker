@@ -43,10 +43,10 @@ export default function Table({ projects }: { projects: ISPO[] }) {
                 project.token.toLowerCase().includes(search.toLowerCase())
               );
             })
-            .map((project, index) => {
+            .map((project) => {
               return (
                 <TableRow
-                  key={index}
+                  key={project.token}
                   name={project.name}
                   token={project.token}
                   live={project.live}

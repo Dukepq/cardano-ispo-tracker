@@ -23,6 +23,6 @@ export default function CountAni({ number }: { number: number }) {
         if (interval) clearInterval(interval);
       };
     }, delay);
-  }, []);
+  }, [number]);
   return <span>{current}</span>;
 }

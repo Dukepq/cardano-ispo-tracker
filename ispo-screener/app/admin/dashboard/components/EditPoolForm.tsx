@@ -51,6 +51,22 @@ export default function EditPoolForm({
         />
       </div>
       <div className={styles.wrapper}>
+        <label htmlFor="margin">margin: </label>
+        <input
+          id="margin"
+          name="margin"
+          value={fields.margin || ""}
+          type="text"
+          onChange={(e) => {
+            setFields((prev) => {
+              const amount = Number(e.target.value);
+              if (isNaN(amount)) return { ...prev };
+              return { ...prev, margin: amount };
+            });
+          }}
+        />
+      </div>
+      <div className={styles.wrapper}>
         <label htmlFor="name">name: </label>
         <input
           id="name"

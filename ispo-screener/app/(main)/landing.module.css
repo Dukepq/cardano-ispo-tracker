@@ -28,55 +28,12 @@
 }
 
 .hero-section {
-  position: relative;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   gap: 2rem;
   justify-content: space-between;
-}
-
-.left-hero,
-.right-hero {
-  max-width: 50%;
-}
-
-.left-hero > h1 {
-  font-size: clamp(2rem, 10vw, 4rem);
-  font-weight: 600;
-  line-height: clamp(3rem, 5vw, 4.5rem);
-  transform: translateX(-1920px);
-  animation: var(--animation-duration) forwards slidein-left;
-}
-
-.left-hero > p {
-  opacity: 0.8;
-  font-weight: 300;
-  transform: translateX(-1920px);
-  animation: var(--animation-duration) forwards slidein-left;
-  animation-delay: 50ms;
-}
-
-.ispo-button {
-  transform: translateX(-1920px);
-  animation: var(--animation-duration) forwards slidein-left;
-  animation-delay: 50ms;
-  border: 1px solid var(--general-1);
-  /* border: none; */
-  height: 3rem;
-  width: 10rem;
-  background-color: transparent;
-  /* background-color: rgba(1, 107, 212, 1) */
-  margin-top: 2rem;
-  font-size: 1.2rem;
-  transition: 250ms;
-  font-weight: 700;
-}
-.ispo-button:hover {
-  cursor: pointer;
-  background-color: var(--general-1);
-  color: black;
-  border: none;
+  font-size: 16px;
 }
 
 .right-hero {
@@ -85,6 +42,49 @@
   justify-content: flex-end;
   transform: translateX(1920px);
   animation: var(--animation-duration) forwards slidein-right;
+  max-width: 500px;
+}
+
+.left-hero {
+  max-width: 650px;
+  flex-basis: 600px;
+}
+
+.left-hero > h1 {
+  font-size: 4rem;
+  font-weight: 600;
+  line-height: 4rem;
+  transform: translateX(-1920px);
+  animation: var(--animation-duration) forwards slidein-left;
+}
+
+.left-hero > p {
+  margin-top: 0.6rem;
+  font-weight: 300;
+  transform: translateX(-1920px);
+  animation: var(--animation-duration) forwards slidein-left;
+  animation-delay: 25ms;
+}
+
+.ispo-button {
+  transform: translateX(-1920px);
+  animation: var(--animation-duration) forwards slidein-left;
+  animation-delay: 50ms;
+  border: 1px solid var(--general-1);
+  height: 3rem;
+  width: 10rem;
+  background-color: transparent;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  transition: 250ms;
+  font-weight: 700;
+  border-radius: 0px;
+}
+.ispo-button:hover {
+  cursor: pointer;
+  background-color: var(--general-1);
+  color: black;
+  border: none;
 }
 
 .stat-wrapper > :first-child {
@@ -92,16 +92,6 @@
   font-size: 4rem;
   font-weight: 600;
   white-space: nowrap;
-}
-.stat-wrapper > :first-child::after {
-  content: "";
-  width: 20px;
-  height: 20px;
-  background-color: red;
-  border-radius: 50%;
-  position: absolute;
-  right: -1.5rem;
-  top: 0;
 }
 
 .stat-wrapper > div > :first-child {
@@ -113,4 +103,19 @@
 .stat-wrapper > div > :last-child {
   font-size: 4rem;
   font-weight: 600;
+}
+
+@media (width < 1024px) {
+  .hero-section {
+    margin-top: calc(var(--nav-height) + 2rem);
+    margin-bottom: 4rem;
+    min-height: 50vh;
+  }
+  .left-hero > h1 {
+    font-size: 3rem;
+    line-height: 3rem;
+  }
+  .right-hero {
+    display: none;
+  }
 }

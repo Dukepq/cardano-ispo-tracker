@@ -10,8 +10,9 @@ export default async function CardCollection({
   const ISPOs = await fetchAllProjects();
   return (
     <section className={styles["ispo-section"]}>
+      <h2>Featured</h2>
       <div className={styles["ispo-grid-wrapper"]}>
-        {ISPOs.map((ispo, index) => {
+        {ISPOs.filter((ISPO) => ISPO.live).map((ispo, index) => {
           if (maxCards && index + 1 > maxCards) return;
           return <ISPOCard {...ispo} key={index} />;
         })}

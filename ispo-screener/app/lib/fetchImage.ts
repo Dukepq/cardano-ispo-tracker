@@ -10,6 +10,7 @@ export default async function fetchImage(path: string): Promise<Blob> {
     body: JSON.stringify({
       path,
     }),
+    cache: "no-store",
   });
   if (!response.ok) throw new Error(response.status + " could not fetch image");
   return response.blob();

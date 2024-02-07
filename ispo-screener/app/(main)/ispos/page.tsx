@@ -2,20 +2,30 @@ import styles from "./styles/table.module.css";
 import { Metadata } from "next";
 import Table from "./components/Table";
 import { fetchAllProjects } from "../../lib/fetchIspoData";
+import Image from "next/image";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Live ISPO's",
-  description: "Overview of currently running ISPO's",
+  title: "ISPO Tracker",
+  description: "Overview of all ISPO's",
 };
 
 export default async function ISPOS() {
   const projects = await fetchAllProjects();
   return (
     <main className={styles.main}>
-      {/* <div className={styles["bar"]}>
-        <h1>ISPO&apos;S:</h1>
-      </div> */}
       <Table projects={projects} />
+      <div className={styles.twitter}>
+        <p>Can&apos;t find your favourite ISPO?</p>
+        <Link
+          target="_blank"
+          href={"https://twitter.com/"}
+          className={styles.tweet}
+        >
+          <Image src={"/x.png"} width={16} height={16} alt="x logo" />
+          <p>Let us know</p>
+        </Link>
+      </div>
     </main>
   );
 }

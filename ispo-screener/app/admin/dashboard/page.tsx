@@ -15,7 +15,7 @@ export default async function Dashboard() {
   if (!isAdmin) {
     redirect("/admin");
   }
-  const projects = await fetchAllProjects();
+  const projects = await fetchAllProjects(0);
 
   return (
     <>

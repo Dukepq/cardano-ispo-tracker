@@ -1,12 +1,14 @@
 import styles from "./landing.module.css";
-import About from "../components/About";
 import React, { Suspense } from "react";
 import Link from "next/link";
-import CountAni from "../components/CountAni";
 import CardCollection from "../components/CardCollection";
 import LoadingCardCollection from "../components/LoadingCardCollection";
+import Carousel from "../components/Carousel";
+import { fetchAllProjects } from "../lib/fetchIspoData";
+import ISPOCard from "../components/ISPOCard";
 
-export default function Home() {
+export default async function Home() {
+  const ISPOs = await fetchAllProjects();
   return (
     <>
       <main className={styles.main}>
@@ -14,29 +16,25 @@ export default function Home() {
           <div className={styles["left-hero"]}>
             <h1>FIND YOUR CARDANO ISPO</h1>
             <p>
-              We try to make it easy for you to determine which ISPO is worthy
-              of your delegation.
+              We try to make it easier for you to determine which ISPO is worth
+              your delegation.
             </p>
             <Link href={"/ispos"}>
               <button className={styles["ispo-button"]}>See ISPO&apos;S</button>
             </Link>
           </div>
           <div className={styles["right-hero"]}>
-            {/* <img src="/undraw-innovative-placeholder.svg" alt="hero-image" /> */}
-            <div className={styles["stat-wrapper"]}>
-              <span>CURRENTLY LIVE</span>
-              <div>
-                <CountAni number={18} />
-                <span>ISPO&apos;S</span>
-              </div>
-            </div>
+            <Carousel>
+              {ISPOs.map((ispo, index) => {
+                if (index > 10) return;
+                return <ISPOCard {...ispo} key={ispo.token} />;
+              })}
+            </Carousel>
           </div>
         </section>
-        <h2>Featured</h2>
         <Suspense fallback={<LoadingCardCollection />}>
           <CardCollection />
         </Suspense>
-        <About />
       </main>
     </>
   );

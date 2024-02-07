@@ -92,7 +92,7 @@
   top: 23px;
 }
 
-@media (width < 576px) {
+@media (width < 1024px) {
   .navbar-wrapper {
     display: none;
   }

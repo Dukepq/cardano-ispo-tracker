@@ -11,9 +11,9 @@ const poppins = Poppins({
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Find your ISPO",
+  title: "C-ISPO: Find Your Cardano ISPO",
   description:
-    "We make it easy for you to determine which ISPO is worthy of your delegation.",
+    "We make it easier for you to determine which ISPO is worth your delegation.",
 };
 
 export default function RootLayout({
@@ -24,11 +24,6 @@ export default function RootLayout({
   return (
     <>
       <Navbar />
-      <div className="blob-wrapper">
-        <div className="blob blob-1"></div>
-        <div className="blob blob-2"></div>
-        <div className="blob blob-3"></div>
-      </div>
       <div className="app-wrapper">{children}</div>
       <footer
         style={{
@@ -38,7 +33,10 @@ export default function RootLayout({
           backgroundColor: "#0b090a",
         }}
       >
-        <p>© all rights reserved</p>
+        <p>
+          All information on this page is for informational purposes only and
+          might not always be fully up to date.
+        </p>
       </footer>
     </>
   );

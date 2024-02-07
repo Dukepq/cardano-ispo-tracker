@@ -82,7 +82,7 @@
   }
 }
 
-@media (width < 576px) {
+@media (width < 1024px) {
   .AlertDialogContent {
     left: 50%;
   }
