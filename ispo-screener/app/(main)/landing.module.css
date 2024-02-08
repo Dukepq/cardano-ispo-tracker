@@ -56,7 +56,6 @@
 }
 
 .left-hero > p {
-  margin-top: 1rem;
   font-weight: 300;
   transform: translateX(-1920px);
   animation: var(--animation-duration) forwards slidein-left;
