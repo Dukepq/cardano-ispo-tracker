@@ -13,7 +13,7 @@
   );
 }
 
-.wrapper {
+.card-wrapper {
   border-radius: 0.2rem;
   background-color: var(--secondary-color);
   padding: 1rem;

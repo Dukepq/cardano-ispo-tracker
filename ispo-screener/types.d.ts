@@ -7,7 +7,7 @@ type Pool = {
   activePledge?: number;
   lifetimeRewards?: number;
   lifetimeBlocks?: number;
-  margin: number;
+  margin: number | string; // I hate this
 };
 type Rewards = "NONE" | "PARTIAL" | "OPTIONAL" | "ALL" | "NOT_SPECIFIED";
 

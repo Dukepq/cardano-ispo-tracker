@@ -4,7 +4,6 @@ import styles from "./navbar.module.css";
 import Link from "next/link";
 import throttle from "../lib/throttle";
 import { ArrowRight } from "../../node_modules/lucide-react";
-import Image from "next/image";
 
 export default function Navbar() {
   const navRef = useRef(null);
@@ -33,7 +32,8 @@ export default function Navbar() {
       <nav className={styles.navbar}>
         <li>
           <Link href={"/"}>
-            <img src={"./C-ISPO.svg"} alt="logo" className={styles.logo} />
+            <span style={{ fontSize: "1.8rem" }}>C-ISPO</span>
+            {/* <img src={"/C-ISPO.svg"} alt="logo" className={styles.logo} /> */}
           </Link>
         </li>
         <li>

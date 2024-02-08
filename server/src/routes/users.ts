@@ -10,7 +10,7 @@ import {
 } from "../controllers/userController";
 import { isAuth } from "../middleware/auth";
 import sessionMiddleware from "../config/session-config";
-
+//
 router
   .route("/register")
   .post(sessionMiddleware, isAuth(["ADMIN"]), registerUser);

@@ -20,13 +20,18 @@ export default function AddPool({
     e: React.MouseEvent<HTMLButtonElement>
   ) => {
     e.preventDefault();
-    console.log(fields);
+    const newFields = { ...fields };
+    let marginNum = Number(fields.margin);
+    if (typeof marginNum === "number" && !isNaN(marginNum)) {
+      newFields.margin = marginNum;
+    }
+
     const response = await fetch(base + "/api/pools", {
       method: "POST",
       credentials: "include",
       body: JSON.stringify({
         token,
-        pools: [fields],
+        pools: [newFields],
       }),
       headers: {
         "Content-Type": "application/json",
@@ -109,9 +114,11 @@ export default function AddPool({
                     value={fields.margin || ""}
                     type="text"
                     onChange={(e) => {
+                      const decimalRegex =
+                        /^[-+]?(\d+(\.\d*)?|\.\d+)([eE][-+]?\d+)?$/;
                       setFields((prev) => {
-                        const amount = Number(e.target.value);
-                        if (isNaN(amount)) return { ...prev };
+                        const amount = e.target.value;
+                        if (!decimalRegex.test(amount)) return { ...prev };
                         return { ...prev, margin: amount };
                       });
                     }}

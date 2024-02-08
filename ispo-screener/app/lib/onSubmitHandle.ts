@@ -8,16 +8,22 @@ export default async function onSubmitHandle(
 ) {
   e.preventDefault();
   const prunedFields = pruneFalsy(fields);
+  const newFields = { ...prunedFields };
+  let marginNum = Number(prunedFields.margin);
+  if (typeof marginNum === "number" && !isNaN(marginNum)) {
+    newFields.margin = marginNum;
+  }
+  console.log(newFields);
   const response = await fetch(`${base}/api/pools`, {
     method: "PUT",
-    cache: "no-cache",
+    cache: "no-store",
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      ticker: prunedFields.ticker,
-      pool: prunedFields,
+      ticker: newFields.ticker,
+      pool: newFields,
     }),
   });
   if (!response.ok) {

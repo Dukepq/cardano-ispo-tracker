@@ -23,6 +23,7 @@ const defaultProjectFieldsToSelect = {
     select: {
       name: true,
       amountInPool: true,
+      margin: true,
     },
   },
   categories: {
@@ -112,6 +113,7 @@ export const getProjectByToken = async (req: Request, res: Response) => {
                 ticker: true,
                 poolId: true,
                 amountInPool: true,
+                margin: true,
               },
             }
           : false,

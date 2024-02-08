@@ -58,9 +58,10 @@ export default function EditPoolForm({
           value={fields.margin || ""}
           type="text"
           onChange={(e) => {
+            const decimalRegex = /^[-+]?(\d+(\.\d*)?|\.\d+)([eE][-+]?\d+)?$/;
             setFields((prev) => {
-              const amount = Number(e.target.value);
-              if (isNaN(amount)) return { ...prev };
+              const amount = e.target.value;
+              if (!decimalRegex.test(amount)) return { ...prev };
               return { ...prev, margin: amount };
             });
           }}

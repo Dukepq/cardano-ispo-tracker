@@ -124,11 +124,11 @@ export default function TableHead({ desc }: TableHeadProps) {
                   Available rewards / cumulative stake in participating pools
                 </em>
               </p>
-              <div style={{ marginTop: "2rem", color: "yellowgreen" }}>
+              <div style={{ marginTop: "3rem", color: "yellowgreen" }}>
                 <strong>
                   <p>
-                    This amount is not representative of the rewards you will
-                    receive!
+                    The amount displayed here likely differs from the amount you
+                    would receive when staking.
                   </p>
                   <br />
                   <p>Different pools may offer different rewards.</p>

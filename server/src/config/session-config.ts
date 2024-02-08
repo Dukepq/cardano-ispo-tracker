@@ -19,7 +19,7 @@ export const expressSessionOptions = {
   cookie: {
     maxAge: 1000 * 60 * 60,
     secure: process.env.USING_HTTPS === "true" ? true : false,
-    sameSite: true, // potential issue?
+    sameSite: true,
   },
 };
 

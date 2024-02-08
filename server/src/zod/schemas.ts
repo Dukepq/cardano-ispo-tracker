@@ -15,6 +15,7 @@ export const poolSchema = z.object({
   activePledge: z.number().optional(),
   lifetimeRewards: z.number().optional(),
   lifetimeBlocks: z.number().optional(),
+  margin: z.number(),
 });
 export type PoolSchemaType = z.infer<typeof poolSchema>;
 

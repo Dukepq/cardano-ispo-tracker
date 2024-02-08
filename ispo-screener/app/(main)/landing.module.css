@@ -51,7 +51,6 @@
 .left-hero > h1 {
   font-size: 4rem;
   font-weight: 600;
-  line-height: 4.6rem;
   transform: translateX(-1920px);
   animation: var(--animation-duration) forwards slidein-left;
 }

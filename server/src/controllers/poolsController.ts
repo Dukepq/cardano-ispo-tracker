@@ -12,6 +12,7 @@ const defaultPoolFieldsToSelect = {
   activePledge: true,
   lifetimeRewards: true,
   lifetimeBlocks: true,
+  margin: true,
   updatedAt: true,
   createdAt: true,
 };

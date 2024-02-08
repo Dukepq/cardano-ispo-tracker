@@ -33,7 +33,7 @@ export default function RootLayout({
           backgroundColor: "#0b090a",
         }}
       >
-        <p>
+        <p style={{ padding: "1rem" }}>
           All information on this page is for informational purposes only and
           might not always be fully up to date.
         </p>

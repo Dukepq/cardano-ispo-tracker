@@ -14,7 +14,6 @@ type Params = {
 };
 
 export default async function Ispo({ params: { ispo } }: Params) {
-  console.log("up: " + ispo);
   const projectInfo = await fetchProjectByToken(ispo);
   const formattedProjectInfo = formatISPO(projectInfo);
   const { description, pools } = formattedProjectInfo;

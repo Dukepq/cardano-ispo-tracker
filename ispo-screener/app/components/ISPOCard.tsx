@@ -17,7 +17,7 @@ export default function ISPOCard({
 }: ISPOCardProps) {
   const [url] = useImageURL(logoImageURL, []);
   return (
-    <div className={styles.wrapper}>
+    <div className={styles["card-wrapper"]}>
       <header className={styles["top-flex"]}>
         {!!url && <Image width={38} height={38} alt="logo" src={url} />}
         <span>{name}</span>
