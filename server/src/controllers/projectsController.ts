@@ -285,9 +285,16 @@ export async function uploadImage(req: Request, res: Response) {
       return res.status(406).json({ success: false });
     }
     const path = req.file?.path;
+    const url = "/api/uploads/" + req.file?.filename;
     if (!path) return res.status(406).json({ success: false });
 
-    res.status(201).json({ success: true, path });
+    res.status(201).json({
+      success: true,
+      data: {
+        path,
+        url,
+      },
+    });
   });
 }
 

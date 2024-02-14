@@ -30,10 +30,12 @@ export default function ManageProjectButton({
   const createProject = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     let path = "";
+    let url = "";
     if (file) {
       const data = await uploadImage(file);
       if (data.success) {
-        path = data.path;
+        path = data.data.path;
+        console.log(url);
         setFields((prev) => ({ ...prev, logoImageURL: path }));
       } else {
         toast.error(data.message || "failed to upload image");

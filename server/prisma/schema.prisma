@@ -52,17 +52,31 @@ model Project {
   live                   Boolean
   pools                  Pool[]
   categories             Category[]
+  images                 Image[]
   createdAt              DateTime              @default(now())
   updatedAt              DateTime              @updatedAt
 }
 
+model Image {
+  id        String   @id @default(uuid())
+  width     Int
+  height    Int
+  url       String
+  ext       String
+  mime      String
+  project   Project  @relation(fields: [projectId], references: [id])
+  projectId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Pool {
-  id              String   @id @default(uuid())
-  owner           Project  @relation(fields: [project_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  id              String  @id @default(uuid())
+  owner           Project @relation(fields: [project_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   project_id      String
-  ticker          String   @unique
+  ticker          String  @unique
   name            String?
-  poolId          String   @unique
+  poolId          String  @unique
   amountInPool    Int
   committedPledge Int?
   activePledge    Int?
@@ -70,8 +84,8 @@ model Pool {
   lifetimeBlocks  Int?
   margin          Decimal @db.Decimal(9, 2)
 
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Category {
