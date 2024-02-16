@@ -1,4 +1,4 @@
-const throttle = (callback: Function, delay: number) => {
+const throttle = <T extends Function>(callback: T, delay: number) => {
   let wait = false;
   let waitingArgs: any[] | null;
   const timeoutFunc = () => {

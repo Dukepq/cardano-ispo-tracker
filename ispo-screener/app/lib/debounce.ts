@@ -1,11 +1,11 @@
-const debounce = (() => {
+const debounce = <T extends Function>(cb: T, wait: number = 1000) => {
   let timeout: NodeJS.Timeout | undefined;
-  return async (cb: () => void, wait: number = 1000) => {
+  return async (...args: any) => {
     if (timeout) clearTimeout(timeout);
     timeout = setTimeout(() => {
-      cb();
+      cb(...args);
     }, wait);
   };
-})();
+};
 
 export default debounce;
