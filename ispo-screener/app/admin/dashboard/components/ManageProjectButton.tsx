@@ -282,7 +282,7 @@ export default function ManageProjectButton({
               <UploadFileInput
                 accept=".png, .jpg, .jpeg"
                 className={styles["upload-input"]}
-                imageURL={fields.logoImageURL}
+                imageURL={fields.logo?.url}
                 setFile={setFile}
                 fetchingImage={fetchingImage}
               />
