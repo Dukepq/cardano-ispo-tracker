@@ -1,36 +1,27 @@
 "use client";
 
-import { useEffect, useState, DependencyList, SetStateAction } from "react";
-import fetchImage from "../lib/fetchImage";
+import { useEffect, useState, SetStateAction, Dispatch } from "react";
 
-export default function useImageURL(
-  path: string | undefined,
-  deps: DependencyList
-): [string | null, boolean] {
-  const [url, setUrl] = useState<string | null>(null);
-  const [isFetching, setIsFetching] = useState<boolean>(false);
+export default function useImageURL(): [
+  string,
+  Dispatch<SetStateAction<File | null>>
+] {
+  const [url, setUrl] = useState<string>("");
+  const [blob, setBlob] = useState<File | null>(null);
   useEffect(() => {
-    if (!path) return;
+    if (!blob) return;
     (async () => {
-      try {
-        setIsFetching(true);
-        const blob = await fetchImage(path);
-        const url = URL.createObjectURL(blob);
-        setUrl((prev) => {
-          if (prev) {
-            URL.revokeObjectURL(prev);
-          }
-          return url;
-        });
-        setIsFetching(false);
-      } catch (err) {
-        console.error(err);
-        setIsFetching(false);
-      }
+      const url = URL.createObjectURL(blob);
+      setUrl((prev) => {
+        if (prev) {
+          URL.revokeObjectURL(prev);
+        }
+        return url;
+      });
     })();
     return () => {
       if (url) URL.revokeObjectURL(url);
     };
-  }, [path, ...deps]);
-  return [url, isFetching];
+  }, [blob]);
+  return [url, setBlob];
 }

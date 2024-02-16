@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import sessionMiddleware from "../config/session-config";
 const router = express.Router();
 
@@ -8,8 +8,9 @@ import {
   createProject,
   deleteProject,
   updateProject,
-  uploadImage,
+  multerUpload,
   getImage,
+  imageResponse,
 } from "../controllers/projectsController";
 import { isAuth } from "../middleware/auth";
 router
@@ -25,7 +26,8 @@ router.post(
   "/upload-image",
   sessionMiddleware,
   isAuth(["ADMIN", "EDITOR"]),
-  uploadImage
+  multerUpload,
+  imageResponse
 );
 
 export default router;

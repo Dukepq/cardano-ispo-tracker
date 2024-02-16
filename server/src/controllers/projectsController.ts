@@ -1,5 +1,5 @@
 import { prisma } from "../db";
-import { Response, Request } from "express";
+import { Response, Request, NextFunction } from "express";
 import { z } from "zod";
 import { projectSchema } from "../zod/schemas";
 import storage from "../config/multerConfig";
@@ -39,6 +39,7 @@ const RequestAllSchema = z.object({
       select: z.string().max(15),
       pools: z.literal("true"),
       categories: z.literal("true"),
+      logo: z.literal("true"),
     })
     .partial(),
 });
@@ -61,6 +62,7 @@ export const getAllProjects = async (req: Request, res: Response) => {
             }
           : false,
         categories: req.query.categories ? { select: { name: true } } : false,
+        logo: req.query.logo ? { select: { url: true, size: true } } : false,
       },
     });
     res.status(200).json(projects);
@@ -81,6 +83,7 @@ const RequestByTokenSchema = z.object({
       select: z.string().max(15),
       pools: z.literal("true"),
       categories: z.literal("true"),
+      logo: z.literal("true"),
     })
     .partial(),
 });
@@ -118,6 +121,7 @@ export const getProjectByToken = async (req: Request, res: Response) => {
             }
           : false,
         categories: req.query.categories ? { select: { name: true } } : false,
+        logo: req.query.logo ? { select: { url: true, size: true } } : false,
       },
     });
     if (!project) {
@@ -165,6 +169,13 @@ export const createProject = async (req: Request, res: Response) => {
         pools: data.pools
           ? {
               create: data.pools,
+            }
+          : undefined,
+        logo: data.logoImageURL
+          ? {
+              connect: {
+                url: data.logoImageURL,
+              },
             }
           : undefined,
       },
@@ -246,6 +257,13 @@ export const updateProject = async (req: Request, res: Response) => {
             return { where: { name: item.name }, create: { name: item.name } };
           }),
         },
+        logo: body.logoImageURL
+          ? {
+              connect: {
+                url: body.logoImageURL,
+              },
+            }
+          : undefined,
       },
     });
     res
@@ -272,8 +290,12 @@ const imageUploadSchema = z.object({
   }),
 });
 
-const upload = multer({ storage, limits: { fileSize: 50000 } }).single("file");
-export async function uploadImage(req: Request, res: Response) {
+const upload = multer({ storage, limits: { fileSize: 60000 } }).single("file");
+export async function multerUpload(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   upload(req, res, (err) => {
     if (err instanceof multer.MulterError) {
       if (err.code === "LIMIT_FILE_SIZE") {
@@ -284,18 +306,42 @@ export async function uploadImage(req: Request, res: Response) {
     } else if (err) {
       return res.status(406).json({ success: false });
     }
-    const path = req.file?.path;
-    const url = "/api/uploads/" + req.file?.filename;
-    if (!path) return res.status(406).json({ success: false });
+    next();
+  });
+}
 
-    res.status(201).json({
+export async function imageResponse(req: Request, res: Response) {
+  if (!req.file) {
+    return res
+      .status(400)
+      .json({ success: false, message: "something went wrong." });
+  }
+  const { path, size, filename, mimetype } = req.file;
+  const url = "/api/uploads/" + filename;
+  const extension = filename.split(".")[filename.split(".").length - 1];
+  try {
+    const image = await prisma.image.create({
+      data: {
+        mime: mimetype,
+        extension: extension,
+        size: size,
+        url: url,
+      },
+    });
+
+    return res.status(201).json({
       success: true,
       data: {
         path,
-        url,
+        url: image.url,
+        id: image.id,
       },
     });
-  });
+  } catch (err) {
+    return res
+      .status(400)
+      .json({ success: false, message: "something went wrong." });
+  }
 }
 
 const getImageSchema = z.object({

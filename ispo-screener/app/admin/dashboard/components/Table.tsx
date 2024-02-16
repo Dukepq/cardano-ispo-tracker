@@ -59,6 +59,7 @@ export default function Table({ projects }: { projects: ISPO[] }) {
                   logoImageURL={project.logoImageURL}
                   websiteURL={project.websiteURL}
                   description={project.description}
+                  logo={project.logo}
                 />
               );
             })}

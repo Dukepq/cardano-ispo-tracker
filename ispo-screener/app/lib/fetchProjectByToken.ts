@@ -4,7 +4,7 @@ export default async function fetchProjectByToken(
   token: string
 ): Promise<ISPO> {
   const response = await fetch(
-    base + `/api/projects/${token}/?pools=true&categories=true`,
+    base + `/api/projects/${token}/?pools=true&categories=true&logo=true`,
     {
       credentials: "include",
       next: { revalidate: 0 },

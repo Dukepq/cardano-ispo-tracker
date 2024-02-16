@@ -2,26 +2,25 @@
 
 import styles from "../styles/ispo.module.css";
 import Image from "next/image";
-import useImageURL from "@/app/hooks/useImageURL";
 import Link from "next/link";
 import { FormattedISPO } from "@/app/lib/formatISPOArray";
 import { ExternalLink } from "../../../../../node_modules/lucide-react";
+import base from "@/app/lib/routes";
 
-export default function Header({
+export default async function Header({
   logoImageURL,
   name,
   categories,
   shortDescription,
   websiteURL,
 }: FormattedISPO) {
-  const [imgUrl, isFetching] = useImageURL(logoImageURL, []);
   return (
     <header className={styles.header}>
-      {!isFetching && imgUrl && (
+      {logoImageURL && (
         <Image
           alt="logo"
           unoptimized={true}
-          src={imgUrl}
+          src={base + logoImageURL}
           width={125}
           height={125}
           className={styles.logo}

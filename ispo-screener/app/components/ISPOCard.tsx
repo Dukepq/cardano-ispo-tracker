@@ -6,6 +6,7 @@ import styles from "./card.module.css";
 import truncateString from "../lib/truncateString";
 import useImageURL from "../hooks/useImageURL";
 import Spinner from "./Spinner";
+import base from "../lib/routes";
 
 type ISPOCardProps = ISPO & {};
 
@@ -16,12 +17,17 @@ export default function ISPOCard({
   description,
   logoImageURL,
 }: ISPOCardProps) {
-  const [url, isFetching] = useImageURL(logoImageURL, []);
   return (
     <div className={styles["card-wrapper"]}>
       <header className={styles["top-flex"]}>
-        {!!url ? (
-          <Image width={38} height={38} alt="logo" src={url} />
+        {!!logoImageURL ? (
+          <Image
+            style={{ borderRadius: "5px" }}
+            src={base + logoImageURL}
+            width={38}
+            height={38}
+            alt="logo"
+          />
         ) : (
           <div style={{ height: 38 }}></div>
         )}

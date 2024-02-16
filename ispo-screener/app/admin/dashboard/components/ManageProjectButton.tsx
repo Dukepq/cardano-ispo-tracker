@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import pruneFalsy from "@/app/lib/pruneFalsy";
 import onProjectFormChange from "@/app/lib/onProjectFormChange";
 import UploadFileInput from "./UploadFileInput";
-import fetchImage from "@/app/lib/fetchImage";
 import base from "@/app/lib/routes";
 import uploadImage from "@/app/lib/uploadImage";
 
@@ -22,7 +21,6 @@ export default function ManageProjectButton({
 }) {
   const [open, setOpen] = useState(false);
   const [fields, setFields] = useState<Partial<ISPO>>(ISPO);
-  const [image, setImage] = useState<string | null>(null);
   const [fetchingImage, setFetchingImage] = useState<boolean>(false);
   const [file, setFile] = useState<File | null>(null);
   const router = useRouter();
@@ -35,15 +33,15 @@ export default function ManageProjectButton({
       const data = await uploadImage(file);
       if (data.success) {
         path = data.data.path;
-        console.log(url);
-        setFields((prev) => ({ ...prev, logoImageURL: path }));
+        url = data.data.url;
+        setFields((prev) => ({ ...prev, logoImageURL: url }));
       } else {
         toast.error(data.message || "failed to upload image");
       }
     }
     const deepCopy: Partial<ISPO> = JSON.parse(
       JSON.stringify(
-        path.length > 0 ? { ...fields, logoImageURL: path } : fields
+        path.length > 0 ? { ...fields, logoImageURL: url } : fields
       )
     );
     const filtered = pruneFalsy(deepCopy, ["boolean", "string"]);
@@ -92,22 +90,6 @@ export default function ManageProjectButton({
           setOpen((prev) => !prev);
           if (method === "POST") {
             setFields(() => ({}));
-          } else {
-            const path = fields.logoImageURL;
-            if (path) {
-              setFetchingImage(true);
-              try {
-                const blob = await fetchImage(path);
-                setImage((prev) => {
-                  if (prev) URL.revokeObjectURL(prev);
-                  return URL.createObjectURL(blob);
-                });
-                setFetchingImage(false);
-              } catch (err) {
-                setFields(() => ({ ...ISPO, logoImageURL: "" }));
-                setFetchingImage(false);
-              }
-            }
           }
         }}
       >
@@ -300,7 +282,7 @@ export default function ManageProjectButton({
               <UploadFileInput
                 accept=".png, .jpg, .jpeg"
                 className={styles["upload-input"]}
-                imageHook={[image, setImage]}
+                imageURL={fields.logoImageURL}
                 setFile={setFile}
                 fetchingImage={fetchingImage}
               />

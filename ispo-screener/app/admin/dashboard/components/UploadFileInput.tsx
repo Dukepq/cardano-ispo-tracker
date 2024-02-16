@@ -1,23 +1,25 @@
 "use client";
 
-import { useState, Dispatch, InputHTMLAttributes, SetStateAction } from "react";
+import { Dispatch, InputHTMLAttributes, SetStateAction } from "react";
+import useImageURL from "@/app/hooks/useImageURL";
 import Image from "next/image";
+import base from "@/app/lib/routes";
 
 type UploadFileInputProps = {
   accept: InputHTMLAttributes<HTMLInputElement>["accept"];
-  imageHook: [string | null, Dispatch<SetStateAction<string | null>>];
   setFile: Dispatch<SetStateAction<File | null>>;
   fetchingImage: boolean;
+  imageURL?: string;
 } & InputHTMLAttributes<HTMLInputElement>;
 
 export default function UploadFileInput({
   accept,
-  imageHook,
   setFile,
+  imageURL,
   fetchingImage,
   ...props
 }: UploadFileInputProps) {
-  const [imageURL, setImageURL] = imageHook;
+  const [newURL, setTempBlob] = useImageURL();
   return (
     <div style={{ margin: "1rem 0" }}>
       <label>
@@ -27,19 +29,19 @@ export default function UploadFileInput({
             e.preventDefault();
             const file = e.target.files?.[0];
             if (file) {
-              setFile(() => file);
-              setImageURL((prev) => {
-                if (prev) URL.revokeObjectURL(prev);
-                return URL.createObjectURL(file);
-              });
+              setTempBlob(file);
+              setFile(file);
             }
           }}
           accept={accept}
           {...props}
         />
-        {imageURL && (
-          <Image alt="logo" src={imageURL} width={100} height={100} />
-        )}
+        {imageURL &&
+          (newURL ? (
+            <Image src={newURL} width={100} height={100} alt="logo" />
+          ) : (
+            <Image src={base + imageURL} width={100} height={100} alt="logo" />
+          ))}
       </label>
     </div>
   );

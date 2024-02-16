@@ -15,6 +15,13 @@ export default function SearchBar({
   ...attributes
 }: SearchBarProps) {
   const searchRef = useRef<HTMLInputElement | null>(null);
+  const onChangeDebounce = debounce(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setState(() => value.toLowerCase() || "");
+    },
+    300
+  );
   return (
     <input
       type="text"
@@ -24,14 +31,7 @@ export default function SearchBar({
           setState(() => searchRef.current?.value || "");
         }
       }}
-      onChange={async (e) => {
-        const value = e.target.value;
-        await debounce(() => {
-          setState(() => value.toLowerCase() || "");
-          if (setIsDebouncing) setIsDebouncing(true);
-        }, 300);
-        if (setIsDebouncing) setIsDebouncing(false);
-      }}
+      onChange={async (e) => onChangeDebounce(e)}
       className={styles["search-input"]}
       {...attributes}
     />

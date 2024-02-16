@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FormattedISPO } from "@/app/lib/formatISPOArray";
 import { Check, X } from "../../../../node_modules/lucide-react";
+import { numberFormat } from "@/app/lib/numberFormat";
 
 export default function TableRow({
   name,
@@ -43,18 +44,12 @@ export default function TableRow({
         data-cell="allocation"
       >
         {allocatedPercentage
-          ? allocatedPercentage?.toPrecision(2) + "%"
+          ? numberFormat.format(allocatedPercentage) + "%"
           : "N/A"}
       </td>
       <td data-cell="rewards">{rewards.toLowerCase()}</td>
       <td style={!ratio ? { opacity: "0.5" } : {}} data-cell="rpa">
-        {ratio
-          ? new Intl.NumberFormat("en", {
-              notation: "standard",
-            }).format(ratio) +
-            " " +
-            token
-          : "N/A"}
+        {ratio ? numberFormat.format(ratio) + " " + token : "N/A"}
       </td>
       <td style={live ? { color: "green" } : { color: "red" }}>
         {live ? <Check /> : <X />}
