@@ -16,6 +16,7 @@ export const expressSessionOptions = {
   resave: false,
   saveUninitialized: true,
   store: new PrismaStore(prisma, { period: 1000 * 30 }),
+  rolling: true,
   cookie: {
     maxAge: 1000 * 60 * 60,
     secure: process.env.USING_HTTPS === "true" ? true : false,
