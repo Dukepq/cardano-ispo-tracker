@@ -277,19 +277,6 @@ export const updateProject = async (req: Request, res: Response) => {
   }
 };
 
-const imageUploadSchema = z.object({
-  file: z.object({
-    fieldname: z.string(),
-    originalName: z.string(),
-    encoding: z.string(),
-    mimetype: z.string(),
-    destination: z.string(),
-    filename: z.string(),
-    path: z.string(),
-    size: z.number(),
-  }),
-});
-
 const upload = multer({ storage, limits: { fileSize: 60000 } }).single("file");
 export async function multerUpload(
   req: Request,

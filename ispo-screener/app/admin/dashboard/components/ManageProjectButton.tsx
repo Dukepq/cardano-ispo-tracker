@@ -1,5 +1,5 @@
 "use client";
-import { MouseEvent, useState, useEffect } from "react";
+import { MouseEvent, useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import styles from "./project-dialog.module.css";
 import toast from "react-hot-toast";
@@ -21,10 +21,8 @@ export default function ManageProjectButton({
 }) {
   const [open, setOpen] = useState(false);
   const [fields, setFields] = useState<Partial<ISPO>>(ISPO);
-  const [fetchingImage, setFetchingImage] = useState<boolean>(false);
   const [file, setFile] = useState<File | null>(null);
   const router = useRouter();
-
   const createProject = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     let path = "";
@@ -287,7 +285,6 @@ export default function ManageProjectButton({
                 className={styles["upload-input"]}
                 imageURL={fields.logo?.url}
                 setFile={setFile}
-                fetchingImage={fetchingImage}
               />
 
               <button onClick={createProject}>

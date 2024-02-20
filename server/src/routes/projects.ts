@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import sessionMiddleware from "../config/session-config";
 const router = express.Router();
 
@@ -26,6 +26,10 @@ router.post(
   "/upload-image",
   sessionMiddleware,
   isAuth(["ADMIN", "EDITOR"]),
+  (req, res, next) => {
+    console.log(req.files);
+    next();
+  },
   multerUpload,
   imageResponse
 );

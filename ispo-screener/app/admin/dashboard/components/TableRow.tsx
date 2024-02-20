@@ -6,7 +6,7 @@ import ManageProjectButton from "./ManageProjectButton";
 import AddPool from "./AddPool";
 import EditPoolModal from "./EditPoolModal";
 import CategoryDropdown from "./CategoryDropdown";
-import { Trash, FilePenLine, Delete } from "lucide-react";
+import { Trash, FilePenLine } from "lucide-react";
 import DeleteDialogWrap from "../../components/DeleteDialogWrap";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";

@@ -8,7 +8,6 @@ import base from "@/app/lib/routes";
 type UploadFileInputProps = {
   accept: InputHTMLAttributes<HTMLInputElement>["accept"];
   setFile: Dispatch<SetStateAction<File | null>>;
-  fetchingImage: boolean;
   imageURL?: string;
 } & InputHTMLAttributes<HTMLInputElement>;
 
@@ -16,7 +15,6 @@ export default function UploadFileInput({
   accept,
   setFile,
   imageURL,
-  fetchingImage,
   ...props
 }: UploadFileInputProps) {
   const [newURL, setTempBlob] = useImageURL();
