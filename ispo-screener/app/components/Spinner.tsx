@@ -1,6 +1,12 @@
 import styles from "./spinner.module.css";
 
-export default function Spinner({ css }: { css?: React.CSSProperties }) {
+export default function Spinner({
+  css,
+  type,
+}: {
+  css?: React.CSSProperties;
+  type?: "circular" | "dots";
+}) {
   return (
     <div
       style={Object.assign(css || {}, {
@@ -9,7 +15,11 @@ export default function Spinner({ css }: { css?: React.CSSProperties }) {
         pointerEvents: "none",
       })}
     >
-      <span className={styles.spinner}></span>
+      <span
+        className={
+          type === "circular" ? styles.spinner : styles["spinner-dots"]
+        }
+      ></span>
     </div>
   );
 }

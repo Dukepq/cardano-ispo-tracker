@@ -65,6 +65,7 @@ model Image {
   extension String
   mime      String
   size      Int
+  filename  String   @unique
   project   Project? @relation(fields: [projectId], references: [id])
   projectId String?  @unique
   createdAt DateTime @default(now())

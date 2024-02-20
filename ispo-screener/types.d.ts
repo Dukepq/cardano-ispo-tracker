@@ -26,12 +26,20 @@ type ISPO = {
   shortDescription?: string;
   pools: Pool[];
   categories: Category[];
-  logo: Logo | null;
+  logo: Pick<Logo, "size" | "url"> | null;
 };
 
 type Logo = {
   url: string;
   size: number;
+  width: number | null;
+  height: number | null;
+  extension: string;
+  mime: string;
+  filename: string;
+  projectId: string;
+  createdAt: string;
+  updatedAt: string;
 };
 
 type Category = {

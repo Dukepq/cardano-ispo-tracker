@@ -4,6 +4,7 @@ import { default as projectsRouter } from "./routes/projects";
 import { default as poolsRouter } from "./routes/pools";
 import { default as categoriesRouter } from "./routes/categories";
 import { default as userRouter } from "./routes/users";
+import { default as imagesRouter } from "./routes/images";
 import { limiter } from "./config/rateLimitOptions";
 import sessionMiddleware from "./config/session-config";
 const cors = require("cors");
@@ -31,6 +32,7 @@ app.use("/api/projects", projectsRouter);
 app.use("/api/pools", poolsRouter);
 app.use("/api/categories", sessionMiddleware, categoriesRouter);
 app.use("/api/users", userRouter);
+app.use("/api/images", imagesRouter);
 app.get("/api/ping", (req, res) => {
   try {
     res.status(200).json({ success: true, message: "pong" });

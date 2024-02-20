@@ -1,6 +1,6 @@
 import base from "./routes";
 
-export async function fetchAllProjects(revalidate = 0): Promise<ISPO[]> {
+export async function fetchAllProjects(revalidate = 3600): Promise<ISPO[]> {
   const response = await fetch(
     base + "/api/projects?pools=true&categories=true&logo=true",
     {

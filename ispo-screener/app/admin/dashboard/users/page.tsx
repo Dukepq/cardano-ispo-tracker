@@ -15,7 +15,7 @@ export default async function Page() {
   if (!isAdmin) {
     redirect("/admin");
   }
-  const users = await fetchUsers();
+  const users = await fetchUsers(cookie);
   return (
     <>
       <PageHeader>

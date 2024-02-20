@@ -326,6 +326,7 @@ export async function imageResponse(req: Request, res: Response) {
         extension: extension,
         size: size,
         url: url,
+        filename: filename,
       },
     });
 

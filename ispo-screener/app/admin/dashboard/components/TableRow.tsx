@@ -1,16 +1,19 @@
 "use client";
 
-import Image from "next/image";
 import { deleteISPO } from "@/app/lib/deleteISPO";
 import styles from "./table.module.css";
-import AlertDialogWindow from "./AlertDialog";
 import ManageProjectButton from "./ManageProjectButton";
 import AddPool from "./AddPool";
 import EditPoolModal from "./EditPoolModal";
 import CategoryDropdown from "./CategoryDropdown";
+import { Trash, FilePenLine, Delete } from "lucide-react";
+import DeleteDialogWrap from "../../components/DeleteDialogWrap";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export default function TableRow(props: ISPO) {
   const { name, token, live, categories } = props;
+  const router = useRouter();
   return (
     <tr>
       <td style={{ minWidth: "15rem" }} title={name}>
@@ -31,27 +34,37 @@ export default function TableRow(props: ISPO) {
       </td>
       <td className={styles["center-align"]}>
         <ManageProjectButton method="PUT" ISPO={props}>
-          <Image
-            alt="edit icon"
-            src="/edit.svg"
+          <FilePenLine
             style={{ cursor: "pointer" }}
             width={25}
             height={25}
+            className={styles.icon}
           />
         </ManageProjectButton>
       </td>
       <td className={styles["center-align"]}>
-        <AlertDialogWindow deleteFunc={deleteISPO} arg={token}>
-          <Image
-            alt="trash icon"
-            src="/trash.svg"
+        <DeleteDialogWrap
+          handleDelete={() => {
+            try {
+              deleteISPO(token);
+              toast.success("Deleted project.");
+            } catch (err) {
+              toast.error("Failed to delete project");
+            }
+            router.refresh();
+          }}
+          title={`Delete ${name}?`}
+          description={`This action will permanently delete ${name} and cannot be undone.`}
+        >
+          <Trash
+            className={styles.icon}
             width={25}
             height={25}
             style={{
               cursor: "pointer",
             }}
           />
-        </AlertDialogWindow>
+        </DeleteDialogWrap>
       </td>
       <td>
         <div

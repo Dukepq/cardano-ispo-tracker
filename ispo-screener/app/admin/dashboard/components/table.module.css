@@ -48,6 +48,15 @@
   text-align: center;
 }
 
+.icon {
+  opacity: 0.5;
+}
+
+.icon:hover {
+  opacity: 1;
+  transition: opacity 100ms;
+}
+
 .table img {
   opacity: 0.5;
   filter: invert(0.9);

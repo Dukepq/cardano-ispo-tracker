@@ -5,7 +5,6 @@ import UserTableRow from "./userTableRow";
 import styles from "../../../dashboard/components/table.module.css";
 import SearchBar from "../../components/SearchBar";
 import AddUser from "./AddUser";
-import Spinner from "@/app/components/Spinner";
 
 export default function UserTable({ users }: { users: UserResponse[] }) {
   const [search, setSearch] = useState<string>("");

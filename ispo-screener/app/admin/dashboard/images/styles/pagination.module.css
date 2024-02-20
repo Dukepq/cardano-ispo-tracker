@@ -1,0 +1,23 @@
+.pages-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+.pages-button {
+  display: block;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  display: grid;
+  place-content: center;
+  transition: border-color 50ms linear;
+  border-radius: 0.25rem;
+}
+
+.pages-button:hover {
+  border: 1px solid rgba(255, 255, 255, 1);
+}

@@ -1,10 +1,16 @@
 "use client";
-import styles from "./dashboardNav.module.css";
+import styles from "../styles/dashboardNav.module.css";
 import Link from "next/link";
 import Logout from "../components/Logout";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import {
+  Menu,
+  UserCog,
+  Users,
+  Boxes,
+  Image as LucideImage,
+} from "../../../node_modules/lucide-react";
 
 function resourceMatches(pathname: string, slug: string): boolean {
   return pathname.split("/")[pathname.split("/").length - 1] === slug;
@@ -31,25 +37,13 @@ export default function Navbar() {
           setActive((prev) => !prev);
         }}
       >
-        <Image
-          alt="menu-toggle"
-          src={"/hamburger.png"}
-          width={35}
-          height={35}
-          style={{ filter: "invert(1)" }}
-        ></Image>
+        <Menu width={35} height={35} style={{ cursor: "pointer" }}></Menu>
       </div>
       <div
         className={`${styles["navbar-wrapper"]} ${active ? styles.active : ""}`}
       >
         <Link href={"/admin/dashboard"}>
-          <Image
-            alt="admin-icon"
-            src={"/admin-icon.png"}
-            width={35}
-            height={35}
-            style={{ filter: "invert(1)" }}
-          ></Image>
+          <UserCog width={35} height={35}></UserCog>
         </Link>
 
         <nav className={styles.navbar}>
@@ -63,13 +57,10 @@ export default function Navbar() {
               }
               onClick={() => setActive(false)}
             >
-              <Image
+              <Boxes
                 className={styles["nav-icon"]}
-                alt="dashboard image"
-                src={"/dashboard.svg"}
-                width={25}
-                height={25}
-                style={{ filter: "invert(1)" }}
+                width={20}
+                height={20}
                 onClick={() => setActive(false)}
               />
               <p>ISPO&apos;s</p>
@@ -85,15 +76,32 @@ export default function Navbar() {
               }
               onClick={() => setActive(false)}
             >
-              <Image
+              <Users
                 className={styles["nav-icon"]}
-                alt="key image"
-                src={"/key.svg"}
-                width={25}
-                height={25}
+                width={20}
+                height={20}
                 onClick={() => setActive(false)}
               />
               <p>Accounts</p>
+            </Link>
+          </li>
+          <li>
+            <Link
+              href={"/admin/dashboard/images"}
+              style={
+                resourceMatches(pathname, "images")
+                  ? { backgroundColor: "rgb(110, 110, 230, 0.25)" }
+                  : {}
+              }
+              onClick={() => setActive(false)}
+            >
+              <LucideImage
+                className={styles["nav-icon"]}
+                width={20}
+                height={20}
+                onClick={() => setActive(false)}
+              />
+              <p>Images</p>
             </Link>
           </li>
 

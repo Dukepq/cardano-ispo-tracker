@@ -1,0 +1,50 @@
+.wrapper {
+  margin: 0px auto;
+  padding: 2rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 300;
+  white-space: nowrap;
+}
+
+.gallery-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.logo-wrapper {
+  max-width: 100px;
+  max-height: 100px;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  transition: 200ms;
+  border: 1px solid transparent;
+}
+
+.logo-wrapper:hover {
+  border: 1px solid red;
+  background-color: red;
+}
+
+.logo-wrapper > img {
+  transition: 100ms;
+}
+
+.logo-wrapper:hover > img {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+}
+
+@media (width < 1024px) {
+  .alert-content {
+    left: 50%;
+  }
+}
