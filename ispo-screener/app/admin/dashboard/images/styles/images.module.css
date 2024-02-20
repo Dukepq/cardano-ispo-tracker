@@ -43,6 +43,12 @@
   justify-content: center;
 }
 
+.link-icon {
+  position: absolute;
+  right: 6px;
+  top: 3px;
+}
+
 @media (width < 1024px) {
   .alert-content {
     left: 50%;

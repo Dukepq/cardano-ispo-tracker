@@ -153,18 +153,6 @@ export default function ManageProjectButton({
               </div>
               <div>
                 <label>
-                  <p>Full description</p>
-                  <input
-                    type="text"
-                    placeholder="Description"
-                    name="description"
-                    onChange={(e) => onProjectFormChange(e, setFields)}
-                    value={fields?.description || ""}
-                  />
-                </label>
-              </div>
-              <div>
-                <label>
                   <p>Short description</p>
                   <input
                     type="text"
@@ -175,6 +163,21 @@ export default function ManageProjectButton({
                   />
                 </label>
               </div>
+              <div>
+                <label>
+                  <p>Full description</p>
+                  <textarea
+                    className={styles.textarea}
+                    name="description"
+                    onChange={(e) => {
+                      const description = e.target.value;
+                      setFields((prev) => ({ ...prev, description }));
+                    }}
+                    value={fields?.description || ""}
+                  />
+                </label>
+              </div>
+
               <div>
                 <label>
                   <p>* Amount distributing</p>

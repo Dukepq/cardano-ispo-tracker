@@ -39,7 +39,13 @@ export default function Gallery({ logos }: GalleryProps) {
               router.refresh();
             }}
           >
-            {<GalleryImage filename={logo.filename} url={logo.url} />}
+            {
+              <GalleryImage
+                filename={logo.filename}
+                url={logo.url}
+                projectId={logo.projectId}
+              />
+            }
           </DeleteDialogWrap>
         );
       })}

@@ -1,22 +1,24 @@
 "use client";
 
 import base from "@/app/lib/routes";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
-import toast from "react-hot-toast";
 import styles from "../styles/images.module.css";
-import { useState } from "react";
-import deleteImage from "@/app/lib/deleteImage";
-import { Trash } from "../../../../../node_modules/lucide-react";
+import { Link2 } from "lucide-react";
 
 type GalleryImageProps = {
   filename: string;
   url: string;
+  projectId: string | null;
 };
 
-export default function GalleryImage({ filename, url }: GalleryImageProps) {
+export default function GalleryImage({
+  filename,
+  url,
+  projectId,
+}: GalleryImageProps) {
   return (
     <div className={styles["logo-wrapper"]}>
+      {projectId && <Link2 className={styles["link-icon"]} />}
       <Image
         className={styles.logo}
         src={base + url}

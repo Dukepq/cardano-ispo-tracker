@@ -7,7 +7,7 @@
 .dialog-content {
   min-height: 300px;
   max-height: 35rem;
-  min-width: 300px;
+  min-width: 380px;
   max-width: 95vw;
   overflow: auto;
   background-color: #212936;
@@ -87,6 +87,23 @@
   margin: 1rem 0;
   display: flex;
   flex-direction: column;
+}
+.textarea {
+  cursor: text;
+  background-color: #121826;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #393f4a;
+  overflow-y: hidden;
+  min-height: 120px;
+  width: 100%;
+  line-height: 1.1rem;
+  transition: border-color 100ms, outline 100ms;
+}
+
+.textarea:focus {
+  border-color: #536589;
+  outline: #536589;
 }
 
 .title {
