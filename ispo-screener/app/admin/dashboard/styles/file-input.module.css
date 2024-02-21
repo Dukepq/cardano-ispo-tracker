@@ -1,0 +1,25 @@
+.dropzone-select {
+  cursor: pointer;
+}
+
+.dropzone {
+  display: grid;
+  place-content: center;
+  background-color: #121826;
+  border: 1px solid #393f4a;
+  height: 200px;
+  transition: border-color 100ms;
+  border-radius: 0.5rem;
+}
+
+.dropzone:hover {
+  border: 1px solid #536589;
+}
+
+.hovering {
+  background-color: red;
+}
+
+.preview > img {
+  border-radius: 0.5rem;
+}
