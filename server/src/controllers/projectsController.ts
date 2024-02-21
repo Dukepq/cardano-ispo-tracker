@@ -323,6 +323,7 @@ export async function imageResponse(req: Request, res: Response) {
         path,
         url: image.url,
         id: image.id,
+        size: image.size,
       },
     });
   } catch (err) {

@@ -33,3 +33,9 @@
 .cancel-button:focus {
   outline: 1px solid transparent;
 }
+
+@media (width < 1024px) {
+  .alert-content {
+    left: calc(50%);
+  }
+}
