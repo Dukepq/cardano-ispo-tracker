@@ -82,16 +82,15 @@ export default function UploadFileInput({
         style={{ display: "none" }}
       />
 
-      {imageURL &&
-        (newURL ? (
-          <div className={styles.preview}>
-            <Image src={newURL} width={100} height={100} alt="logo" />
-          </div>
-        ) : (
-          <div className={styles.preview}>
-            <Image src={base + imageURL} width={100} height={100} alt="logo" />
-          </div>
-        ))}
+      {newURL ? (
+        <div className={styles.preview}>
+          <Image src={newURL} width={100} height={100} alt="logo" />
+        </div>
+      ) : (
+        <div className={styles.preview}>
+          <Image src={base + imageURL} width={100} height={100} alt="logo" />
+        </div>
+      )}
     </div>
   );
 }

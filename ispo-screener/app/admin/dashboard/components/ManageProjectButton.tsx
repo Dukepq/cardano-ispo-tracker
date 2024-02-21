@@ -32,7 +32,8 @@ export default function ManageProjectButton({
       if (data.success) {
         path = data.data.path;
         url = data.data.url;
-        setFields((prev) => ({ ...prev, logoImageURL: url }));
+        const size = data.data.size;
+        setFields((prev) => ({ ...prev, logo: { size, url } }));
       } else {
         toast.error(data.message || "failed to upload image");
       }
