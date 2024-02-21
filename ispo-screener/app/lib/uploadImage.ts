@@ -1,7 +1,7 @@
 import base from "./routes";
 
 type UploadImageResponse =
-  | { success: true; data: { path: string; url: string } }
+  | { success: true; data: { path: string; url: string; size: number } }
   | { success: false; message?: string };
 
 export default async function uploadImage(
