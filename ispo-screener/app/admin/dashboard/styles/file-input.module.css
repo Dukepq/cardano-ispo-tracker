@@ -23,3 +23,7 @@
 .preview > img {
   border-radius: 0.5rem;
 }
+
+.plus-image {
+  transition: scale 100ms ease-in-out;
+}

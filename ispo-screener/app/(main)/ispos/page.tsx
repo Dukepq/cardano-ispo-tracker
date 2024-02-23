@@ -14,7 +14,7 @@ export default async function ISPOS() {
   const projects = await fetchAllProjects();
   return (
     <main className={styles.main}>
-      <Table projects={projects} />
+      <Table projects={projects.filter((project) => project.live)} />
       <div className={styles.twitter}>
         <p>Can&apos;t find your favourite ISPO?</p>
         <Link

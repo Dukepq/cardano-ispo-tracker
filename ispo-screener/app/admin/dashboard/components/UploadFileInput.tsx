@@ -31,13 +31,14 @@ export default function UploadFileInput({
     }
     const file = files[0];
     if (!file) return;
-    if (file.size > 60000) {
-      toast.error("File too big");
-      return;
-    }
     const extension = file.type.split("/")[1].toLowerCase();
     if (!["png", "jpg", "jpeg"].includes(extension)) {
       toast.error("Only accepts .png, .jpg or .jpeg files");
+      return;
+    }
+
+    if (file.size > 60000) {
+      toast.error("File too big");
       return;
     }
 
@@ -66,7 +67,10 @@ export default function UploadFileInput({
           className={styles.dropzone}
           style={hovering ? { border: " 1px solid #536589" } : {}}
         >
-          <ImagePlus />
+          <ImagePlus
+            className={styles["plus-image"]}
+            style={hovering ? { scale: 1.5 } : {}}
+          />
         </div>
       </label>
       <input

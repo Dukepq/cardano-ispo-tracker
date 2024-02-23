@@ -1,0 +1,105 @@
+.container {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  --radius: 80%;
+  --color-1: 18, 113, 255
+  --color-2: 224, 74, 255
+}
+
+.gradients-container {
+  filter: url(#blurMe) blur(40px);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -100000000000;
+  --blend-mode: hard-light
+}
+
+.blob {
+  position: absolute;
+  --posCenter: calc(50% - var(--radius) / 2);
+  top: --posCenter;
+  left: --posCenter; 
+}
+
+
+.blob-1 {
+  width: var(--radius);
+  height: var(--radius);
+  mix-blend-mode: var(--hard-light);
+  transform-origin: calc(50% - 400px);
+  animation: rotateBlob 20s linear reverse infinite;
+}
+
+.blob-2 {
+  width: calc(var(--radius) / (3/2));
+  height: calc(var(--radius) / (3/2));
+  mix-blend-mode: var(--hard-light);
+  transform-origin: calc(50% - 200px);
+  animation: moveVertically 26s ease-in-out alternate-reverse infinite;
+}
+
+.blob-3 {
+  width: calc(var(--radius) / 2);
+  height: calc(var(--radius) / 2);
+  mix-blend-mode: var(--hard-light);
+  transform-origin: calc(50% + 200px);
+  animation: rotateBlob 18s linear infinite;
+}
+
+.blob-4 {
+  top: calc(var(--posCenter) - 300px);
+  width: calc(var(--radius) / 2);
+  height: calc(var(--radius) / 2);
+  mix-blend-mode: var(--hard-light);
+  transform-origin: 50% calc(50% + 100px);
+  animation: moveHorizontally 23s alternate ease-in-out infinite;
+}
+
+.blob-5 {
+  width: calc(var(--radius) / 2);
+  height: calc(var(--radius) / 2);
+  mix-blend-mode: var(--hard-light);
+  transform-origin: calc(50% - 600px);
+  animation: moveHorizontally 40s alternate-reverse ease-in-out infinite;
+}
+
+
+@keyframes rotateBlob {
+  0% {
+    transform: rotate(0deg)
+  }
+  50% {
+    transform: rotate(180deg)
+  }
+  100% {
+    transform: rotate(360deg)
+  }
+}
+
+@keyframes moveVertically {
+  0% {
+    transform: translateY(-50%)
+  }
+  100% {
+    transform: translateY(50%)
+  }
+}
+
+@keyframes moveHorizontally {
+  0% {
+    transform: translate(-60%, 10%)
+  }
+  100% {
+    transform: translate(60%, 0%)
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .gradients-container {
+    display: none;
+  }
+}

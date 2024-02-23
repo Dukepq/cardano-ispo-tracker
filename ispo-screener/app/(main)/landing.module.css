@@ -20,7 +20,8 @@
 }
 
 .main {
-  max-width: var(--max-width);
+  max-width: calc(var(--max-width) + 2rem);
+  padding: 0 1rem;
   margin: 0 auto;
   min-height: 100vh;
   display: flow-root;
@@ -49,7 +50,7 @@
 }
 
 .left-hero > h1 {
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 600;
   transform: translateX(-1920px);
   animation: var(--animation-duration) forwards slidein-left;

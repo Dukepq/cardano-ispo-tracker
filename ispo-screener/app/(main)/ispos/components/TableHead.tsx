@@ -88,11 +88,11 @@ export default function TableHead({ desc }: TableHeadProps) {
                   ADA rewards alongside the project token.
                 </li>
                 <li>
-                  <strong>All</strong>: the pool keeps all of your ADA rewards.
+                  <strong>All</strong>: the ISPO keeps all of your ADA rewards.
                 </li>
                 <li>
                   <strong>Partial</strong>: only part of your ADA rewards are
-                  kept by the pool.
+                  kept by the ISPO.
                 </li>
                 <li>
                   <strong>Optional</strong>: there are multiple pools available
