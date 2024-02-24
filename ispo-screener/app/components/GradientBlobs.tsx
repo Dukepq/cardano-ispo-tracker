@@ -14,11 +14,11 @@ type GradientBlobsProps = {
 
 export default function GradientBlobs({
   children,
-  firstColor = "0, 33, 200",
-  secondColor = "100, 42, 210",
-  thirdColor = "80, 120, 200",
+  firstColor = "0, 33, 255",
+  secondColor = "100, 42, 255",
+  thirdColor = "110, 150, 255",
   fourthColor = "20, 20, 192",
-  fifthColor = "0, 0, 180",
+  fifthColor = "0, 0, 255",
   blobSize = "80vw",
   firstBackgroundColor,
   secondBackgroundColor,
