@@ -43,7 +43,6 @@ export async function fetchImages(req: Request, res: Response) {
     });
     return res.status(200).json({ data: images, count });
   } catch (err) {
-    console.log(err);
     return res
       .status(400)
       .json({ success: false, message: "something went wrong" });
