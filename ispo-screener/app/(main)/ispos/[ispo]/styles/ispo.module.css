@@ -69,6 +69,7 @@
   border-radius: 0.2rem;
   position: sticky;
   top: calc(var(--nav-height) + 1rem);
+  border: 1px solid var(--border-accent);
 }
 
 .live {
