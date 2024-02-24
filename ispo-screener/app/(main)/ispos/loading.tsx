@@ -11,7 +11,7 @@ export default function loading() {
             {[...Array(18).keys()].map((value, index) => {
               return (
                 <tr key={index} className={styles["skeleton"]}>
-                  <td colSpan={6}></td>
+                  <td colSpan={7}></td>
                 </tr>
               );
             })}

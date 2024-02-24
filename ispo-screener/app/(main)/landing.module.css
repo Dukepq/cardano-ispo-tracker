@@ -116,3 +116,20 @@
     display: none;
   }
 }
+
+@media (width < 640px) {
+  .left-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .left-hero > * {
+    text-align: center;
+  }
+  .left-hero > h1 {
+    margin-bottom: 0.5rem;
+  }
+  .left-hero button {
+    margin-top: 1rem;
+  }
+}
