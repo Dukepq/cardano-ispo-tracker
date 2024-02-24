@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:chrome": "npx playwright test --headed --browser=chromium",
+    "test:firefox": "npx playwright test --headed --browser=firefox",
+    "test:safari": "npx playwright test --headed --browser=webkit"
   },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.0.5",
@@ -31,5 +34,8 @@
     "sharp": "^0.33.2",
     "typescript": "5.1.6",
     "zod": "^3.22.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.41.2"
   }
 }

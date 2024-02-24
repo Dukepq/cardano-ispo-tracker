@@ -15,7 +15,7 @@ p {
 }
 
 :root {
-  --primary-color: #090909;
+  --primary-color: rgb(10, 9, 11);
   --primary-color-no-hex: 11, 9, 10;
   --secondary-color: #141519;
   --accent-1: #0033ad;
@@ -33,6 +33,7 @@ html {
 }
 
 body {
+  font-weight: 300;
   background-color: rgb(var(--primary-color-no-hex));
   overflow-x: hidden;
   text-rendering: optimizeLegibility;

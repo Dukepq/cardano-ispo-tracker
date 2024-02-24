@@ -3,19 +3,13 @@ import React, { Suspense } from "react";
 import Link from "next/link";
 import CardCollection from "../components/CardCollection";
 import LoadingCardCollection from "../components/LoadingCardCollection";
-import Carousel from "../components/Carousel";
-import { fetchAllProjects } from "../lib/fetchIspoData";
-import ISPOCard from "../components/ISPOCard";
 import GradientBlobs from "../components/GradientBlobs";
+import ServerCarouselWrapper from "../components/serverCarouselWrapper";
 
 export default async function Home() {
-  const ISPOs = await fetchAllProjects();
   return (
     <>
-      <GradientBlobs
-        firstGradientColor="var(--primary-color-no-hex)"
-        secondGradientColor="0, 0, 255"
-      >
+      <GradientBlobs>
         <main className={styles.main}>
           <section className={styles["hero-section"]}>
             <div className={styles["left-hero"]}>
@@ -31,12 +25,9 @@ export default async function Home() {
               </Link>
             </div>
             <div className={styles["right-hero"]}>
-              <Carousel>
-                {ISPOs.map((ispo, index) => {
-                  if (index > 10) return;
-                  return <ISPOCard {...ispo} key={ispo.token} />;
-                })}
-              </Carousel>
+              <Suspense>
+                <ServerCarouselWrapper />
+              </Suspense>
             </div>
           </section>
           <Suspense fallback={<LoadingCardCollection />}>

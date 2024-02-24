@@ -30,6 +30,10 @@
   display: block;
 }
 
+.wrapper > div > span:first-child {
+  font-weight: 500;
+}
+
 .wrapper > *:not(h4) > span:first-child {
   margin-bottom: 0.3rem;
 }
@@ -61,5 +65,6 @@
   }
   .name {
     white-space: wrap;
+    margin-bottom: 1rem;
   }
 }

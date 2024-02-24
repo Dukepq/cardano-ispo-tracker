@@ -22,6 +22,6 @@ export default function useImageURL(): [
     return () => {
       if (url) URL.revokeObjectURL(url);
     };
-  }, [blob]);
+  }, [blob, url]);
   return [url, setBlob];
 }

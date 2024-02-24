@@ -12,7 +12,7 @@ export default function LoadingCardCollection({ cards }: { cards?: number }) {
     <section className={styles["ispo-section"]}>
       <div className={styles["ispo-grid-wrapper"]}>
         {[...Array(cards || 12).keys()].map((_, index) => (
-          <div key={index} className={`${styles.wrapper}`}>
+          <div key={index} className={styles["loading-card-wrapper"]}>
             <header className={styles["top-flex"]}>
               <span
                 className={styles.placeholder}

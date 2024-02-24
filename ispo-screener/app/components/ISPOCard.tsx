@@ -4,8 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./card.module.css";
 import truncateString from "../lib/truncateString";
-import useImageURL from "../hooks/useImageURL";
-import Spinner from "./Spinner";
 import base from "../lib/routes";
 
 type ISPOCardProps = ISPO & {};
@@ -31,7 +29,7 @@ export default function ISPOCard({
         ) : (
           <div style={{ height: 38 }}></div>
         )}
-        <span>{name}</span>
+        <span style={{ fontWeight: "500" }}>{name}</span>
       </header>
       <ul className={styles.categories}>
         {categories.map((category, index) => (

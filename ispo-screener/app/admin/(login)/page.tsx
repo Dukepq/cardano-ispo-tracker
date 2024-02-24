@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import base from "@/app/lib/routes";
 import styles from "./login.module.css";
 import toast from "react-hot-toast";
+import { ChevronLeft } from "lucide-react";
+import Link from "next/link";
 
 interface LoginDetails {
   email: string;
@@ -49,50 +51,47 @@ export default function Login() {
     <>
       <div className={styles["wrapper-div"]}>
         <div className={styles["form-wrapper"]}>
-          <div>
-            <div
-              style={{
-                width: "35px",
-                height: "35px",
-                border: "2px solid white",
-                borderRadius: "100%",
-              }}
-            ></div>
-          </div>
-          <div>
-            <form onSubmit={login} className={styles.form}>
-              <div>
-                <label htmlFor="email-input">Email</label>
-                <input
-                  id="email-input"
-                  onChange={onChangeHandle}
-                  name="email"
-                  type="text"
-                  placeholder="email"
-                  value={fields.email || ""}
-                />
-              </div>
-              <div>
-                <label htmlFor="pw-input">Password</label>
-                <input
-                  id="pw-input"
-                  onChange={onChangeHandle}
-                  name="password"
-                  type="password"
-                  placeholder="password"
-                  value={fields.password || ""}
-                />
-              </div>
+          <form onSubmit={login} className={styles.form}>
+            <div>
+              <label htmlFor="email-input">Email</label>
+              <input
+                id="email-input"
+                onChange={onChangeHandle}
+                name="email"
+                type="text"
+                placeholder="email"
+                value={fields.email || ""}
+              />
+            </div>
 
-              <button>login</button>
-              {failed && (
-                <p
-                  style={{ marginTop: "2rem", color: "red", fontWeight: "600" }}
-                >
-                  password or email incorrect
-                </p>
-              )}
-            </form>
+            <div>
+              <label htmlFor="pw-input">Password</label>
+              <input
+                id="pw-input"
+                onChange={onChangeHandle}
+                name="password"
+                type="password"
+                placeholder="password"
+                value={fields.password || ""}
+              />
+            </div>
+
+            <button>login</button>
+            {failed && (
+              <p style={{ marginTop: "2rem", color: "red", fontWeight: "600" }}>
+                password or email incorrect
+              </p>
+            )}
+          </form>
+          <div className={styles.logo}>
+            <Link
+              href={"/"}
+              style={{ display: "flex", alignItems: "center", opacity: "0.5" }}
+            >
+              <ChevronLeft height={15} />
+              <span>back</span>
+            </Link>
+            <span>C-ISPO</span>
           </div>
         </div>
       </div>

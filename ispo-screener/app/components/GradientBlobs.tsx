@@ -4,8 +4,6 @@ import styles from "./gradient-blobs.module.css";
 
 type GradientBlobsProps = {
   children: React.ReactNode;
-  firstGradientColor: string;
-  secondGradientColor: string;
   firstColor?: string;
   secondColor?: string;
   thirdColor?: string;
@@ -16,8 +14,6 @@ type GradientBlobsProps = {
 
 export default function GradientBlobs({
   children,
-  firstGradientColor,
-  secondGradientColor,
   firstColor = "18, 63, 255",
   secondColor = "221, 74, 255",
   thirdColor = "180, 150, 255",
@@ -26,12 +22,7 @@ export default function GradientBlobs({
   blobSize = "80vw",
 }: GradientBlobsProps) {
   return (
-    <div
-      className={styles.container}
-      style={{
-        background: `linear-gradient(90deg, ${firstGradientColor} 0%,${secondGradientColor} 100%)`,
-      }}
-    >
+    <div className={styles.container}>
       <svg style={{ display: "none" }}>
         <defs>
           <filter id="blurMe">
@@ -50,7 +41,7 @@ export default function GradientBlobs({
           </filter>
         </defs>
       </svg>
-      <div style={{ backdropFilter: "blur(120px)" }}>{children}</div>
+      <div style={{ backdropFilter: "blur(60px)" }}>{children}</div>
       <div className={styles["gradients-container"]}>
         <div
           style={{
