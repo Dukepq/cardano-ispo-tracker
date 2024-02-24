@@ -17,7 +17,7 @@ export default function Logout({ children }: { children: React.ReactNode }) {
       toast.error("logout failed");
     } else {
       toast.success("logged out");
-      router.push("/");
+      router.push("/admin");
     }
   };
 
