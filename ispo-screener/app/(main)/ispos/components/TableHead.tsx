@@ -139,6 +139,11 @@ export default function TableHead({ desc }: TableHeadProps) {
             </HelpPopup>
           </div>
         </th>
+        <th>
+          <div>
+            <p>Total staked</p>
+          </div>
+        </th>
         <th
           data-row="placeholder"
           onClick={() => null}

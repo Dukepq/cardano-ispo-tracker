@@ -7,7 +7,6 @@ import { useSearchParams } from "next/navigation";
 import formatISPOArray, { FormattedISPO } from "@/app/lib/formatISPOArray";
 import TableHead from "./TableHead";
 import SearchBar from "@/app/admin/dashboard/components/SearchBar";
-import { Search } from "../../../../node_modules/lucide-react";
 
 export default function Table({ projects }: { projects: ISPO[] }) {
   const [search, setSearch] = useState("");
@@ -63,6 +62,7 @@ export default function Table({ projects }: { projects: ISPO[] }) {
                   rewards={project.rewards}
                   allocatedPercentage={project.allocatedPercentage}
                   ratio={project.ratio}
+                  totalStaked={project.totalStaked}
                   pools={project.pools}
                 />
               );

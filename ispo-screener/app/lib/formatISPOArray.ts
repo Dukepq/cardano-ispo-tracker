@@ -14,6 +14,7 @@ export type FormattedISPO = {
   websiteURL?: string;
   maxSupply?: number;
   pools: FormattedPool[];
+  totalStaked: number;
 };
 
 export default function formatISPOArray(projects: ISPO[]) {
@@ -45,6 +46,13 @@ export function formatISPO(project: ISPO): FormattedISPO {
 
   const formattedPools = formatPools(pools);
 
+  let totalStaked = 0;
+  for (let i = 0; i < formattedPools.length; i++) {
+    const { amountInPool } = formattedPools[i];
+    if (typeof amountInPool !== "number") continue;
+    totalStaked += amountInPool;
+  }
+
   const ratio = totalInPools === 0 ? null : distributingAmount / totalInPools;
   const allocatedPercentage = maxSupply
     ? (distributingAmount / maxSupply) * 100
@@ -63,6 +71,7 @@ export function formatISPO(project: ISPO): FormattedISPO {
     logoImageURL,
     websiteURL,
     maxSupply,
+    totalStaked,
     pools: formattedPools,
   };
 }

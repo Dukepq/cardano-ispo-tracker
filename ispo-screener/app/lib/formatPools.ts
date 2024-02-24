@@ -18,6 +18,7 @@ export function formatPool({
     poolId,
     ticker,
     name,
+    amountInPool,
   };
 }
 
