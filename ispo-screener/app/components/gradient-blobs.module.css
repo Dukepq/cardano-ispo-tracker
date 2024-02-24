@@ -67,6 +67,10 @@
   animation: moveHorizontally 40s alternate-reverse ease-in-out infinite;
 }
 
+.no-animation {
+  animation: none
+}
+
 
 @keyframes rotateBlob {
   0% {

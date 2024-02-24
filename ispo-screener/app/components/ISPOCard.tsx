@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./card.module.css";
 import truncateString from "../lib/truncateString";
 import base from "../lib/routes";
+import { MoveRight } from "lucide-react";
 
 type ISPOCardProps = ISPO & {};
 
@@ -42,7 +43,10 @@ export default function ISPOCard({
         {truncateString(description || "", 150)}
       </p>
       <div className={styles["read-more-wrapper"]}>
-        <Link href={`/ispos/${token}`}>Read more &rarr;</Link>
+        <Link href={`/ispos/${token}`}>
+          <span>Read more</span>
+          <MoveRight />
+        </Link>
       </div>
     </div>
   );

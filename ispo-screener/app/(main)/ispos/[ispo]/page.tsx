@@ -18,7 +18,10 @@ export default async function Ispo({ params: { ispo } }: Params) {
   const formattedProjectInfo = formatISPO(projectInfo);
   const { description, pools } = formattedProjectInfo;
   return (
-    <>
+    <div
+      className={styles["page-wrapper"]}
+      style={{ display: "flow-root", minHeight: "100vh" }}
+    >
       <Header {...formattedProjectInfo} />
       <main className={styles.main}>
         <div className={styles["description-wrapper"]}>
@@ -53,7 +56,7 @@ export default async function Ispo({ params: { ispo } }: Params) {
 
         <Info {...formattedProjectInfo} />
       </main>
-    </>
+    </div>
   );
 }
 

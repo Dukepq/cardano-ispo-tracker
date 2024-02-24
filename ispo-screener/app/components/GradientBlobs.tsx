@@ -15,7 +15,7 @@ type GradientBlobsProps = {
 export default function GradientBlobs({
   children,
   firstColor = "18, 63, 255",
-  secondColor = "221, 74, 255",
+  secondColor = "201, 74, 255",
   thirdColor = "180, 150, 255",
   fourthColor = "50, 50, 222",
   fifthColor = "0, 0, 255",
@@ -41,7 +41,7 @@ export default function GradientBlobs({
           </filter>
         </defs>
       </svg>
-      <div style={{ backdropFilter: "blur(60px)" }}>{children}</div>
+      <div style={{}}>{children}</div>
       <div className={styles["gradients-container"]}>
         <div
           style={{
