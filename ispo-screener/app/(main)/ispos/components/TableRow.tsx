@@ -52,7 +52,7 @@ export default function TableRow({
       <td style={!ratio ? { opacity: "0.5" } : {}} data-cell="rpa">
         {ratio ? numberFormat.format(ratio) + " " + token : "N/A"}
       </td>
-      <td data-cell="staked">{numberFormat.format(totalStaked)}</td>
+      <td data-cell="staked">{numberFormat.format(totalStaked) + " ADA"}</td>
       <td style={live ? { color: "green" } : { color: "red" }}>
         {live ? <Check /> : <X />}
       </td>

@@ -10,6 +10,8 @@ type GradientBlobsProps = {
   fourthColor?: string;
   fifthColor?: string;
   blobSize?: string;
+  firstBackgroundColor?: string;
+  secondBackgroundColor?: string;
 };
 
 export default function GradientBlobs({
@@ -20,6 +22,8 @@ export default function GradientBlobs({
   fourthColor = "50, 50, 222",
   fifthColor = "0, 0, 255",
   blobSize = "80vw",
+  firstBackgroundColor,
+  secondBackgroundColor,
 }: GradientBlobsProps) {
   return (
     <div className={styles.container}>
@@ -41,8 +45,17 @@ export default function GradientBlobs({
           </filter>
         </defs>
       </svg>
-      <div style={{}}>{children}</div>
-      <div className={styles["gradients-container"]}>
+      <div style={{ backdropFilter: "blur(60px)" }}>{children}</div>
+      <div
+        className={styles["gradients-container"]}
+        style={
+          firstBackgroundColor && secondBackgroundColor
+            ? {
+                background: `linear-gradient(-45deg, rgba(${firstBackgroundColor},0.25) 0%, rgba(${secondBackgroundColor}, 0.0) 100%)`,
+              }
+            : {}
+        }
+      >
         <div
           style={{
             background: `radial-gradient(circle, rgb(${firstColor}), rgb(${firstColor}, 0) 50%)`,

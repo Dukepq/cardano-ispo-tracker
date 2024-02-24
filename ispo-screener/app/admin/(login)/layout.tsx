@@ -16,7 +16,6 @@ export default function RootLayout({
       <div
         style={{
           color: "white",
-          backgroundColor: "rgba(242, 242, 242, 1)",
           minHeight: "100vh",
         }}
       >
