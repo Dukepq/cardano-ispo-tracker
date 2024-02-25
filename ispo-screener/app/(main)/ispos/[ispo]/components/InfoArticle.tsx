@@ -2,6 +2,7 @@ import styles from "../styles/ispo.module.css";
 import { FormattedISPO } from "@/app/lib/formatISPOArray";
 import { Globe } from "../../../../../node_modules/lucide-react";
 import Link from "next/link";
+import { numberFormat } from "@/app/lib/numberFormat";
 
 type InfoCardProps = Pick<
   FormattedISPO,
@@ -12,6 +13,7 @@ type InfoCardProps = Pick<
   | "ratio"
   | "websiteURL"
   | "token"
+  | "totalStaked"
 >;
 
 export default function Info({
@@ -22,6 +24,7 @@ export default function Info({
   allocatedPercentage,
   websiteURL,
   token,
+  totalStaked,
 }: InfoCardProps) {
   return (
     <article className={styles["info-card"]}>
@@ -60,19 +63,17 @@ export default function Info({
         </li>
         <li>
           <span>Rewards per ADA: </span>
-          <span>
-            {ratio
-              ? new Intl.NumberFormat("en", {
-                  notation: "standard",
-                }).format(ratio)
-              : "N/A"}
-          </span>
+          <span>{ratio ? numberFormat.format(ratio) : "N/A"}</span>
         </li>
         <li>
           <span>ISPO Allocation: </span>
           <span>
-            {allocatedPercentage ? allocatedPercentage.toFixed(2) + "%" : "N/A"}
+            {allocatedPercentage ? allocatedPercentage.toFixed(2) + "%" : "-"}
           </span>
+        </li>
+        <li>
+          <span>Staked: </span>
+          <span>{totalStaked ? numberFormat.format(totalStaked) : "-"}</span>
         </li>
       </ul>
     </article>

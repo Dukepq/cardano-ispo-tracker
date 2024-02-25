@@ -43,7 +43,7 @@
 }
 
 .blob-3 {
-  top: 0px;
+  top: 30px;
   left: 200px;
   mix-blend-mode: var(--hard-light);
   transform-origin: calc(50% + 200px);
@@ -59,7 +59,7 @@
 }
 
 .blob-5 {
-  top: 300px;
+  top: -200px;
   right: -630px;
   mix-blend-mode: var(--hard-light);
   transform-origin: calc(50% - 600px);
@@ -67,8 +67,8 @@
 }
 
 .blob-6 {
-  top: 300px;
-  left: -550px;
+  top: 450px;
+  left: -200px;
   mix-blend-mode: var(--hard-light);
   transform-origin: calc(50% - 600px);
 }

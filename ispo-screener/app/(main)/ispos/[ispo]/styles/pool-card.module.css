@@ -2,10 +2,12 @@
   display: flex;
   padding: 1rem;
   align-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--border-accent);
   transition: border-color 200ms, transform 100ms;
   flex-shrink: 1;
   gap: min(5rem, 15%);
+  background-color: var(--secondary-color);
+  border-radius: 0.25rem;
 }
 
 .wrapper svg {
@@ -14,7 +16,7 @@
 }
 
 .wrapper:hover {
-  border: 1px solid white;
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .name {
