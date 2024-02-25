@@ -7,6 +7,7 @@ type GradientBlobsProps = {
   thirdColor?: string;
   fourthColor?: string;
   fifthColor?: string;
+  sixthColor?: string;
   blobSize?: string;
   firstBackgroundColor?: string;
   secondBackgroundColor?: string;
@@ -14,12 +15,13 @@ type GradientBlobsProps = {
 
 export default function GradientBlobs({
   children,
-  firstColor = "0, 33, 255",
-  secondColor = "100, 42, 255",
-  thirdColor = "110, 150, 255",
-  fourthColor = "20, 20, 192",
+  firstColor = "0, 0, 255",
+  secondColor = "0, 0, 255",
+  thirdColor = "80, 80, 255",
+  fourthColor = "0, 0, 255",
   fifthColor = "0, 0, 255",
-  blobSize = "80vw",
+  sixthColor = "0, 0, 255",
+  blobSize = "calc(25vw + 1100px)",
   firstBackgroundColor,
   secondBackgroundColor,
 }: GradientBlobsProps) {
@@ -43,7 +45,7 @@ export default function GradientBlobs({
           </filter>
         </defs>
       </svg>
-      <div style={{ backdropFilter: "blur(36px)" }}>{children}</div>
+      <div style={{ backdropFilter: "blur(60px)" }}>{children}</div>
       <div
         className={styles["gradients-container"]}
         style={
@@ -78,14 +80,14 @@ export default function GradientBlobs({
           }}
           className={`${styles.blob} ${styles["blob-3"]}`}
         ></div>
-        <div
+        {/* <div
           style={{
             background: `radial-gradient(circle, rgb(${fourthColor}), rgb(${fourthColor}, 0) 50%)`,
             width: blobSize,
             height: blobSize,
           }}
           className={`${styles.blob} ${styles["blob-4"]}`}
-        ></div>
+        ></div> */}
         <div
           style={{
             background: `radial-gradient(circle, rgb(${fifthColor}), rgb(${fifthColor}, 0) 50%)`,
@@ -93,6 +95,14 @@ export default function GradientBlobs({
             height: blobSize,
           }}
           className={`${styles.blob} ${styles["blob-5"]}`}
+        ></div>
+        <div
+          style={{
+            background: `radial-gradient(circle, rgb(${sixthColor}), rgb(${sixthColor}, 0) 50%)`,
+            width: blobSize,
+            height: blobSize,
+          }}
+          className={`${styles.blob} ${styles["blob-6"]}`}
         ></div>
       </div>
     </div>
