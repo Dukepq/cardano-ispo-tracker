@@ -47,7 +47,13 @@ export default function AddPool({
 
   return (
     <>
-      <Dialog.Root open={open} onOpenChange={() => setOpen((prev) => !prev)}>
+      <Dialog.Root
+        open={open}
+        onOpenChange={() => {
+          setFields({});
+          setOpen((prev) => !prev);
+        }}
+      >
         <Dialog.Trigger asChild>
           {children ? (
             children
