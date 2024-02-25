@@ -34,5 +34,8 @@ export const projectSchema = z.object({
   live: z.boolean(),
   pools: z.array(poolSchema).optional(),
   categories: z.array(categorySchema).optional(),
+  featured: z.boolean(),
+  startsAt: z.coerce.date().optional().nullable(),
+  endsAt: z.coerce.date().optional().nullable(),
 });
 export type ProjectSchemaType = z.infer<typeof projectSchema>;

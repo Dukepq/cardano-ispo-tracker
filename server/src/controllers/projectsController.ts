@@ -19,18 +19,9 @@ const defaultProjectFieldsToSelect = {
   takesRewards: true,
   logoImageURL: true,
   websiteURL: true,
-  pools: {
-    select: {
-      name: true,
-      amountInPool: true,
-      margin: true,
-    },
-  },
-  categories: {
-    select: {
-      name: true,
-    },
-  },
+  startsAt: true,
+  endsAt: true,
+  featured: true,
 };
 
 const RequestAllSchema = z.object({
@@ -58,6 +49,7 @@ export const getAllProjects = async (req: Request, res: Response) => {
                 ticker: true,
                 poolId: true,
                 amountInPool: true,
+                margin: true,
               },
             }
           : false,
@@ -129,7 +121,6 @@ export const getProjectByToken = async (req: Request, res: Response) => {
         .status(404)
         .json({ success: false, message: "Resource not found" });
     }
-
     res.status(200).json(project);
   } catch (err) {
     res.status(400).json({ success: false });

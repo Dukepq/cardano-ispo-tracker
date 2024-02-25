@@ -16,7 +16,6 @@ export default async function Dashboard() {
     redirect("/admin");
   }
   const projects = await fetchAllProjects(0);
-
   return (
     <>
       <PageHeader>

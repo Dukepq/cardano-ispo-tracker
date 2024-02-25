@@ -9,6 +9,7 @@ import onProjectFormChange from "@/app/lib/onProjectFormChange";
 import UploadFileInput from "./UploadFileInput";
 import base from "@/app/lib/routes";
 import uploadImage from "@/app/lib/uploadImage";
+import trimDateString from "@/app/lib/trimDateString";
 
 export default function ManageProjectButton({
   method,
@@ -23,6 +24,7 @@ export default function ManageProjectButton({
   const [fields, setFields] = useState<Partial<ISPO>>(ISPO);
   const [file, setFile] = useState<File | null>(null);
   const router = useRouter();
+  console.log(fields);
   const createProject = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     let path = "";
@@ -209,19 +211,57 @@ export default function ManageProjectButton({
               </div>
               <div>
                 <label>
-                  live
+                  <p>Starts at</p>
                   <input
-                    className={styles.checkbox}
-                    type="checkbox"
-                    name="live"
-                    checked={fields?.live || false}
-                    onChange={() => {
-                      setFields((prev) => {
-                        return { ...prev, live: !prev.live };
-                      });
-                    }}
+                    type="date"
+                    id="startsAt"
+                    name="startsAt"
+                    value={trimDateString(fields.startsAt) || ""}
+                    onChange={(e) => onProjectFormChange(e, setFields)}
                   />
                 </label>
+              </div>
+              <div>
+                <label>
+                  <p>Ends at</p>
+                  <input
+                    type="date"
+                    id="endsAt"
+                    name="endsAt"
+                    value={trimDateString(fields.endsAt) || ""}
+                    onChange={(e) => onProjectFormChange(e, setFields)}
+                  />
+                </label>
+              </div>
+              <div className={styles["checkbox-wrapper"]}>
+                <input
+                  className={styles.checkbox}
+                  type="checkbox"
+                  id="live"
+                  name="live"
+                  checked={fields?.live || false}
+                  onChange={() => {
+                    setFields((prev) => {
+                      return { ...prev, live: !prev.live };
+                    });
+                  }}
+                />
+                <label htmlFor="live">Live</label>
+              </div>
+              <div className={styles["checkbox-wrapper"]}>
+                <input
+                  className={styles.checkbox}
+                  type="checkbox"
+                  id="featured"
+                  name="featured"
+                  checked={fields?.featured || false}
+                  onChange={() => {
+                    setFields((prev) => {
+                      return { ...prev, featured: !prev.featured };
+                    });
+                  }}
+                />
+                <label htmlFor="featured">Featured? </label>
               </div>
               <div>
                 <label className={styles["rewards-radio-label"]}>

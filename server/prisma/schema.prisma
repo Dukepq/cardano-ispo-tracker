@@ -53,6 +53,9 @@ model Project {
   pools                  Pool[]
   categories             Category[]
   logo                   Image?
+  startsAt               DateTime?
+  endsAt                 DateTime?
+  featured               Boolean               @default(false)
   createdAt              DateTime              @default(now())
   updatedAt              DateTime              @updatedAt
 }

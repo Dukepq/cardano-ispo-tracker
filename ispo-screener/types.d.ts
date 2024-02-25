@@ -26,6 +26,9 @@ type ISPO = {
   shortDescription?: string;
   pools: Pool[];
   categories: Category[];
+  startsAt?: string;
+  endsAt?: string;
+  featured: boolean;
   logo: Pick<Logo, "size" | "url"> | null;
 };
 

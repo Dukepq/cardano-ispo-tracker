@@ -60,6 +60,9 @@ export default function Table({ projects }: { projects: ISPO[] }) {
                   websiteURL={project.websiteURL}
                   description={project.description}
                   logo={project.logo}
+                  startsAt={project.startsAt}
+                  endsAt={project.endsAt}
+                  featured={project.featured}
                 />
               );
             })}
