@@ -1,4 +1,5 @@
 import { formatPools, FormattedPool } from "./formatPools";
+import isLive from "./isLive";
 
 export type FormattedISPO = {
   name: string;
@@ -15,6 +16,8 @@ export type FormattedISPO = {
   maxSupply?: number;
   pools: FormattedPool[];
   totalStaked: number;
+  startsAt?: string;
+  endsAt?: string;
 };
 
 export default function formatISPOArray(projects: ISPO[]) {
@@ -37,6 +40,8 @@ export function formatISPO(project: ISPO): FormattedISPO {
     description,
     logoImageURL,
     websiteURL,
+    startsAt,
+    endsAt,
   } = project;
 
   const totalInPools = pools.reduce(
@@ -53,6 +58,8 @@ export function formatISPO(project: ISPO): FormattedISPO {
     totalStaked += amountInPool;
   }
 
+  const _isLive = isLive(startsAt, endsAt);
+
   const ratio = totalInPools === 0 ? null : distributingAmount / totalInPools;
   const allocatedPercentage = maxSupply
     ? (distributingAmount / maxSupply) * 100
@@ -61,7 +68,7 @@ export function formatISPO(project: ISPO): FormattedISPO {
   return {
     name,
     token,
-    live,
+    live: _isLive,
     rewards: takesRewards,
     ratio,
     allocatedPercentage,
@@ -73,5 +80,7 @@ export function formatISPO(project: ISPO): FormattedISPO {
     maxSupply,
     totalStaked,
     pools: formattedPools,
+    endsAt,
+    startsAt,
   };
 }
