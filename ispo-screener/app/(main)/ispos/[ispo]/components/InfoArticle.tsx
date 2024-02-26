@@ -14,6 +14,8 @@ type InfoCardProps = Pick<
   | "websiteURL"
   | "token"
   | "totalStaked"
+  | "startsAt"
+  | "endsAt"
 >;
 
 export default function Info({
@@ -25,6 +27,8 @@ export default function Info({
   websiteURL,
   token,
   totalStaked,
+  startsAt,
+  endsAt,
 }: InfoCardProps) {
   return (
     <article className={styles["info-card"]}>
@@ -74,6 +78,32 @@ export default function Info({
         <li>
           <span>Staked: </span>
           <span>{totalStaked ? numberFormat.format(totalStaked) : "-"}</span>
+        </li>
+      </ul>
+      <ul className={styles.dates}>
+        <li>
+          <span>Starts at: </span>
+          <span>
+            {startsAt
+              ? new Date(startsAt).toLocaleDateString(undefined, {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                })
+              : "N/A"}
+          </span>
+        </li>
+        <li>
+          <span>Ends at: </span>
+          <span>
+            {endsAt
+              ? new Date(endsAt).toLocaleDateString(undefined, {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                })
+              : "N/A"}
+          </span>
         </li>
       </ul>
     </article>

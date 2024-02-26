@@ -1,15 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import { Work_Sans } from "next/font/google";
 
 const workSans = Work_Sans({
-  subsets: ["latin"],
-  weight: ["300", "500", "600", "700", "800"],
-});
-
-const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "500", "600", "700", "800"],
 });

@@ -21,7 +21,7 @@ export type PoolSchemaType = z.infer<typeof poolSchema>;
 
 export const projectSchema = z.object({
   name: z.string(),
-  token: z.string(),
+  token: z.string().regex(new RegExp("^[A-Z]+$")),
   websiteURL: z.string().url().nullable().optional().or(z.string().max(0)),
   logoImageURL: z.string().nullable().optional(),
   description: z.string().nullable().optional(),

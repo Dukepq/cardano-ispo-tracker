@@ -10,7 +10,7 @@ import SearchBar from "@/app/admin/dashboard/components/SearchBar";
 
 export default function Table({ projects }: { projects: ISPO[] }) {
   const [search, setSearch] = useState("");
-  const extract = useMemo(() => formatISPOArray(projects), []);
+  const extract = useMemo(() => formatISPOArray(projects), [projects]);
   /*^extracts the exact data needed to fill table rows*/
   const sort = useSearchParams().get("sort");
   const [sortBy, desc] =

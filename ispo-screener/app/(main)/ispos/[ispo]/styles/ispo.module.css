@@ -126,6 +126,12 @@
   gap: 1rem;
 }
 
+.dates {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-accent);
+}
+
 @media (width < 1024px) {
   .header {
     flex-direction: column;

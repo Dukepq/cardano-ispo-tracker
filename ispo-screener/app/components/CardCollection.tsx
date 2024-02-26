@@ -12,9 +12,10 @@ export default async function CardCollection({
     <section className={styles["ispo-section"]}>
       <h2>Featured</h2>
       <div className={styles["ispo-grid-wrapper"]}>
-        {ISPOs.filter((ISPO) => ISPO.live).map((ispo, index) => {
+        {ISPOs.filter((ispo) => ispo.live).map((ispo, index) => {
+          const { featured } = ispo;
           if (maxCards && index + 1 > maxCards) return;
-          return <ISPOCard {...ispo} key={index} />;
+          if (featured) return <ISPOCard {...ispo} key={index} />;
         })}
       </div>
     </section>

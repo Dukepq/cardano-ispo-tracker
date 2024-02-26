@@ -24,7 +24,6 @@ export default function ManageProjectButton({
   const [fields, setFields] = useState<Partial<ISPO>>(ISPO);
   const [file, setFile] = useState<File | null>(null);
   const router = useRouter();
-  console.log(fields);
   const createProject = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     let path = "";
@@ -261,7 +260,7 @@ export default function ManageProjectButton({
                     });
                   }}
                 />
-                <label htmlFor="featured">Featured? </label>
+                <label htmlFor="featured">Featured</label>
               </div>
               <div>
                 <label className={styles["rewards-radio-label"]}>

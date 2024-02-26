@@ -6,6 +6,8 @@ import Info from "./components/InfoArticle";
 import type { Metadata, ResolvingMetadata } from "next";
 import PoolCard from "./components/PoolCard";
 import { PackageOpen } from "../../../../node_modules/lucide-react";
+import { fetchAllProjects } from "@/app/lib/fetchIspoData";
+import { notFound } from "next/navigation";
 
 type Params = {
   params: {
@@ -14,7 +16,12 @@ type Params = {
 };
 
 export default async function Ispo({ params: { ispo } }: Params) {
-  const projectInfo = await fetchProjectByToken(ispo);
+  let projectInfo: ISPO;
+  try {
+    projectInfo = await fetchProjectByToken(ispo);
+  } catch (err) {
+    notFound();
+  }
   const formattedProjectInfo = formatISPO(projectInfo);
   const { description, pools } = formattedProjectInfo;
   return (
@@ -66,10 +73,24 @@ export async function generateMetadata(
   { params }: MetadataProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const projectInfo = await fetchProjectByToken(params.ispo);
-  const { name, token } = projectInfo;
-  return {
-    title: `${name} (${token}) ISPO`,
-    description: `${name} (${token}) ISPO`,
-  };
+  try {
+    const projectInfo = await fetchProjectByToken(params.ispo);
+    const { name, token } = projectInfo;
+    return {
+      title: `${name} (${token}) ISPO`,
+      description: `${name} (${token}) ISPO`,
+    };
+  } catch (err) {
+    return {
+      title: `C-ISPO`,
+      description: `Token details`,
+    };
+  }
+}
+
+export async function generateStaticParams() {
+  const projects = await fetchAllProjects();
+  return projects.map((project) => ({
+    ispo: project.token,
+  }));
 }

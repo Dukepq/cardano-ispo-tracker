@@ -68,7 +68,7 @@ export const getAllProjects = async (req: Request, res: Response) => {
 
 const RequestByTokenSchema = z.object({
   params: z.object({
-    token: z.string().min(1).max(10).regex(new RegExp("^[A-Z]+$")),
+    token: z.string().min(1).max(10),
   }),
   query: z
     .object({

@@ -1,13 +1,14 @@
 import base from "./routes";
 
 export default async function fetchProjectByToken(
-  token: string
+  token: string,
+  revalidate = 3600
 ): Promise<ISPO> {
   const response = await fetch(
     base + `/api/projects/${token}/?pools=true&categories=true&logo=true`,
     {
       credentials: "include",
-      next: { revalidate: 0 },
+      next: { revalidate },
     }
   );
   if (!response.ok)
