@@ -1,6 +1,6 @@
 import base from "./routes";
 
-export async function fetchAllProjects(revalidate = 3600): Promise<ISPO[]> {
+export async function fetchAllProjects(revalidate = 600): Promise<ISPO[]> {
   const response = await fetch(
     base + "/api/projects?pools=true&categories=true&logo=true",
     {
@@ -11,7 +11,7 @@ export async function fetchAllProjects(revalidate = 3600): Promise<ISPO[]> {
   return response.json();
 }
 
-export async function fetchAllPools(revalidate = 3600): Promise<Pool[]> {
+export async function fetchAllPools(revalidate = 600): Promise<Pool[]> {
   const response = await fetch(base + "/api/pools", {
     next: { revalidate },
   });

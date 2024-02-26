@@ -9,7 +9,7 @@ import { PackageOpen } from "../../../../node_modules/lucide-react";
 import { fetchAllProjects } from "@/app/lib/fetchIspoData";
 import { notFound } from "next/navigation";
 
-export const revalidate = 3600;
+export const revalidate = 600;
 
 type Params = {
   params: {
