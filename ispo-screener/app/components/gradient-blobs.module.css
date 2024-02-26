@@ -27,16 +27,16 @@
 
 
 .blob-1 {
-  top: -600px;
-  left: -600px;
+  top: -630px;
+  left: -630px;
   mix-blend-mode: var(--hard-light);
   transform-origin: top left;
   /* animation: rotateBlob 50s linear reverse infinite; */
 }
 
 .blob-2 {
-  top: -200px;
-  left: -200px;
+  top: -250px;
+  left: -250px;
   mix-blend-mode: var(--hard-light);
   transform-origin: calc(50% - 200px);
   /* animation: moveVertically 66s ease-in-out alternate-reverse infinite; */
@@ -51,24 +51,24 @@
 }
 
 .blob-4 {
-  top: -400px;
-  right: -700px;
+  top: 280px;
+  right: -420px;
   mix-blend-mode: var(--hard-light);
   transform-origin: 50% calc(50% + 100px);
   /* animation: moveHorizontally 52s alternate ease-in-out infinite; */
 }
 
 .blob-5 {
-  top: -200px;
-  right: -630px;
+  top: 360px;
+  right: -510px;
   mix-blend-mode: var(--hard-light);
   transform-origin: calc(50% - 600px);
   /* animation: moveHorizontally 84s alternate-reverse ease-in-out infinite; */
 }
 
 .blob-6 {
-  top: 450px;
-  left: -200px;
+  top: 500px;
+  right: -250px;
   mix-blend-mode: var(--hard-light);
   transform-origin: calc(50% - 600px);
 }
