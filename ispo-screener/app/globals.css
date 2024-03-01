@@ -80,3 +80,14 @@ button {
   cursor: pointer;
   border-radius: 0.25rem;
 }
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--border-accent);
+}
+::-webkit-scrollbar-track {
+  background-color: var(--primary-color);
+}

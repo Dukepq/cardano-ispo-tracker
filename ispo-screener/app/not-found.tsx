@@ -8,7 +8,15 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div style={{ display: "grid", placeContent: "center", height: "100vh" }}>
+    <div
+      style={{
+        display: "grid",
+        placeContent: "center",
+        height: "100vh",
+        backgroundColor: "rgb(14, 17, 23)",
+        fontWeight: "500",
+      }}
+    >
       404 | Sorry, this page was not found :c
       <Link href={"/"}>
         <button

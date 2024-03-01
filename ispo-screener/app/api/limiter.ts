@@ -1,9 +1,9 @@
 import { RateLimiter, type RateLimiterOpts } from "limiter";
-const pruneInterval = 60 * 1000;
+const pruneInterval = 5 * 60 * 1000;
 
 const limiterOptions: RateLimiterOpts = {
   interval: "min",
-  tokensPerInterval: 500,
+  tokensPerInterval: Number(process.env.NEXT_SERVER_RATELIMIT),
   fireImmediately: true,
 };
 
