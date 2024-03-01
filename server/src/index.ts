@@ -7,12 +7,14 @@ import { default as userRouter } from "./routes/users";
 import { default as imagesRouter } from "./routes/images";
 import { limiter } from "./config/rateLimitOptions";
 import sessionMiddleware from "./config/session-config";
+import envHelper from "./utils/envHelper";
 const cors = require("cors");
 
 const entryDir = __dirname;
 export { entryDir };
 
-const PORT = process.env.PORT || 5000;
+const PORT = envHelper("PORT");
+const corsOrigin = envHelper("ORIGIN");
 
 // (async () => {
 //   await prisma.session.deleteMany();
@@ -22,7 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: corsOrigin,
     credentials: true,
   })
 );
