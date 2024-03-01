@@ -49,64 +49,55 @@ export default function Login() {
     }
   };
   return (
-    <>
-      <GradientBlobs
-        firstBackgroundColor="0, 0, 255"
-        secondBackgroundColor="0, 0, 255"
-      >
-        <div className={styles["wrapper-div"]}>
-          <div className={styles["form-wrapper"]}>
-            <form onSubmit={login} className={styles.form}>
-              <div>
-                <label htmlFor="email-input">Email</label>
-                <input
-                  id="email-input"
-                  onChange={onChangeHandle}
-                  name="email"
-                  type="text"
-                  placeholder="email"
-                  value={fields.email || ""}
-                />
-              </div>
-
-              <div>
-                <label htmlFor="pw-input">Password</label>
-                <input
-                  id="pw-input"
-                  onChange={onChangeHandle}
-                  name="password"
-                  type="password"
-                  placeholder="password"
-                  value={fields.password || ""}
-                />
-              </div>
-
-              <button>login</button>
-              {failed && (
-                <p
-                  style={{ marginTop: "2rem", color: "red", fontWeight: "600" }}
-                >
-                  password or email incorrect
-                </p>
-              )}
-            </form>
-            <div className={styles.logo}>
-              <Link
-                href={"/"}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  opacity: "0.5",
-                }}
-              >
-                <ChevronLeft height={15} />
-                <span>back</span>
-              </Link>
-              <span>C-ISPO</span>
-            </div>
+    <div className={styles["wrapper-div"]}>
+      <div className={styles["form-wrapper"]}>
+        <form onSubmit={login} className={styles.form}>
+          <div>
+            <label htmlFor="email-input">Email</label>
+            <input
+              id="email-input"
+              onChange={onChangeHandle}
+              name="email"
+              type="text"
+              placeholder="email"
+              value={fields.email || ""}
+            />
           </div>
+
+          <div>
+            <label htmlFor="pw-input">Password</label>
+            <input
+              id="pw-input"
+              onChange={onChangeHandle}
+              name="password"
+              type="password"
+              placeholder="password"
+              value={fields.password || ""}
+            />
+          </div>
+
+          <button>login</button>
+          {failed && (
+            <p style={{ marginTop: "2rem", color: "red", fontWeight: "600" }}>
+              password or email incorrect
+            </p>
+          )}
+        </form>
+        <div className={styles.logo}>
+          <Link
+            href={"/"}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              opacity: "0.5",
+            }}
+          >
+            <ChevronLeft height={15} />
+            <span>back</span>
+          </Link>
+          <span>C-ISPO</span>
         </div>
-      </GradientBlobs>
-    </>
+      </div>
+    </div>
   );
 }

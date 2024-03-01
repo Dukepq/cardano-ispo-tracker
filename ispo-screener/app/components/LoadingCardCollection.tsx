@@ -10,8 +10,9 @@ const placeHolderStyle = {
 export default function LoadingCardCollection({ cards }: { cards?: number }) {
   return (
     <section className={styles["ispo-section"]}>
+      <h2>Featured</h2>
       <div className={styles["ispo-grid-wrapper"]}>
-        {[...Array(cards || 12).keys()].map((_, index) => (
+        {[...Array(cards || 8).keys()].map((_, index) => (
           <div key={index} className={styles["loading-card-wrapper"]}>
             <header className={styles["top-flex"]}>
               <span

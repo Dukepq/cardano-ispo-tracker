@@ -30,18 +30,24 @@ export default function Navbar() {
       // style={scrolled ? { backgroundColor: "var(--secondary-color)" } : {}}
     >
       <nav className={styles.navbar}>
-        <li>
-          <Link href={"/"}>
-            <span style={{ fontSize: "1.8rem" }}>C-ISPO</span>
-            {/* <img src={"/C-ISPO.svg"} alt="logo" className={styles.logo} /> */}
-          </Link>
-        </li>
-        <li>
-          <Link className={styles["ispo-button"]} href={"/ispos"}>
-            <span>ISPO&apos;S</span>
-            <ArrowRight />
-          </Link>
-        </li>
+        <ul>
+          <li>
+            <Link draggable={false} href={"/"}>
+              <span style={{ fontSize: "1.8rem" }}>C-ISPO</span>
+              {/* <img src={"/C-ISPO.svg"} alt="logo" className={styles.logo} /> */}
+            </Link>
+          </li>
+          <li>
+            <Link
+              draggable={false}
+              className={styles["ispo-button"]}
+              href={"/ispos"}
+            >
+              <span>ISPO&apos;S</span>
+              <ArrowRight />
+            </Link>
+          </li>
+        </ul>
       </nav>
     </div>
   );

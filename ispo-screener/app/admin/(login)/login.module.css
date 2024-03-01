@@ -2,6 +2,15 @@
   display: grid;
   place-content: center;
   height: 100vh;
+  background: url("/wavesgroup.svg"),
+    linear-gradient(
+      180deg,
+      rgba(0, 51, 173, 0) 0%,
+      rgba(0, 51, 173, 0.1) 50%,
+      rgba(0, 51, 173, 0) 100%
+    );
+  background-repeat: no-repeat;
+  background-position: center top, center top;
 }
 
 .form-wrapper {
@@ -14,8 +23,8 @@
   font-weight: 400;
   height: min(600px, calc(100vh - 2rem));
   width: min(500px, calc(100vw - 2rem));
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(100px);
+  background-color: #00000080;
+  backdrop-filter: blur(12px);
 }
 
 .form {

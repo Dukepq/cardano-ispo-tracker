@@ -7,7 +7,7 @@ import { FormattedISPO } from "@/app/lib/formatISPOArray";
 import { ExternalLink } from "../../../../../node_modules/lucide-react";
 import base from "@/app/lib/routes";
 
-export default async function Header({
+export default function Header({
   logoImageURL,
   name,
   categories,

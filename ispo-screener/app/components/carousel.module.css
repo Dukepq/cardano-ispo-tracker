@@ -1,6 +1,6 @@
 .embla {
   overflow: hidden;
-  animation: appear-right 500ms ease-in-out;
+  animation: appear-bottom 500ms ease-out;
 }
 .wrapper {
   display: flex;
@@ -11,13 +11,11 @@
   margin-right: 1rem;
 }
 
-@keyframes appear-right {
+@keyframes appear-bottom {
   from {
     transform: translateY(20%);
-    opacity: 0;
   }
   to {
     transform: translateY(0);
-    opacity: 1;
   }
 }

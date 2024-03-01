@@ -22,12 +22,6 @@ export default function TableRow({
         <div className={styles["name"]}>
           <p>{index + 1}</p>
           <Link href={`/ispos/${token}`}>
-            <Image
-              src={"/cardano-logo.svg"}
-              width={25}
-              height={25}
-              alt="logo"
-            />
             <div className={styles["name-wrapper"]}>
               <h5 style={{ color: "rgb(150, 150, 255)" }}>{name}</h5>
             </div>

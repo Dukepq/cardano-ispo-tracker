@@ -34,18 +34,17 @@ export default function ISPOCard({
       </header>
       <ul className={styles.categories}>
         {categories.map((category, index) => (
-          <span className={styles.category} key={index}>
+          <li className={styles.category} key={index}>
             {category.name}
-          </span>
+          </li>
         ))}
       </ul>
       <p className={styles.description}>
-        {truncateString(description || "", 150)}
+        {truncateString(description || "", 180)}
       </p>
       <div className={styles["read-more-wrapper"]}>
-        <Link href={`/ispos/${token}`}>
+        <Link draggable={false} href={`/ispos/${token}`}>
           <span>Read more</span>
-          <MoveRight />
         </Link>
       </div>
     </div>

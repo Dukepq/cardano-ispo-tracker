@@ -16,9 +16,7 @@ export default function PoolCard({
       href={`https://cexplorer.io/pool/${poolId}`}
       className={styles.wrapper}
     >
-      <h4 className={styles.name}>
-        <span>{name}</span>
-      </h4>
+      <h4 className={styles.name}>{name}</h4>
       <div>
         <span>Ticker: </span>
         <span>{ticker}</span>

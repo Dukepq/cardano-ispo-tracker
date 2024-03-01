@@ -104,14 +104,15 @@
   width: fit-content;
   gap: 1rem;
   padding: 0.25rem 1rem;
-  border: 1px solid var(--general-1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   transition: 100ms;
   margin-left: auto;
   height: 2.5rem;
+  backdrop-filter: blur(10px);
 }
 
 .tweet:hover {
-  transform: translate(2px, -2px);
+  border: 1px solid rgba(255, 255, 255);
 }
 
 .search-wrapper {
