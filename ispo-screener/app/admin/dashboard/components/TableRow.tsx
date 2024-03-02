@@ -10,9 +10,10 @@ import { Trash, FilePenLine } from "lucide-react";
 import DeleteDialogWrap from "../../components/DeleteDialogWrap";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import isLive from "@/app/lib/isLive";
 
 export default function TableRow(props: ISPO) {
-  const { name, token, live, categories } = props;
+  const { name, token, categories, startsAt, endsAt } = props;
   const router = useRouter();
   return (
     <tr>
@@ -27,7 +28,7 @@ export default function TableRow(props: ISPO) {
           alignItems: "center",
         }}
       >
-        {live ? "\u2713" : "\u00D7"}
+        {isLive(startsAt, endsAt) ? "\u2713" : "\u00D7"}
       </td>
       <td>
         <CategoryDropdown token={token} categories={categories} />
