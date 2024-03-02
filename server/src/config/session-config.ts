@@ -15,7 +15,7 @@ declare module "express-session" {
 const cookieOptions: CookieOptions = {
   maxAge: 1000 * 60 * 60,
   secure: process.env.USING_HTTPS === "true",
-  sameSite: "lax",
+  sameSite: "none",
 };
 
 export const expressSessionOptions = {
