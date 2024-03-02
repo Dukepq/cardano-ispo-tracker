@@ -2,6 +2,7 @@ import { PrismaStore } from "../prismaSessionStore";
 import { prisma } from "../db";
 import { Role } from "@prisma/client";
 import session from "express-session";
+import { CookieOptions } from "express-session";
 
 declare module "express-session" {
   interface SessionData {
@@ -11,17 +12,19 @@ declare module "express-session" {
   }
 }
 
+const cookieOptions: CookieOptions = {
+  maxAge: 1000 * 60 * 60,
+  secure: process.env.USING_HTTPS === "true",
+  sameSite: "lax",
+};
+
 export const expressSessionOptions = {
   secret: process.env.SESSION_SECRET!,
   resave: false,
   saveUninitialized: true,
   store: new PrismaStore(prisma, { period: 1000 * 30 }),
   rolling: true,
-  cookie: {
-    maxAge: 1000 * 60 * 60,
-    secure: process.env.USING_HTTPS === "true",
-    sameSite: true,
-  },
+  cookie: cookieOptions,
 };
 
 const sessionMiddleware = session(expressSessionOptions);
