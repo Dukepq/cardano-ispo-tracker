@@ -2,8 +2,8 @@ import { NextResponse, type NextRequest } from "next/server";
 import { nextBase } from "./app/lib/routes";
 
 export async function middleware(request: NextRequest) {
-  const headers = request.headers;
-  console.log(headers);
+  const cookie = request.headers.get("cookie");
+  console.log("hello from next mw, cookie: ", cookie);
   const response = await fetch(nextBase + "/api/rateLimit");
   if (response.status === 429) {
     return NextResponse.json({ error: "Too many requests" });
