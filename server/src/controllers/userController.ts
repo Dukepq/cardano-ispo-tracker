@@ -59,14 +59,6 @@ export const logoutUser = async (req: Request, res: Response) => {
 };
 
 export const checkAuth = async (req: Request, res: Response) => {
-  console.log("/*********************AFTER MW************************/");
-  console.log("full headers: ", req.headers);
-  console.log("ip", req.headers.ip);
-  console.log("sessionID", req.sessionID);
-  console.log("role", req.session.role);
-  console.log("cookie", req.session.cookie);
-  console.log("Set-Cookie Header:::", res.getHeader("Set-Cookie"));
-  console.log("/*********************AFTER MW*********************/");
   try {
     const role = req.session.role;
     switch (role) {
