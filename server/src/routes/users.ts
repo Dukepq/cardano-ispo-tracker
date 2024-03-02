@@ -19,7 +19,19 @@ router.route("/logout").post(sessionMiddleware, logoutUser);
 router
   .route("/delete")
   .delete(sessionMiddleware, isAuth(["ADMIN"]), deleteUser);
-router.route("/checkAuth").post(sessionMiddleware, checkAuth);
+router.route("/checkAuth").post(
+  (req, res) => {
+    console.log("/*********************AFTER MW************************/");
+    console.log("full headers: ", req.headers);
+    console.log("ip", req.headers.ip);
+    console.log("sessionID", req.sessionID);
+    console.log("role", req.session.role);
+    console.log("cookie", req.session.cookie);
+    console.log("/*********************AFTER MW*********************/");
+  },
+  sessionMiddleware,
+  checkAuth
+);
 router.route("/").get(sessionMiddleware, isAuth(["ADMIN", "EDITOR"]), getUsers);
 
 export default router;

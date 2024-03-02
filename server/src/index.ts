@@ -1,5 +1,6 @@
 import express from "express";
 const app = express();
+// app.set("trust proxy", true);
 import { default as projectsRouter } from "./routes/projects";
 import { default as poolsRouter } from "./routes/pools";
 import { default as categoriesRouter } from "./routes/categories";
@@ -9,8 +10,6 @@ import { limiter } from "./config/rateLimitOptions";
 import sessionMiddleware from "./config/session-config";
 import envHelper from "./utils/envHelper";
 const cors = require("cors");
-
-app.set("trust proxy", true);
 
 const entryDir = __dirname;
 export { entryDir };
