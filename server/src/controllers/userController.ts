@@ -59,31 +59,28 @@ export const logoutUser = async (req: Request, res: Response) => {
 };
 
 export const checkAuth = async (req: Request, res: Response) => {
-  console.log("/***************************************************/");
+  console.log("/*********************AFTER MW************************/");
   console.log("full headers: ", req.headers);
   console.log("ip", req.headers.ip);
   console.log("sessionID", req.sessionID);
   console.log("role", req.session.role);
   console.log("cookie", req.session.cookie);
-  console.log("/***************************************************/");
+  console.log("Set-Cookie Header:::", res.getHeader("Set-Cookie"));
+  console.log("/*********************AFTER MW*********************/");
   try {
     const role = req.session.role;
     switch (role) {
       case "ADMIN": {
-        res.status(200).json({ success: true, auth: "ADMIN" });
-        break;
+        return res.status(200).json({ success: true, auth: "ADMIN" });
       }
       case "EDITOR": {
-        res.status(200).json({ success: true, auth: "EDITOR" });
-        break;
+        return res.status(200).json({ success: true, auth: "EDITOR" });
       }
       case "BASIC": {
-        res.status(200).json({ success: true, auth: "BASIC" });
-        break;
+        return res.status(200).json({ success: true, auth: "BASIC" });
       }
       default: {
-        res.status(200).json({ success: true, auth: null });
-        break;
+        return res.status(200).json({ success: true, auth: null });
       }
     }
   } catch (err) {

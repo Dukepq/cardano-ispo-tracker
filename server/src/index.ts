@@ -1,6 +1,6 @@
 import express from "express";
 const app = express();
-// app.set("trust proxy", true);
+app.set("trust proxy", 1);
 import { default as projectsRouter } from "./routes/projects";
 import { default as poolsRouter } from "./routes/pools";
 import { default as categoriesRouter } from "./routes/categories";
