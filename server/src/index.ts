@@ -9,6 +9,7 @@ import { default as imagesRouter } from "./routes/images";
 import { limiter } from "./config/rateLimitOptions";
 import sessionMiddleware from "./config/session-config";
 import envHelper from "./utils/envHelper";
+import { CorsOptions } from "cors";
 const cors = require("cors");
 
 const entryDir = __dirname;
@@ -17,6 +18,11 @@ export { entryDir };
 const PORT = envHelper("PORT");
 const corsOrigin = envHelper("ORIGIN");
 
+const corsOptions: CorsOptions = {
+  origin: corsOrigin,
+  credentials: true,
+};
+
 app.get("/ip", (req, res) => res.send(req.ip));
 app.get("/x-forwarded-for", (req, res) =>
   res.send(req.headers["x-forwarded-for"])
@@ -24,12 +30,7 @@ app.get("/x-forwarded-for", (req, res) =>
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(
-  cors({
-    origin: corsOrigin,
-    credentials: true,
-  })
-);
+app.use(cors(corsOptions));
 app.use(limiter);
 app.use("/api/uploads", express.static("uploads"));
 app.use("/api/projects", projectsRouter);

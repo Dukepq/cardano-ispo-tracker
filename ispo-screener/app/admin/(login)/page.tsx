@@ -6,7 +6,6 @@ import styles from "./login.module.css";
 import toast from "react-hot-toast";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
-import GradientBlobs from "@/app/components/GradientBlobs";
 
 interface LoginDetails {
   email: string;

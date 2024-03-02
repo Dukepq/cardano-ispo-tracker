@@ -19,6 +19,7 @@ export default async function Dashboard() {
   const isAdmin = await isRole(cookie!, ["ADMIN", "EDITOR"]);
   if (!isAdmin) {
     console.log("not an admin");
+    redirect("/admin");
   }
   const projects = await fetchAllProjects(0);
   return (
