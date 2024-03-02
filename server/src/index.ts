@@ -16,10 +16,6 @@ export { entryDir };
 const PORT = envHelper("PORT");
 const corsOrigin = envHelper("ORIGIN");
 
-// (async () => {
-//   await prisma.session.deleteMany();
-// })();
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
