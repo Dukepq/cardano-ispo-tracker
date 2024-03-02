@@ -26,10 +26,6 @@ router.post(
   "/upload-image",
   sessionMiddleware,
   isAuth(["ADMIN", "EDITOR"]),
-  (req, res, next) => {
-    console.log(req.files);
-    next();
-  },
   multerUpload,
   imageResponse
 );

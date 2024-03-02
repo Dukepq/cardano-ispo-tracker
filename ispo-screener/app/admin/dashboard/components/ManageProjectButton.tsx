@@ -49,6 +49,8 @@ export default function ManageProjectButton({
       ...filtered,
       maxSupplyExists: !!fields.maxSupply,
       live: typeof filtered.live === "boolean" ? fields.live : false,
+      featured:
+        typeof filtered.featured === "boolean" ? fields.featured : false,
     });
     const response = await fetch(base + "/api/projects", {
       method,
@@ -231,21 +233,6 @@ export default function ManageProjectButton({
                     onChange={(e) => onProjectFormChange(e, setFields)}
                   />
                 </label>
-              </div>
-              <div className={styles["checkbox-wrapper"]}>
-                <input
-                  className={styles.checkbox}
-                  type="checkbox"
-                  id="live"
-                  name="live"
-                  checked={fields?.live || false}
-                  onChange={() => {
-                    setFields((prev) => {
-                      return { ...prev, live: !prev.live };
-                    });
-                  }}
-                />
-                <label htmlFor="live">Live</label>
               </div>
               <div className={styles["checkbox-wrapper"]}>
                 <input
