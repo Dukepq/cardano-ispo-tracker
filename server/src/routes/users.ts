@@ -22,11 +22,11 @@ router
 router.route("/checkAuth").post(
   (req, res) => {
     console.log("/*********************AFTER MW************************/");
-    console.log("full headers: ", req.headers);
-    console.log("ip", req.headers.ip);
-    console.log("sessionID", req.sessionID);
-    console.log("role", req.session.role);
-    console.log("cookie", req.session.cookie);
+    console.log("full headers: ", req?.headers);
+    console.log("ip", req?.headers?.ip);
+    console.log("sessionID", req?.sessionID);
+    console.log("role", req?.session?.role);
+    console.log("cookie", req?.session?.cookie);
     console.log("/*********************AFTER MW*********************/");
   },
   sessionMiddleware,
