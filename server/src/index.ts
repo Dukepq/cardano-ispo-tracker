@@ -16,6 +16,12 @@ export { entryDir };
 const PORT = envHelper("PORT");
 const corsOrigin = envHelper("ORIGIN");
 
+app.set("trust proxy", 1);
+app.get("/ip", (req, res) => res.send(req.ip));
+app.get("/x-forwarded-for", (req, res) =>
+  res.send(req.headers["x-forwarded-for"])
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
