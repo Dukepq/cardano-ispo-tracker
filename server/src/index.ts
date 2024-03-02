@@ -10,7 +10,7 @@ import sessionMiddleware from "./config/session-config";
 import envHelper from "./utils/envHelper";
 const cors = require("cors");
 
-app.set("trust proxy", 2);
+app.set("trust proxy", 1);
 
 const entryDir = __dirname;
 export { entryDir };
