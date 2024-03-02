@@ -8,12 +8,14 @@ import PageHeader from "./components/PageHeader";
 
 export default async function Dashboard() {
   const cookie = headers().get("cookie");
+  console.log(cookie);
   if (typeof cookie !== "string") {
+    console.log("not authenticated!");
     redirect("/admin");
   }
   const isAdmin = await isRole(cookie!, ["ADMIN", "EDITOR"]);
   if (!isAdmin) {
-    console.log("not admin");
+    console.log("not an admin");
   }
   const projects = await fetchAllProjects(0);
   return (
