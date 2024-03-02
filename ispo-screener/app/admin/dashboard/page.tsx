@@ -8,7 +8,6 @@ import PageHeader from "./components/PageHeader";
 
 export default async function Dashboard() {
   const cookie = headers().get("cookie");
-  console.log(cookie);
   if (typeof cookie !== "string") {
     redirect("/admin");
   }
