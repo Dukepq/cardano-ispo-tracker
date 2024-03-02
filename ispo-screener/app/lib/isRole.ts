@@ -1,5 +1,7 @@
+import base from "./routes";
+
 const isRole = async (cookie: string, roles: Role[]) => {
-  const response = await fetch("http://localhost:5003/api/users/checkAuth", {
+  const response = await fetch(base + "/api/users/checkAuth", {
     method: "POST",
     cache: "no-store",
     headers: {

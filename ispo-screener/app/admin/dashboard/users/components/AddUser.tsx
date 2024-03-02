@@ -4,6 +4,7 @@ import styles from "./users-dialog.module.css";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import base from "@/app/lib/routes";
 
 export default function AddUser() {
   const [open, setOpen] = useState(false);
@@ -17,7 +18,7 @@ export default function AddUser() {
 
   const createUser = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5003/api/users/register", {
+    const response = await fetch(base + "/api/users/register", {
       method: "POST",
       credentials: "include",
       body: JSON.stringify(fields),

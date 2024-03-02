@@ -10,17 +10,18 @@ import sessionMiddleware from "./config/session-config";
 import envHelper from "./utils/envHelper";
 const cors = require("cors");
 
+app.set("trust proxy", 1);
+
 const entryDir = __dirname;
 export { entryDir };
 
 const PORT = envHelper("PORT");
 const corsOrigin = envHelper("ORIGIN");
 
-app.set("trust proxy", 1);
-app.get("/ip", (req, res) => res.send(req.ip));
-app.get("/x-forwarded-for", (req, res) =>
-  res.send(req.headers["x-forwarded-for"])
-);
+// app.get("/ip", (req, res) => res.send(req.ip));
+// app.get("/x-forwarded-for", (req, res) =>
+//   res.send(req.headers["x-forwarded-for"])
+// );
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
