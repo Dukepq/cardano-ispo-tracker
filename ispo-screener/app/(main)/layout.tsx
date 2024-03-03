@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import styles from "./landing.module.css";
 import ispoStyles from "./ispos/[ispo]/styles/ispo.module.css";
 import tableStyles from "./ispos/(table)/styles/table.module.css";
+import tableRowStyles from "./ispos/(table)/styles/tableRow.module.css";
 
 export const metadata: Metadata = {
   title: "C-ISPO: Find Your Cardano ISPO",
@@ -25,7 +26,9 @@ export default function RootLayout({
           might not always be up to date.
         </p>
       </footer>
-      <span className={`${ispoStyles.fix} ${tableStyles.fix}`}></span>
+      <span
+        className={`${ispoStyles.fix} ${tableStyles.fix} ${tableRowStyles.fix}`}
+      ></span>
     </>
   );
 }
