@@ -1,2 +1,2 @@
 -- AlterTable
-ALTER TABLE `image` MODIFY `publicId` VARCHAR(191) NULL;
+ALTER TABLE `Image` MODIFY `publicId` VARCHAR(191) NULL;

@@ -5,4 +5,4 @@
 
 */
 -- AlterTable
-ALTER TABLE `image` MODIFY `publicId` VARCHAR(191) NOT NULL;
+ALTER TABLE `Image` MODIFY `publicId` VARCHAR(191) NOT NULL;
