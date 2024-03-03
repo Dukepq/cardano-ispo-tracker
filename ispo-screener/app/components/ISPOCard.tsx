@@ -22,7 +22,7 @@ export default function ISPOCard({
         {!!logoImageURL && (
           <Image
             style={{ borderRadius: "5px" }}
-            src={base + logoImageURL}
+            src={logoImageURL}
             width={38}
             height={38}
             alt="logo"

@@ -20,7 +20,7 @@ export default function Header({
         <Image
           alt="logo"
           unoptimized={true}
-          src={base + logoImageURL}
+          src={logoImageURL}
           width={125}
           height={125}
           className={styles.logo}

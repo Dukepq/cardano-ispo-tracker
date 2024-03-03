@@ -5,7 +5,7 @@ type DeleteImageJSON =
   | { success: false; message: string };
 
 export default async function deleteImage(
-  filename: string
+  url: string
 ): Promise<DeleteImageJSON> {
   const response = await fetch(base + "/api/images", {
     method: "DELETE",
@@ -14,7 +14,7 @@ export default async function deleteImage(
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      filename,
+      url,
     }),
     cache: "no-cache",
   });

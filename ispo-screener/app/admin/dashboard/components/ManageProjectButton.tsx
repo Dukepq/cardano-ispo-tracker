@@ -26,12 +26,10 @@ export default function ManageProjectButton({
   const router = useRouter();
   const createProject = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    let path = "";
     let url = "";
     if (file) {
       const data = await uploadImage(file);
       if (data.success) {
-        path = data.data.path;
         url = data.data.url;
         const size = data.data.size;
         setFields((prev) => ({ ...prev, logo: { size, url } }));
@@ -40,9 +38,7 @@ export default function ManageProjectButton({
       }
     }
     const deepCopy: Partial<ISPO> = JSON.parse(
-      JSON.stringify(
-        path.length > 0 ? { ...fields, logoImageURL: url } : fields
-      )
+      JSON.stringify(url.length > 0 ? { ...fields, logoImageURL: url } : fields)
     );
     const filtered = pruneFalsy(deepCopy, ["boolean", "string"]);
     const body = JSON.stringify({

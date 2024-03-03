@@ -62,6 +62,7 @@ model Project {
 
 model Image {
   id        String   @id @default(uuid())
+  publicId  String?
   width     Int?
   height    Int?
   url       String   @unique
@@ -69,10 +70,16 @@ model Image {
   mime      String
   size      Int
   filename  String   @unique
+  provider  Provider @default(LOCAL)
   project   Project? @relation(fields: [projectId], references: [id])
   projectId String?  @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+enum Provider {
+  CLOUDINARY
+  LOCAL
 }
 
 model Pool {

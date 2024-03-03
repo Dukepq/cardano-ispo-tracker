@@ -25,27 +25,19 @@ export default function Gallery({ logos }: GalleryProps) {
             key={logo.filename}
             title={"Delete image?"}
             handleDelete={async () => {
-              const deleted = await deleteImage(logo.filename);
+              const deleted = await deleteImage(logo.url);
               if (!deleted.success) {
                 toast.error("Failed to delete image");
                 return;
               }
               _setLogos((prev) => {
-                return prev.filter(
-                  (entry) => entry.filename !== deleted.deleted
-                );
+                return prev.filter((entry) => entry.url !== deleted.deleted);
               });
               toast.success("Image deleted");
               router.refresh();
             }}
           >
-            {
-              <GalleryImage
-                filename={logo.filename}
-                url={logo.url}
-                projectId={logo.projectId}
-              />
-            }
+            {<GalleryImage url={logo.url} projectId={logo.projectId} />}
           </DeleteDialogWrap>
         );
       })}

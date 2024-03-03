@@ -1,7 +1,7 @@
 import base from "./routes";
 
 type UploadImageResponse =
-  | { success: true; data: { path: string; url: string; size: number } }
+  | { success: true; data: { url: string; size: number } }
   | { success: false; message?: string };
 
 export default async function uploadImage(
@@ -9,7 +9,7 @@ export default async function uploadImage(
 ): Promise<UploadImageResponse> {
   const formData = new FormData();
   formData.append("file", file);
-  const response = await fetch(base + "/api/projects/upload-image", {
+  const response = await fetch(base + "/api/images", {
     method: "POST",
     credentials: "include",
     cache: "no-store",

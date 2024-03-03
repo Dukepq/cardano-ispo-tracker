@@ -93,7 +93,7 @@ export default function UploadFileInput({
       ) : (
         imageURL && (
           <div className={styles.preview}>
-            <Image src={base + imageURL} width={100} height={100} alt="logo" />
+            <Image src={imageURL} width={100} height={100} alt="logo" />
           </div>
         )
       )}
