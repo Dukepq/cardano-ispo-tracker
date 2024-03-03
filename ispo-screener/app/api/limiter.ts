@@ -20,7 +20,7 @@ const localUserCache: Map<
 > = new Map();
 
 const pruneCache = () => {
-  const removeAfter = 1000 * 60 * 0.1;
+  const removeAfter = 1000 * 60 * 60;
   for (const ip of localUserCache.keys()) {
     const user = localUserCache.get(ip);
     if (user && user.lastSeen + removeAfter < Date.now()) {
@@ -42,5 +42,14 @@ const userLimit = async (ip: string, removeAmount: number) => {
 
   return remainingTokens;
 };
+
+setInterval(() => {
+  const obj: { [key: string]: string } = {};
+  localUserCache.forEach((value, key) => {
+    const limit = value.limiter.tokenBucket.toString();
+    obj.key = limit;
+  });
+  console.log(JSON.stringify(obj));
+}, 10000);
 
 export default userLimit;
