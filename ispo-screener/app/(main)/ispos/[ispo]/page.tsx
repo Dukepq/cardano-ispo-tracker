@@ -8,6 +8,7 @@ import PoolCard from "./components/PoolCard";
 import { PackageOpen } from "lucide-react";
 import { fetchAllProjects } from "@/app/lib/fetchIspoData";
 import { notFound } from "next/navigation";
+import _styles from "../../landing.module.css";
 
 export const revalidate = 600;
 

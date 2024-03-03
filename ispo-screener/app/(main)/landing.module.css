@@ -117,6 +117,31 @@
   }
 }
 
+.app-wrapper {
+  min-height: 100vh;
+  display: flow-root;
+  background: url("/wavesgroup.svg"),
+    linear-gradient(
+      180deg,
+      rgba(0, 51, 173, 0) 0%,
+      rgba(0, 51, 173, 0.1) 50%,
+      rgba(0, 51, 173, 0) 100%
+    );
+  background-repeat: no-repeat;
+  background-position: center top, center top;
+}
+
+.footer {
+  height: 6rem;
+  display: grid;
+  place-content: center;
+  background-color: #0b090a;
+}
+
+.footer > p {
+  padding: 1rem;
+}
+
 @media (width < 640px) {
   .main {
     padding: 0.5rem;

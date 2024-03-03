@@ -1,14 +1,8 @@
-import "../globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { Poppins } from "next/font/google";
 import Navbar from "../components/Navbar";
-
-const poppins = Poppins({
-  weight: ["300", "500", "600", "700", "800"],
-  subsets: ["latin"],
-});
-const inter = Inter({ subsets: ["latin"] });
+import styles from "./landing.module.css";
+import ispoStyles from "./ispos/[ispo]/styles/ispo.module.css";
+import tableStyles from "./ispos/(table)/styles/table.module.css";
 
 export const metadata: Metadata = {
   title: "C-ISPO: Find Your Cardano ISPO",
@@ -24,20 +18,14 @@ export default function RootLayout({
   return (
     <>
       <Navbar />
-      <div className="app-wrapper">{children}</div>
-      <footer
-        style={{
-          height: "6rem",
-          display: "grid",
-          placeContent: "center",
-          backgroundColor: "#0b090a",
-        }}
-      >
-        <p style={{ padding: "1rem" }}>
+      <div className={styles["app-wrapper"]}>{children}</div>
+      <footer className={styles.footer}>
+        <p>
           All information on this page is for informational purposes only and
           might not always be up to date.
         </p>
       </footer>
+      <span className={`${ispoStyles.fix} ${tableStyles.fix}`}></span>
     </>
   );
 }

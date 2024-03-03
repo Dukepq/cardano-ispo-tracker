@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ISPOS() {
+  await new Promise((resolve) => setTimeout(resolve, 6000));
   const projects = await fetchAllProjects();
   return (
     <main className={styles.main}>
