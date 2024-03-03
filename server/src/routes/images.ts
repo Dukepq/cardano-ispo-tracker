@@ -1,12 +1,11 @@
 import express from "express";
 import {
   fetchImages,
-  deleteImage,
   cloudinaryDelete,
+  cloudinaryUpload,
 } from "../controllers/imagesController";
 import { isAuth } from "../middleware/auth";
 import sessionMiddleware from "../config/session-config";
-import { cloudinaryUpload } from "../controllers/imagesController";
 const router = express.Router();
 
 router
