@@ -1,5 +1,5 @@
 import * as HoverCard from "@radix-ui/react-hover-card";
-import { HelpCircle } from "../../../../node_modules/lucide-react";
+import { HelpCircle } from "lucide-react";
 import styles from "../styles/hoverPopup.module.css";
 
 export default function HelpPopup({

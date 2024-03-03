@@ -1,7 +1,7 @@
 import { FormattedPool } from "@/app/lib/formatPools";
 import styles from "../styles/pool-card.module.css";
 import Link from "next/link";
-import { ExternalLink } from "../../../../../node_modules/lucide-react";
+import { ExternalLink } from "lucide-react";
 
 export default function PoolCard({
   margin,

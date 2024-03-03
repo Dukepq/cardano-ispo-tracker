@@ -4,8 +4,7 @@ import styles from "../styles/ispo.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { FormattedISPO } from "@/app/lib/formatISPOArray";
-import { ExternalLink } from "../../../../../node_modules/lucide-react";
-import base from "@/app/lib/routes";
+import { ExternalLink } from "lucide-react";
 
 export default function Header({
   logoImageURL,

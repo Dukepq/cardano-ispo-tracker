@@ -2,7 +2,7 @@ import styles from "../styles/tableRow.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { FormattedISPO } from "@/app/lib/formatISPOArray";
-import { Check, X } from "../../../../node_modules/lucide-react";
+import { Check, X } from "lucide-react";
 import { numberFormat } from "@/app/lib/numberFormat";
 
 export default function TableRow({

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import styles from "../styles/table.module.css";
-import { ArrowUpDown } from "../../../../node_modules/lucide-react";
+import { ArrowUpDown } from "lucide-react";
 import HelpPopup from "./Popup";
 
 type TableHeadProps = {

@@ -1,5 +1,5 @@
-import Loading from "../../loading";
+import Spinner from "@/app/components/Spinner";
 
 export default function LoadingPage() {
-  return <Loading />;
+  return <Spinner css={{ minHeight: "100vh" }} />;
 }

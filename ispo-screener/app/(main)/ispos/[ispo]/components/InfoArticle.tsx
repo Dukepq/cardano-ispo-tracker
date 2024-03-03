@@ -1,6 +1,6 @@
 import styles from "../styles/ispo.module.css";
 import { FormattedISPO } from "@/app/lib/formatISPOArray";
-import { Globe } from "../../../../../node_modules/lucide-react";
+import { Globe } from "lucide-react";
 import Link from "next/link";
 import { numberFormat } from "@/app/lib/numberFormat";
 

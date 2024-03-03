@@ -1,7 +1,7 @@
 import styles from "./styles/table.module.css";
 import { Metadata } from "next";
 import Table from "./components/Table";
-import { fetchAllProjects } from "../../lib/fetchIspoData";
+import { fetchAllProjects } from "../../../lib/fetchIspoData";
 import Image from "next/image";
 import Link from "next/link";
 import isLive from "@/app/lib/isLive";

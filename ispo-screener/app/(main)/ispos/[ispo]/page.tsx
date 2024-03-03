@@ -5,7 +5,7 @@ import { formatISPO } from "@/app/lib/formatISPOArray";
 import Info from "./components/InfoArticle";
 import type { Metadata, ResolvingMetadata } from "next";
 import PoolCard from "./components/PoolCard";
-import { PackageOpen } from "../../../../node_modules/lucide-react";
+import { PackageOpen } from "lucide-react";
 import { fetchAllProjects } from "@/app/lib/fetchIspoData";
 import { notFound } from "next/navigation";
 
