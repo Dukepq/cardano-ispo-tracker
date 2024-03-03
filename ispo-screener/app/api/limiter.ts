@@ -44,12 +44,10 @@ const userLimit = async (ip: string, removeAmount: number) => {
 };
 
 setInterval(() => {
-  const obj: { [key: string]: string } = {};
   localUserCache.forEach((value, key) => {
-    const limit = value.limiter.tokenBucket.toString();
-    obj.key = limit;
+    const limit = value.limiter.tokenBucket.content;
+    console.log(key, limit);
   });
-  console.log(JSON.stringify(obj));
 }, 10000);
 
 export default userLimit;
