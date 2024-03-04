@@ -39,7 +39,7 @@ const userLimit = async (ip: string, removeAmount: number) => {
   if (!user) return null;
   user.lastSeen = Date.now();
   const remainingTokens = await user.limiter.removeTokens(removeAmount);
-
+  console.log(ip, remainingTokens);
   return remainingTokens;
 };
 

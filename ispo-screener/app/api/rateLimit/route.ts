@@ -1,9 +1,10 @@
 import userLimit from "../limiter";
 
 export async function GET(request: Request) {
-  const ip = request.headers.get("X-Forwarded-For") ?? "127.0.0.1";
-  console.log("API IP: " + ip);
-  const remainingLimit = await userLimit(ip, 1);
+  const forwarded = request.headers.get("X-Forwarded-For") ?? "127.0.0.1";
+  const clientIp = forwarded.split(",")[0];
+  console.log("API IP: " + clientIp);
+  const remainingLimit = await userLimit(clientIp, 1);
   const headers = new Headers({
     "X-RateLimit-Limit": process.env.NEXT_SERVER_RATELIMIT!,
   });
