@@ -2,10 +2,13 @@ import { NextResponse, type NextRequest } from "next/server";
 import { nextBase } from "./app/lib/routes";
 
 export async function middleware(request: NextRequest) {
-  const response = await fetch(nextBase + "/api/rateLimit");
+  const ip = request.headers.get("X-Forwarded-For") ?? "127.0.0.1";
+  console.log("middleware IP: " + ip);
+  const response = await fetch(nextBase + "/api/rateLimit", {});
   if (response.status === 429) {
     return NextResponse.json({ error: "Too many requests" });
   }
+  console.log;
   return NextResponse.next();
 }
 
