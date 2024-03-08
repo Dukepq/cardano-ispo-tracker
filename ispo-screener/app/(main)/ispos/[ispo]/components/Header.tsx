@@ -16,7 +16,13 @@ export default function Header({
   return (
     <header className={styles.header}>
       {logoImageURL && (
-        <img src={logoImageURL} alt="logo" width={125} height={125} />
+        <img
+          src={logoImageURL}
+          alt="logo"
+          width={125}
+          height={125}
+          style={{ borderRadius: "0.25rem" }}
+        />
       )}
       <div className={styles["info-wrapper"]}>
         <ConditionalLink href={websiteURL}>
