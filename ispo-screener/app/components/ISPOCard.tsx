@@ -20,13 +20,7 @@ export default function ISPOCard({
     <div className={styles["card-wrapper"]}>
       <header className={styles["top-flex"]}>
         {!!logoImageURL && (
-          <Image
-            style={{ borderRadius: "5px" }}
-            src={logoImageURL}
-            width={38}
-            height={38}
-            alt="logo"
-          />
+          <img src={logoImageURL} alt="logo" width={38} height={38} />
         )}
         <span style={{ fontWeight: "500" }}>{name}</span>
       </header>

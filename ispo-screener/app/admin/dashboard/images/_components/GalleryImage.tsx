@@ -14,7 +14,7 @@ export default function GalleryImage({ url, projectId }: GalleryImageProps) {
   return (
     <div className={styles["logo-wrapper"]}>
       {projectId && <Link2 className={styles["link-icon"]} />}
-      <Image
+      <img
         className={styles.logo}
         src={url}
         width={100}

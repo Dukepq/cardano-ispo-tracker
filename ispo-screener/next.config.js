@@ -8,11 +8,6 @@ const nextConfig = {
         hostname: "localhost",
         port: "5003",
       },
-      {
-        protocol: process.env.PRODUCTION === "true" ? "https" : "http",
-        hostname: "res.cloudinary.com",
-        port: "",
-      },
     ],
   },
 };

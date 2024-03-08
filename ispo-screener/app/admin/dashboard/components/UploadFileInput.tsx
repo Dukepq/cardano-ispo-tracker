@@ -88,12 +88,12 @@ export default function UploadFileInput({
 
       {newURL ? (
         <div className={styles.preview}>
-          <Image src={newURL} width={100} height={100} alt="logo" />
+          <img src={newURL} width={100} height={100} alt="logo" />
         </div>
       ) : (
         imageURL && (
           <div className={styles.preview}>
-            <Image src={imageURL} width={100} height={100} alt="logo" />
+            <img src={imageURL} width={100} height={100} alt="logo" />
           </div>
         )
       )}
