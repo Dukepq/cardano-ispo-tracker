@@ -3,7 +3,11 @@ import { fetchAllProjects } from "../lib/fetchIspoData";
 import ISPOCard from "./ISPOCard";
 import shuffleArray from "../lib/shuffleArray";
 
-export default async function ({ maxCards }: { maxCards?: number }) {
+export default async function ServerCarouselWrapper({
+  maxCards,
+}: {
+  maxCards?: number;
+}) {
   const ISPOs = await fetchAllProjects();
   return (
     <Carousel>
